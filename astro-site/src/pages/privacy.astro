@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Shield, ArrowLeft } from 'lucide-astro';
+---
+
+<Layout title="Privacy Policy — Anna Amalfi Tours">
+  <div class="legal-page">
+    <a href="/" class="legal-back"><ArrowLeft size={16} /> На главную</a>
+    <h1><Shield size={28} /> Privacy Policy</h1>
+    <p class="legal-updated">Последнее обновление: 1 марта 2026</p>
+
+    <h2>1. Общие положения</h2>
+    <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Anna Amalfi Tours (далее — «Сайт»). Владелец сайта уважает право на конфиденциальность посетителей и стремится к его защите.</p>
+
+    <h2>2. Сбор информации</h2>
+    <p>Мы можем собирать следующую информацию:</p>
+    <ul>
+      <li>Имя и контактные данные, предоставленные вами через WhatsApp или другие каналы связи</li>
+      <li>Техническая информация: IP-адрес, тип браузера, операционная система, время посещения</li>
+      <li>Данные о навигации по сайту (cookies и аналогичные технологии)</li>
+    </ul>
+
+    <h2>3. Использование информации</h2>
+    <p>Собранная информация используется исключительно для:</p>
+    <ul>
+      <li>Обработки запросов и бронирований</li>
+      <li>Улучшения качества обслуживания</li>
+      <li>Анализа посещаемости сайта</li>
+      <li>Связи с вами по вопросам бронирования</li>
+    </ul>
+
+    <h2>4. Cookies</h2>
+    <p>Сайт использует файлы cookies для обеспечения корректной работы, анализа трафика и улучшения пользовательского опыта. Вы можете отключить cookies в настройках вашего браузера.</p>
+
+    <h2>5. Передача данных третьим лицам</h2>
+    <p>Мы не продаем, не обмениваем и не передаем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных действующим законодательством Италии и Европейского Союза (GDPR).</p>
+
+    <h2>6. Защита данных</h2>
+    <p>Мы принимаем разумные меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+
+    <h2>7. Ваши права (GDPR)</h2>
+    <p>В соответствии с Общим регламентом по защите данных (GDPR) вы имеете право:</p>
+    <ul>
+      <li>Запросить доступ к вашим персональным данным</li>
+      <li>Потребовать исправления или удаления данных</li>
+      <li>Ограничить обработку ваших данных</li>
+      <li>Отозвать согласие на обработку данных</li>
+      <li>Подать жалобу в надзорный орган</li>
+    </ul>
+
+    <h2>8. Контакты</h2>
+    <p>По вопросам, связанным с обработкой персональных данных, вы можете связаться с нами через <a href="https://wa.me/393792811354">WhatsApp</a>.</p>
+  </div>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+  }
+  .legal-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--coral);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    transition: gap var(--transition);
+  }
+  .legal-back:hover { gap: 10px; }
+  .legal-page h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2rem;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .legal-updated {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 40px;
+  }
+  .legal-page h2 {
+    font-size: 1.15rem;
+    color: var(--blue);
+    margin: 32px 0 12px;
+  }
+  .legal-page p {
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .legal-page ul {
+    padding-left: 24px;
+    margin-bottom: 12px;
+  }
+  .legal-page li {
+    color: #555;
+    line-height: 1.75;
+    list-style: disc;
+    margin-bottom: 4px;
+  }
+  .legal-page a {
+    color: var(--coral);
+    text-decoration: underline;
+  }
+</style>

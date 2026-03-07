@@ -1,0 +1,156 @@
+---
+import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-astro';
+
+const reviews = [
+  { src: '/images/Reviews.png', alt: 'Отзыв 1' },
+  { src: '/images/Reviews02.png', alt: 'Отзыв 2' },
+  { src: '/images/Reviews03.png', alt: 'Отзыв 3' },
+  { src: '/images/Reviews04.png', alt: 'Отзыв 4' },
+];
+---
+
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label reviews-label"><Star size={16} /> Что говорят гости</span>
+      <h2 class="reviews-title">Отзывы</h2>
+      <p class="reviews-subtitle">Реальные впечатления от гостей, побывавших на экскурсиях с Анной</p>
+    </div>
+
+    <div class="reviews-carousel reveal">
+      <button class="reviews-arrow reviews-arrow--left" id="reviewPrev" aria-label="Предыдущий отзыв">
+        <ChevronLeft size={20} />
+      </button>
+      <div class="reviews-track-wrapper">
+        <div class="reviews-track" id="reviewsTrack">
+          {reviews.map((review) => (
+            <div class="review-polaroid">
+              <div class="review-polaroid-inner">
+                <div class="review-polaroid-tape"></div>
+                <img src={review.src} alt={review.alt} loading="lazy">
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="reviews-arrow reviews-arrow--right" id="reviewNext" aria-label="Следующий отзыв">
+        <ChevronRight size={20} />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('reviewsTrack');
+  const prevBtn = document.getElementById('reviewPrev');
+  const nextBtn = document.getElementById('reviewNext');
+
+  if (track && prevBtn && nextBtn) {
+    const scrollAmount = 460;
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
+</script>
+
+<style>
+  .reviews {
+    background: var(--blue);
+    overflow: hidden;
+  }
+  .reviews-label { color: var(--yellow) !important; }
+  .reviews-title { color: var(--white) !important; }
+  .reviews-subtitle { color: rgba(255,255,255,0.55) !important; }
+
+  .reviews-carousel {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .reviews-arrow {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition);
+    z-index: 2;
+  }
+  .reviews-arrow:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .reviews-track-wrapper {
+    flex: 1;
+    overflow: hidden;
+  }
+  .reviews-track {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px 8px;
+  }
+  .reviews-track::-webkit-scrollbar { display: none; }
+
+  .review-polaroid {
+    flex: 0 0 420px;
+    scroll-snap-align: start;
+  }
+  .review-polaroid-inner {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 14px 14px 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    transform: rotate(-1deg);
+    transition: transform 0.4s ease;
+  }
+  .review-polaroid:nth-child(2) .review-polaroid-inner { transform: rotate(1.5deg); }
+  .review-polaroid:nth-child(3) .review-polaroid-inner { transform: rotate(-0.5deg); }
+  .review-polaroid:nth-child(4) .review-polaroid-inner { transform: rotate(2deg); }
+  .review-polaroid:hover .review-polaroid-inner { transform: rotate(0deg) scale(1.02); }
+
+  .review-polaroid-tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 60px;
+    height: 20px;
+    background: rgba(244,208,63,0.5);
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .review-polaroid img {
+    width: 100%;
+    border-radius: 2px;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .reviews-arrow { display: none; }
+    .review-polaroid { flex: 0 0 320px; }
+    .reviews-track { padding: 16px 4px; gap: 20px; }
+  }
+  @media (max-width: 480px) {
+    .review-polaroid { flex: 0 0 280px; }
+  }
+</style>

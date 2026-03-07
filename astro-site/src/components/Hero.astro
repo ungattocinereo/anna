@@ -1,0 +1,205 @@
+---
+import { MapPin, Anchor, ChevronDown } from 'lucide-astro';
+---
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-pattern"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-photo reveal-left">
+      <img src="/images/My%20foto.jpg" alt="Анна — ваш гид по Амальфитанскому побережью">
+      <div class="hero-photo-badge">
+        <MapPin size={14} />
+        <span>Amalfi Coast</span>
+      </div>
+    </div>
+    <div class="hero-text reveal-right">
+      <div class="hero-badge">
+        <Anchor size={14} />
+        Амальфитанское побережье, Италия
+      </div>
+      <h1>Привет! Я&nbsp;&mdash; <span>Анна</span></h1>
+      <p class="hero-tagline">Авторские экскурсии, которые становятся лучшей частью вашей поездки в Италию</p>
+      <div class="hero-buttons">
+        <a href="#boats" class="btn btn-primary">
+          <Anchor size={18} />
+          Мои экскурсии
+        </a>
+        <a href="https://wa.me/393792811354" class="btn btn-outline" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L.053 23.52l5.797-1.447A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.74-.51-5.33-1.45l-.38-.23-3.44.86.9-3.36-.25-.39A9.8 9.8 0 012.18 12c0-5.41 4.41-9.82 9.82-9.82 5.41 0 9.82 4.41 9.82 9.82 0 5.41-4.41 9.82-9.82 9.82z"/></svg>
+          Написать мне
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="hero-scroll" aria-label="Прокрутить вниз">
+    <ChevronDown size={28} />
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--dark);
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: url('/images/20241030_111216.jpg') center / cover no-repeat;
+    animation: heroKenBurns 25s ease-in-out infinite alternate;
+    filter: brightness(0.35) saturate(1.1) blur(3px);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13,27,42,0.75) 0%, rgba(27,58,92,0.6) 50%, rgba(13,27,42,0.7) 100%);
+  }
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(244,208,63,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,107,107,0.05) 0%, transparent 50%);
+  }
+  @keyframes heroKenBurns {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-10px, -5px); }
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+    width: 100%;
+  }
+  .hero-photo {
+    flex: 0 0 340px;
+    position: relative;
+  }
+  .hero-photo img {
+    width: 340px;
+    height: 440px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 24px;
+    border: 1.5px solid rgba(244,208,63,0.2);
+    pointer-events: none;
+  }
+  .hero-photo-badge {
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    color: var(--blue);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    white-space: nowrap;
+  }
+  .hero-text {
+    flex: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(244,208,63,0.1);
+    border: 1px solid rgba(244,208,63,0.3);
+    color: var(--yellow);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero-text h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  .hero-text h1 span {
+    color: var(--yellow);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 440px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.4);
+    animation: bounce 2.5s infinite;
+    transition: color var(--transition);
+  }
+  .hero-scroll:hover { color: var(--yellow); }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 100px 24px 60px;
+      gap: 36px;
+    }
+    .hero-photo { flex: 0 0 auto; order: -1; }
+    .hero-photo img { width: 240px; height: 300px; margin: 0 auto; }
+    .hero-buttons { justify-content: center; }
+    .hero-tagline { margin-left: auto; margin-right: auto; }
+    .hero-text h1 { font-size: 2.2rem; }
+  }
+  @media (max-width: 480px) {
+    .hero-text h1 { font-size: 1.9rem; }
+    .hero-photo img { width: 200px; height: 260px; }
+  }
+</style>

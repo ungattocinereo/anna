@@ -1,0 +1,172 @@
+---
+import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
+---
+
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-text">ANNA</span>
+    <span class="nav-logo-dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about"><Compass size={14} /> Обо мне</a></li>
+    <li><a href="#boats"><Ship size={14} /> Экскурсии</a></li>
+    <li><a href="#gallery"><Camera size={14} /> Галерея</a></li>
+    <li><a href="#reviews"><Star size={14} /> Отзывы</a></li>
+    <li>
+      <a href="https://wa.me/393792811354" class="nav-cta" target="_blank" rel="noopener">
+        <MessageCircle size={15} /> Написать
+      </a>
+    </li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link"><Compass size={20} /> Обо мне</a>
+  <a href="#boats" class="mobile-link"><Ship size={20} /> Экскурсии</a>
+  <a href="#gallery" class="mobile-link"><Camera size={20} /> Галерея</a>
+  <a href="#reviews" class="mobile-link"><Star size={20} /> Отзывы</a>
+  <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="mobile-link mobile-link--cta">
+    <MessageCircle size={20} /> Написать в WhatsApp
+  </a>
+</div>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s;
+  }
+  .nav.scrolled {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 1px 20px rgba(27,58,92,0.06);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    transition: color var(--transition);
+  }
+  .nav-logo-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--coral);
+    margin-top: 8px;
+  }
+  .nav.scrolled .nav-logo-text { color: var(--blue); }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.85);
+    transition: color var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+  .nav.scrolled .nav-links a { color: var(--blue); }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav.scrolled .nav-links a:hover { color: var(--coral); }
+
+  .nav-cta {
+    background: var(--coral) !important;
+    color: var(--white) !important;
+    padding: 10px 22px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition) !important;
+  }
+  .nav-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255,107,107,0.35);
+    color: var(--white) !important;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .burger span {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+  .nav.scrolled .burger span { background: var(--blue); }
+  :global(.burger.active) span:nth-child(1) { transform: rotate(45deg) translate(5px, 5.5px); background: var(--white); }
+  :global(.burger.active) span:nth-child(2) { opacity: 0; }
+  :global(.burger.active) span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5.5px); background: var(--white); }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--dark) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+  :global(.mobile-menu.open) { opacity: 1; pointer-events: all; }
+  .mobile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color var(--transition);
+  }
+  .mobile-link:hover { color: var(--yellow); }
+  .mobile-link--cta { color: var(--yellow); }
+
+  @media (max-width: 900px) {
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .burger { display: flex; }
+  }
+</style>

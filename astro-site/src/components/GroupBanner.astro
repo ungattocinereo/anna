@@ -1,0 +1,129 @@
+---
+import { PartyPopper, Heart, Gem, Users, MessageCircle } from 'lucide-astro';
+
+const images = [
+  '/images/20250630_195957.jpg',
+  '/images/20241030_111216.jpg',
+  '/images/20241104_150159.jpg',
+  '/images/20241125_113727.jpg',
+  '/images/20241006_175944.jpg',
+  '/images/20250420_084358.jpg',
+  '/images/20241218_122948.jpg',
+  '/images/20241013_152005.jpg',
+];
+---
+
+<section class="group-banner" id="groups">
+  <div class="group-slideshow" aria-hidden="true">
+    {images.map((img, i) => (
+      <div class={`group-slide ${i === 0 ? 'active' : ''}`}>
+        <img src={img} alt="" loading="lazy">
+      </div>
+    ))}
+  </div>
+  <div class="group-overlay"></div>
+  <div class="group-content reveal">
+    <div class="group-icons">
+      <span class="group-icon"><PartyPopper size={20} /></span>
+      <span class="group-icon"><Heart size={20} /></span>
+      <span class="group-icon"><Gem size={20} /></span>
+      <span class="group-icon"><Users size={20} /></span>
+    </div>
+    <h2>Групповые туры, ретриты, девичники, предложения руки и сердца</h2>
+    <p>Организация незабываемых событий на Амальфитанском побережье. Напишите мне, и мы создадим идеальную программу под ваш запрос</p>
+    <a href="https://wa.me/393792811354" class="btn btn-primary" target="_blank" rel="noopener">
+      <MessageCircle size={18} />
+      Обсудить
+    </a>
+  </div>
+</section>
+
+<script>
+  // Auto-sliding photos
+  const slides = document.querySelectorAll('.group-slide');
+  if (slides.length > 0) {
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+  }
+</script>
+
+<style>
+  .group-banner {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .group-slideshow {
+    position: absolute;
+    inset: 0;
+  }
+  .group-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .group-slide.active { opacity: 1; }
+  .group-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .group-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13,27,42,0.85) 0%, rgba(27,58,92,0.8) 100%);
+    z-index: 1;
+  }
+  .group-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    padding: 60px 32px;
+  }
+  .group-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .group-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yellow);
+    transition: transform 0.4s ease;
+  }
+  .group-icon:hover { transform: scale(1.1) rotate(-5deg); }
+  .group-content h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .group-content p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 768px) {
+    .group-banner { min-height: 360px; }
+    .group-content { padding: 40px 20px; }
+  }
+</style>

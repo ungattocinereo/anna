@@ -1,0 +1,178 @@
+---
+import { Instagram, ExternalLink } from 'lucide-astro';
+
+// Fallback local photos
+const fallbackPhotos = [
+  { src: '/images/20250630_195957.jpg', alt: 'Positano на закате', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241030_111216.jpg', alt: 'Амальфитанское побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241104_150159.jpg', alt: 'Побережье Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241125_113727.jpg', alt: 'Виды Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241006_175944.jpg', alt: 'Закат на побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241127_105410.jpg', alt: 'Побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20250420_084358.jpg', alt: 'Экскурсия', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/20241013_192321.jpg', alt: 'Вечер', permalink: 'https://www.instagram.com/ann_in_rome/' },
+];
+
+// Try fetching from Instagram Graph API at build time
+const INSTAGRAM_TOKEN = import.meta.env.INSTAGRAM_TOKEN;
+let photos = fallbackPhotos;
+let isLive = false;
+
+if (INSTAGRAM_TOKEN) {
+  try {
+    const res = await fetch(
+      `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,thumbnail_url,media_type&limit=8&access_token=${INSTAGRAM_TOKEN}`
+    );
+    if (res.ok) {
+      const data = await res.json();
+      const instaPhotos = data.data
+        .filter((item: any) => item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM')
+        .slice(0, 8)
+        .map((item: any) => ({
+          src: item.media_url,
+          alt: item.caption?.slice(0, 80) || 'Instagram фото',
+          permalink: item.permalink,
+        }));
+      if (instaPhotos.length >= 6) {
+        photos = instaPhotos;
+        isLive = true;
+      }
+    }
+  } catch (e) {
+    // Silently fall back to local photos
+  }
+}
+---
+
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label"><Instagram size={16} /> Мои фото</span>
+      <h2>Галерея</h2>
+      <p>Ежедневные истории из жизни на побережье и красоты Амальфи</p>
+      {isLive && <span class="live-badge">live</span>}
+    </div>
+
+    <div class="insta-grid reveal">
+      {photos.map((photo, i) => (
+        <a
+          class={`insta-item ${i === 0 ? 'insta-item--large' : ''}`}
+          href={photo.permalink}
+          target="_blank"
+          rel="noopener"
+        >
+          <img src={photo.src} alt={photo.alt} loading="lazy">
+          <div class="insta-overlay">
+            <Instagram size={28} />
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="insta-handle reveal">
+      <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">
+        <Instagram size={20} />
+        @ann_in_rome
+        <ExternalLink size={14} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery { background: var(--white); }
+
+  .live-badge {
+    display: inline-block;
+    background: #25D366;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 50px;
+    margin-top: 8px;
+    animation: livePulse 2s ease infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .insta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 240px);
+    gap: 10px;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+  .insta-item--large {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+  .insta-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .insta-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .insta-item:hover img { transform: scale(1.06); }
+
+  .insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(27,58,92,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: var(--white);
+  }
+  .insta-item:hover .insta-overlay { opacity: 1; }
+
+  .insta-handle {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .insta-handle a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--blue);
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 2px solid rgba(27,58,92,0.12);
+    transition: all var(--transition);
+  }
+  .insta-handle a:hover {
+    color: var(--coral);
+    border-color: var(--coral);
+  }
+
+  @media (max-width: 768px) {
+    .insta-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 160px);
+    }
+    .insta-item--large {
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+    }
+  }
+  @media (max-width: 480px) {
+    .insta-grid { grid-template-rows: repeat(4, 140px); gap: 8px; }
+  }
+</style>

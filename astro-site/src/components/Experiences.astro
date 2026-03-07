@@ -1,0 +1,192 @@
+---
+import { Pizza, ChefHat, Wine, Camera, Clock, Users, Heart, Send } from 'lucide-astro';
+---
+
+<section class="section experiences" id="experiences">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label"><Heart size={16} /> Больше впечатлений</span>
+      <h2>Другие впечатления</h2>
+      <p>Кулинария, вино, фотосессии и особые события</p>
+    </div>
+
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-icon-wrap">
+          <Pizza size={32} />
+        </div>
+        <h3>Пицца мастер-класс</h3>
+        <div class="exp-meta">
+          <span><Clock size={14} /> 2 часа</span>
+          <span><Users size={14} /> мин. 3 чел.</span>
+        </div>
+        <p>Приватный мастер-класс с итальянским шеф-поваром у моря. Секреты идеального теста, своя пицца из печи &mdash; с видом на море</p>
+        <div class="exp-bottom">
+          <div class="exp-price">&euro;150 <small>/чел.</small></div>
+          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
+            <Send size={14} /> Записаться
+          </a>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-icon-wrap">
+          <ChefHat size={32} />
+        </div>
+        <h3>Домашняя итальянская кухня</h3>
+        <div class="exp-meta">
+          <span><Clock size={14} /> 3 часа</span>
+          <span><Users size={14} /> макс. 4 чел.</span>
+        </div>
+        <p>Попасть в настоящий итальянский дом. Домашняя паста, основное блюдо и десерт на панорамной террасе. Обед с вином и невероятным видом</p>
+        <div class="exp-bottom">
+          <div class="exp-price">&euro;600</div>
+          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
+            <Send size={14} /> Записаться
+          </a>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-icon-wrap">
+          <Wine size={32} />
+        </div>
+        <h3>Семейная винодельня</h3>
+        <div class="exp-meta">
+          <span><Clock size={14} /> 2 часа</span>
+        </div>
+        <p>Небольшая семейная винодельня. Несколько поколений, традиционные рецепты. Дегустация местных вин с легкими региональными закусками</p>
+        <div class="exp-bottom">
+          <div class="exp-price">&euro;80 <small>/чел.</small></div>
+          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
+            <Send size={14} /> Записаться
+          </a>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-icon-wrap">
+          <Camera size={32} />
+        </div>
+        <h3>Фотосессия на побережье</h3>
+        <div class="exp-meta">
+          <span><Clock size={14} /> 1 час</span>
+          <span><Camera size={14} /> 30 фото</span>
+        </div>
+        <p>Профессиональная фотосессия на самых красивых панорамных точках. Яркие, стильные кадры на фоне моря, скал и знаменитых пейзажей</p>
+        <div class="exp-bottom">
+          <div class="exp-price">&euro;250</div>
+          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
+            <Send size={14} /> Записаться
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experiences { background: var(--light); }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .exp-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .exp-card:hover { transform: translateY(-5px); }
+
+  .exp-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(27,58,92,0.06), rgba(44,95,138,0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    margin-bottom: 18px;
+    transition: transform 0.5s ease, background 0.5s ease;
+  }
+  .exp-card:hover .exp-icon-wrap {
+    transform: scale(1.08) rotate(-3deg);
+    background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,107,107,0.15));
+    color: var(--coral);
+  }
+
+  .exp-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+
+  .exp-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    font-size: 0.82rem;
+  }
+  .exp-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #888;
+  }
+
+  .exp-card p {
+    color: #666;
+    line-height: 1.65;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .exp-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(27,58,92,0.06);
+  }
+  .exp-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--blue);
+  }
+  .exp-price small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #888;
+  }
+  .exp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--coral);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: gap var(--transition);
+  }
+  .exp-cta:hover { gap: 10px; }
+
+  @media (max-width: 768px) {
+    .exp-grid { grid-template-columns: 1fr; }
+  }
+</style>
