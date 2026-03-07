@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANNA — Концепты лендинга</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 300;
+            background-color: #1C1C1E;
+            color: #F5F3EF;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid #D4A574;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+        }
+
+        .header-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #F5F3EF;
+        }
+
+        .header-date {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            color: #D4A574;
+            letter-spacing: 0.05em;
+        }
+
+        /* Intro */
+        .intro {
+            padding: 64px 0 48px;
+            max-width: 680px;
+        }
+
+        .intro p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(245, 243, 239, 0.8);
+        }
+
+        .intro .hint {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #D4A574;
+            letter-spacing: 0.03em;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding-bottom: 80px;
+        }
+
+        /* Card */
+        .card {
+            display: block;
+            position: relative;
+            background: #2A2A2C;
+            border: 1px solid rgba(245, 243, 239, 0.06);
+            text-decoration: none;
+            color: #F5F3EF;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card:hover .card-accent {
+            width: 8px;
+        }
+
+        .card-watermark {
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 120px;
+            line-height: 1;
+            color: rgba(245, 243, 239, 0.03);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .card-content {
+            position: relative;
+            padding: 32px 32px 28px 36px;
+            z-index: 1;
+        }
+
+        .card-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: rgba(245, 243, 239, 0.55);
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-colors {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(245, 243, 239, 0.1);
+        }
+
+        .card-fonts {
+            font-size: 12px;
+            color: rgba(245, 243, 239, 0.35);
+            letter-spacing: 0.02em;
+        }
+
+        .card-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #D4A574;
+            letter-spacing: 0.05em;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .card:hover .card-link {
+            letter-spacing: 0.1em;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(245, 243, 239, 0.06);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-main {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: rgba(245, 243, 239, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .footer-sub {
+            font-size: 12px;
+            color: rgba(245, 243, 239, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .intro {
+                padding: 48px 0 36px;
+            }
+
+            .intro p {
+                font-size: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding-bottom: 60px;
+            }
+
+            .card-watermark {
+                font-size: 90px;
+            }
+
+            .card-content {
+                padding: 24px 24px 22px 28px;
+            }
+
+            .card-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="header-title">Anna — Концепты лендинга</div>
+                <div class="header-date">Март 2025</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <p>6 уникальных концепций лендинга для авторских экскурсий по Амальфитанскому побережью. Каждый концепт — самостоятельная страница, готовая к просмотру.</p>
+            <div class="hint">Нажмите на карточку для просмотра концепта</div>
+        </section>
+
+        <div class="grid">
+
+            <a href="concept-a.html" class="card">
+                <div class="card-accent" style="background-color: #C4704B;"></div>
+                <div class="card-watermark">A</div>
+                <div class="card-content">
+                    <div class="card-name">Mediterranean Editorial</div>
+                    <div class="card-desc">Журнальный стиль. Сдержанная элегантность, много воздуха.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #FFFFF0;"></div>
+                            <div class="color-dot" style="background-color: #4A4A4A;"></div>
+                            <div class="color-dot" style="background-color: #C4704B;"></div>
+                        </div>
+                        <div class="card-fonts">Playfair Display + Inter</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+            <a href="concept-b.html" class="card">
+                <div class="card-accent" style="background-color: #1B3A5C;"></div>
+                <div class="card-watermark">B</div>
+                <div class="card-content">
+                    <div class="card-name">Amalfi Bold</div>
+                    <div class="card-desc">Яркий и иммерсивный. Полноэкранные секции, bold типографика.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #1B3A5C;"></div>
+                            <div class="color-dot" style="background-color: #F4D03F;"></div>
+                            <div class="color-dot" style="background-color: #FF6B6B;"></div>
+                        </div>
+                        <div class="card-fonts">Montserrat + DM Sans</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+            <a href="concept-c.html" class="card">
+                <div class="card-accent" style="background-color: #87A96B;"></div>
+                <div class="card-watermark">C</div>
+                <div class="card-content">
+                    <div class="card-name">Warm & Personal</div>
+                    <div class="card-desc">Тёплый сторителлинг. Органичные формы, как приглашение от друга.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #F5E6D3;"></div>
+                            <div class="color-dot" style="background-color: #8B6914;"></div>
+                            <div class="color-dot" style="background-color: #87A96B;"></div>
+                            <div class="color-dot" style="background-color: #E8837C;"></div>
+                        </div>
+                        <div class="card-fonts">Cormorant Garamond + Nunito</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+            <a href="concept-d.html" class="card">
+                <div class="card-accent" style="background-color: #C9A96E;"></div>
+                <div class="card-watermark">D</div>
+                <div class="card-content">
+                    <div class="card-name">Cinematic Noir</div>
+                    <div class="card-desc">Тёмный люкс. Кинематографичная атмосфера, золото на чёрном.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #0A0A0A; border-color: rgba(245,243,239,0.2);"></div>
+                            <div class="color-dot" style="background-color: #C9A96E;"></div>
+                            <div class="color-dot" style="background-color: #6B2D3E;"></div>
+                            <div class="color-dot" style="background-color: #F0E6D3;"></div>
+                        </div>
+                        <div class="card-fonts">Italiana + Libre Franklin</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+            <a href="concept-e.html" class="card">
+                <div class="card-accent" style="background-color: #1E4D8C;"></div>
+                <div class="card-watermark">E</div>
+                <div class="card-content">
+                    <div class="card-name">Majolica Mosaic</div>
+                    <div class="card-desc">Керамика Амальфи. Орнаменты, паттерны, средиземноморский крафт.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #1E4D8C;"></div>
+                            <div class="color-dot" style="background-color: #E8A317;"></div>
+                            <div class="color-dot" style="background-color: #2D6B4A;"></div>
+                            <div class="color-dot" style="background-color: #FFF8F0;"></div>
+                        </div>
+                        <div class="card-fonts">Bodoni Moda + Lato</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+            <a href="concept-f.html" class="card">
+                <div class="card-accent" style="background-color: #D4622B;"></div>
+                <div class="card-watermark">F</div>
+                <div class="card-content">
+                    <div class="card-name">Vertical Story</div>
+                    <div class="card-desc">Ультра-модерн. App-like опыт, scroll-snap, острые углы.</div>
+                    <div class="card-meta">
+                        <div class="card-colors">
+                            <div class="color-dot" style="background-color: #F7F5F2;"></div>
+                            <div class="color-dot" style="background-color: #1A1A1A; border-color: rgba(245,243,239,0.2);"></div>
+                            <div class="color-dot" style="background-color: #D4622B;"></div>
+                        </div>
+                        <div class="card-fonts">Syne + Outfit</div>
+                    </div>
+                    <div class="card-link">Открыть →</div>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">Подготовлено для Anna · Amalfi Coast Tours · 2025</div>
+            <div class="footer-sub">Все концепции — standalone HTML. Готовы к адаптации и доработке.</div>
+        </div>
+    </footer>
+
+</body>
+</html>
