@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANNA — Авторские экскурсии по Амальфитанскому побережью</title>
+<meta name="description" content="Авторские экскурсии по Амальфитанскому побережью. Лодочные прогулки, туры на кабриолете, кулинарные мастер-классы, дегустации, фотосессии.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #F7F5F2;
+  --text: #1A1A1A;
+  --accent: #D4622B;
+  --gray: #E8E4E0;
+  --white: #FFFFFF;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main scroll container */
+.main {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Sections */
+.section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  padding: 80px 40px 40px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.section--no-snap {
+  scroll-snap-align: none;
+  min-height: auto;
+  align-items: flex-start;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.section--no-snap .section__title-area {
+  scroll-snap-align: start;
+}
+
+.section__inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section watermark numbers */
+.section__number {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(120px, 20vw, 300px);
+  color: var(--gray);
+  opacity: 0.5;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+p {
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Progress indicator — left sidebar */
+.progress {
+  position: fixed;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gray);
+  z-index: 100;
+  display: none;
+}
+
+.progress__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--accent);
+  height: 0%;
+  transition: height 0.15s ease;
+}
+
+.progress__current {
+  position: fixed;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent);
+  z-index: 101;
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .progress,
+  .progress__current {
+    display: block;
+  }
+  .section {
+    padding-left: 60px;
+  }
+  .section--no-snap {
+    padding-left: 60px;
+  }
+}
+
+/* Navigation — mobile */
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--bg);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.nav-mobile__logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+.nav-mobile__burger {
+  width: 28px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-mobile__burger span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--text);
+  transition: all 0.3s ease;
+}
+
+.nav-mobile__burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.nav-mobile__burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-mobile__burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+@media (min-width: 769px) {
+  .nav-mobile {
+    display: none;
+  }
+}
+
+/* Fullscreen overlay menu */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 199;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.menu-overlay__item {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(28px, 6vw, 48px);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.menu-overlay__item:hover {
+  color: var(--accent);
+  transform: translateX(8px);
+}
+
+.menu-overlay__num {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-body);
+  min-width: 24px;
+}
+
+/* ========== HERO (01) ========== */
+.hero {
+  padding-top: 80px;
+}
+
+.hero__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero__text {
+  flex: 1;
+}
+
+.hero__name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(60px, 15vw, 200px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.hero__sub {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(18px, 3vw, 32px);
+  margin-bottom: 12px;
+}
+
+.hero__location {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.hero__image {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 360px;
+}
+
+.hero__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  animation: scrollLine 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { top: -100%; }
+  50% { top: 0; }
+  100% { top: 100%; }
+}
+
+@media (min-width: 769px) {
+  .hero__layout {
+    flex-direction: row;
+    align-items: center;
+  }
+  .hero__image {
+    max-width: 400px;
+  }
+  .hero__scroll-indicator {
+    left: 60px;
+  }
+}
+
+/* ========== ABOUT (02) ========== */
+.about__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.about__text h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  margin-bottom: 32px;
+}
+
+.about__text p {
+  font-size: clamp(15px, 1.8vw, 18px);
+  margin-bottom: 16px;
+  max-width: 520px;
+  color: #444;
+}
+
+.about__stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray);
+}
+
+.about__stat-num {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 8px;
+  letter-spacing: 0.03em;
+}
+
+.about__portrait {
+  max-width: 300px;
+  width: 100%;
+}
+
+.about__portrait img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .about__layout {
+    flex-direction: row;
+    align-items: center;
+  }
+  .about__text {
+    flex: 1;
+  }
+  .about__portrait {
+    max-width: 340px;
+  }
+}
+
+/* ========== OFFERINGS (03) ========== */
+.offerings {
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.offerings__title-area {
+  margin-bottom: 64px;
+}
+
+.offerings__title-area h2 {
+  font-size: clamp(32px, 5vw, 56px);
+}
+
+.offerings__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.offering-card {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--gray);
+  padding: 32px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.offering-card:last-child {
+  border-bottom: 1px solid var(--gray);
+}
+
+.offering-card:hover {
+  transform: translateX(8px);
+  box-shadow: -8px 8px 0 var(--accent);
+}
+
+.offering-card__image {
+  width: 100%;
+  max-width: 280px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+.offering-card__image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.offering-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.offering-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(20px, 3vw, 28px);
+  margin-bottom: 12px;
+}
+
+.offering-card__desc {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 16px;
+  max-width: 400px;
+}
+
+.offering-card__price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+@media (min-width: 769px) {
+  .offering-card {
+    flex-direction: row;
+    gap: 40px;
+    padding: 40px 0;
+  }
+  .offering-card__image {
+    margin-bottom: 0;
+  }
+}
+
+/* ========== INSTAGRAM (04) ========== */
+.instagram__title-area {
+  margin-bottom: 48px;
+}
+
+.instagram__title-area h2 {
+  font-size: clamp(32px, 5vw, 56px);
+}
+
+.instagram__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 800px;
+}
+
+.instagram__item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.instagram__item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.instagram__item::after {
+  content: '\2192';
+  position: absolute;
+  inset: 0;
+  background: rgba(212, 98, 43, 0.85);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.instagram__item:hover::after {
+  opacity: 1;
+}
+
+.instagram__item:hover img {
+  transform: scale(1.05);
+}
+
+.instagram__link {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 4px;
+  transition: gap 0.2s ease;
+}
+
+.instagram__link:hover {
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .instagram__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) {
+  .instagram__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+  }
+}
+
+/* ========== REVIEWS (05) ========== */
+.reviews__title-area {
+  margin-bottom: 48px;
+}
+
+.reviews__title-area h2 {
+  font-size: clamp(32px, 5vw, 56px);
+}
+
+.reviews__list {
+  max-width: 700px;
+}
+
+.review {
+  border-top: 1px solid var(--gray);
+  padding: 40px 0;
+}
+
+.review__text {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.review__text::before {
+  content: '\201C';
+  display: block;
+  font-size: 64px;
+  line-height: 0.5;
+  color: var(--accent);
+  margin-bottom: 16px;
+  font-style: normal;
+}
+
+.review__author {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.review__location {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ========== CONTACT (06) ========== */
+.contact__inner {
+  max-width: 600px;
+}
+
+.contact__inner h2 {
+  font-size: clamp(40px, 8vw, 80px);
+  margin-bottom: 32px;
+}
+
+.contact__cta-text {
+  font-size: clamp(16px, 2vw, 20px);
+  margin-bottom: 24px;
+  color: #444;
+}
+
+.contact__btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 18px 48px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+.contact__btn:hover {
+  background: #b8531f;
+  transform: translateY(-2px);
+}
+
+.contact__details {
+  margin-top: 56px;
+}
+
+.contact__detail {
+  padding: 20px 0;
+  border-top: 1px solid var(--gray);
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.contact__detail-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  min-width: 100px;
+}
+
+.contact__detail-value {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.contact__detail-value a {
+  transition: color 0.2s ease;
+}
+
+.contact__detail-value a:hover {
+  color: var(--accent);
+}
+
+/* Footer line */
+.footer-line {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gray);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-line__copy {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+}
+
+.footer-line__socials {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-line__socials a {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  transition: color 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-line__socials a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ========== FLOATING WHATSAPP ========== */
+.fab-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--accent);
+  border: 1px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fab-whatsapp:hover {
+  background: #b8531f;
+  transform: translateY(-2px);
+}
+
+.fab-whatsapp svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--white);
+}
+
+/* ========== ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .section {
+    padding: 72px 20px 32px;
+  }
+  .section--no-snap {
+    padding-top: 100px;
+  }
+  .section__number {
+    right: 16px;
+    font-size: 100px;
+    top: 80px;
+    transform: none;
+    opacity: 0.3;
+  }
+  .about__stats {
+    gap: 24px;
+  }
+  .hero__scroll-indicator {
+    left: 20px;
+    bottom: 24px;
+  }
+  .offerings {
+    padding-top: 100px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Navigation -->
+<nav class="nav-mobile">
+  <div class="nav-mobile__logo">ANNA</div>
+  <button class="nav-mobile__burger" id="burger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Fullscreen Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-overlay__item" data-section="0"><span class="menu-overlay__num">01</span>Главная</div>
+  <div class="menu-overlay__item" data-section="1"><span class="menu-overlay__num">02</span>Обо мне</div>
+  <div class="menu-overlay__item" data-section="2"><span class="menu-overlay__num">03</span>Впечатления</div>
+  <div class="menu-overlay__item" data-section="3"><span class="menu-overlay__num">04</span>Instagram</div>
+  <div class="menu-overlay__item" data-section="4"><span class="menu-overlay__num">05</span>Отзывы</div>
+  <div class="menu-overlay__item" data-section="5"><span class="menu-overlay__num">06</span>Контакт</div>
+</div>
+
+<!-- Progress Indicator -->
+<div class="progress">
+  <div class="progress__fill" id="progressFill"></div>
+</div>
+<div class="progress__current" id="progressNum">01</div>
+
+<!-- Main Scroll Container -->
+<main class="main" id="mainScroll">
+
+  <!-- ==================== HERO (01) ==================== -->
+  <section class="section hero" id="sec-hero">
+    <div class="section__number">01</div>
+    <div class="section__inner">
+      <div class="hero__layout">
+        <div class="hero__text">
+          <h1 class="hero__name reveal">ANNA</h1>
+          <p class="hero__sub reveal reveal-delay-1">Авторские экскурсии</p>
+          <p class="hero__location reveal reveal-delay-2">Амальфитанское побережье, Италия</p>
+        </div>
+        <div class="hero__image reveal reveal-delay-3">
+          <img src="https://placehold.co/600x800/D4622B/F7F5F2?text=Amalfi" alt="Амальфитанское побережье" width="600" height="800">
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator reveal reveal-delay-5">
+      <div class="hero__scroll-line"></div>
+      <span>Листайте</span>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT (02) ==================== -->
+  <section class="section" id="sec-about">
+    <div class="section__number">02</div>
+    <div class="section__inner">
+      <div class="about__layout">
+        <div class="about__text">
+          <h2 class="reveal">Обо мне</h2>
+          <p class="reveal reveal-delay-1">Бывшая IT-предпринимательница. Променяла московские офисы на итальянское солнце и ни разу не пожалела.</p>
+          <p class="reveal reveal-delay-2">Живу на Амальфитанском побережье и создаю впечатления, которые невозможно забыть. Каждая экскурсия — это история, рассказанная через вкусы, виды и эмоции.</p>
+          <p class="reveal reveal-delay-3">Я знаю побережье так, как его знают только местные. И покажу вам то, чего нет ни в одном путеводителе.</p>
+          <div class="about__stats">
+            <div class="reveal reveal-delay-3">
+              <div class="about__stat-num" data-count="5">0</div>
+              <div class="about__stat-label">лет на побережье</div>
+            </div>
+            <div class="reveal reveal-delay-4">
+              <div class="about__stat-num" data-count="500">0</div>
+              <div class="about__stat-label">довольных гостей</div>
+            </div>
+            <div class="reveal reveal-delay-5">
+              <div class="about__stat-num" data-count="150">0</div>
+              <div class="about__stat-label">отзывов</div>
+            </div>
+          </div>
+        </div>
+        <div class="about__portrait reveal reveal-delay-4">
+          <img src="https://placehold.co/500x660/E8E4E0/1A1A1A?text=Anna" alt="Анна" width="500" height="660">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== OFFERINGS (03) ==================== -->
+  <section class="section section--no-snap offerings" id="sec-offerings">
+    <div class="section__number">03</div>
+    <div class="section__inner">
+      <div class="offerings__title-area" style="scroll-snap-align: start;">
+        <h2 class="reveal">Впечатления</h2>
+      </div>
+      <div class="offerings__list">
+
+        <div class="offering-card reveal">
+          <div class="offering-card__image">
+            <img src="https://placehold.co/400x300/D4622B/F7F5F2?text=Boat" alt="Лодочная прогулка" width="400" height="300">
+          </div>
+          <div class="offering-card__content">
+            <h3 class="offering-card__title">Лодочная прогулка</h3>
+            <p class="offering-card__desc">Приватная прогулка вдоль побережья на традиционной итальянской лодке. Гроты, скрытые пляжи, купание в открытом море и просекко на закате.</p>
+            <span class="offering-card__price">от €250</span>
+          </div>
+        </div>
+
+        <div class="offering-card reveal reveal-delay-1">
+          <div class="offering-card__image">
+            <img src="https://placehold.co/400x300/1A1A1A/F7F5F2?text=Cabrio" alt="Тур на кабриолете" width="400" height="300">
+          </div>
+          <div class="offering-card__content">
+            <h3 class="offering-card__title">Тур на кабриолете</h3>
+            <p class="offering-card__desc">Серпантины Амальфи в винтажном кабриолете. Остановки в Равелло, Позитано и секретных смотровых площадках, о которых знают только местные.</p>
+            <span class="offering-card__price">от €300</span>
+          </div>
+        </div>
+
+        <div class="offering-card reveal reveal-delay-2">
+          <div class="offering-card__image">
+            <img src="https://placehold.co/400x300/E8E4E0/1A1A1A?text=Cook" alt="Кулинарный мастер-класс" width="400" height="300">
+          </div>
+          <div class="offering-card__content">
+            <h3 class="offering-card__title">Кулинарный мастер-класс</h3>
+            <p class="offering-card__desc">Готовим настоящую южноитальянскую кухню с местным шефом. Паста ручной работы, соус из томатов с огорода и лимончелло по семейному рецепту.</p>
+            <span class="offering-card__price">от €150</span>
+          </div>
+        </div>
+
+        <div class="offering-card reveal reveal-delay-3">
+          <div class="offering-card__image">
+            <img src="https://placehold.co/400x300/D4622B/FFFFFF?text=Wine" alt="Винодельня и дегустация" width="400" height="300">
+          </div>
+          <div class="offering-card__content">
+            <h3 class="offering-card__title">Винодельня и дегустация</h3>
+            <p class="offering-card__desc">Визит на семейную винодельню на террасах над морем. Дегустация местных сортов, оливковое масло первого отжима и панорамы, от которых замирает сердце.</p>
+            <span class="offering-card__price">от €180</span>
+          </div>
+        </div>
+
+        <div class="offering-card reveal reveal-delay-4">
+          <div class="offering-card__image">
+            <img src="https://placehold.co/400x300/1A1A1A/D4622B?text=Photo" alt="Фотосессия на побережье" width="400" height="300">
+          </div>
+          <div class="offering-card__content">
+            <h3 class="offering-card__title">Фотосессия на побережье</h3>
+            <p class="offering-card__desc">Профессиональная фотосессия в самых живописных уголках побережья. Золотой час, атмосферные локации и кадры, которые станут вашими любимыми.</p>
+            <span class="offering-card__price">от €200</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INSTAGRAM (04) ==================== -->
+  <section class="section" id="sec-instagram">
+    <div class="section__number">04</div>
+    <div class="section__inner">
+      <div class="instagram__title-area">
+        <h2 class="reveal">Instagram</h2>
+      </div>
+      <div class="instagram__grid reveal reveal-delay-1">
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/D4622B/F7F5F2?text=01" alt="Instagram" width="400" height="400">
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/1A1A1A/F7F5F2?text=02" alt="Instagram" width="400" height="400">
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/E8E4E0/1A1A1A?text=03" alt="Instagram" width="400" height="400">
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/F7F5F2/D4622B?text=04" alt="Instagram" width="400" height="400">
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/D4622B/1A1A1A?text=05" alt="Instagram" width="400" height="400">
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__item">
+          <img src="https://placehold.co/400x400/1A1A1A/D4622B?text=06" alt="Instagram" width="400" height="400">
+        </a>
+      </div>
+      <a href="https://instagram.com/" target="_blank" rel="noopener" class="instagram__link reveal reveal-delay-2">
+        Подписаться <span>&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== REVIEWS (05) ==================== -->
+  <section class="section" id="sec-reviews">
+    <div class="section__number">05</div>
+    <div class="section__inner">
+      <div class="reviews__title-area">
+        <h2 class="reveal">Отзывы</h2>
+      </div>
+      <div class="reviews__list">
+
+        <div class="review reveal reveal-delay-1">
+          <p class="review__text">Анна показала нам такую Италию, которую мы бы никогда не нашли сами. Лодочная прогулка на закате — одно из лучших воспоминаний в жизни.</p>
+          <div class="review__author">Мария и Дмитрий</div>
+          <div class="review__location">Москва, Россия</div>
+        </div>
+
+        <div class="review reveal reveal-delay-2">
+          <p class="review__text">Кулинарный мастер-класс превзошёл все ожидания. Мы до сих пор готовим ту пасту дома и каждый раз вспоминаем Амальфи.</p>
+          <div class="review__author">Елена</div>
+          <div class="review__location">Санкт-Петербург, Россия</div>
+        </div>
+
+        <div class="review reveal reveal-delay-3">
+          <p class="review__text">Профессионализм, внимание к деталям и искренняя любовь к своему делу. Анна — лучший гид на побережье. Вернёмся обязательно.</p>
+          <div class="review__author">Алексей и Ольга</div>
+          <div class="review__location">Дубай, ОАЭ</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT (06) ==================== -->
+  <section class="section" id="sec-contact">
+    <div class="section__number">06</div>
+    <div class="section__inner">
+      <div class="contact__inner">
+        <h2 class="reveal">Контакт</h2>
+        <p class="contact__cta-text reveal reveal-delay-1">Напишите мне в WhatsApp — отвечу в течение часа</p>
+        <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="contact__btn reveal reveal-delay-2">Написать в WhatsApp</a>
+
+        <div class="contact__details">
+          <div class="contact__detail reveal reveal-delay-3">
+            <span class="contact__detail-label">Локация</span>
+            <span class="contact__detail-value">Амальфитанское побережье, Италия</span>
+          </div>
+          <div class="contact__detail reveal reveal-delay-4">
+            <span class="contact__detail-label">Телефон</span>
+            <span class="contact__detail-value"><a href="tel:+393792811354">+39 379 281 1354</a></span>
+          </div>
+          <div class="contact__detail reveal reveal-delay-5">
+            <span class="contact__detail-label">Email</span>
+            <span class="contact__detail-value"><a href="mailto:hello@anna-amalfi.com">hello@anna-amalfi.com</a></span>
+          </div>
+        </div>
+
+        <div class="footer-line reveal reveal-delay-6">
+          <span class="footer-line__copy">&copy; 2025 Anna &middot; Amalfi Coast &middot; Italy</span>
+          <div class="footer-line__socials">
+            <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://wa.me/393792811354" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://t.me/" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="fab-whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function() {
+  'use strict';
+
+  const main = document.getElementById('mainScroll');
+  const sections = document.querySelectorAll('.section');
+  const progressFill = document.getElementById('progressFill');
+  const progressNum = document.getElementById('progressNum');
+  const burger = document.getElementById('burger');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuItems = document.querySelectorAll('.menu-overlay__item');
+
+  // ========== SCROLL PROGRESS ==========
+  main.addEventListener('scroll', function() {
+    const scrollTop = main.scrollTop;
+    const scrollHeight = main.scrollHeight - main.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    progressFill.style.height = progress + '%';
+
+    // Determine current section
+    let currentIdx = 0;
+    sections.forEach(function(sec, i) {
+      if (scrollTop >= sec.offsetTop - main.clientHeight * 0.5) {
+        currentIdx = i;
+      }
+    });
+    const num = String(currentIdx + 1).padStart(2, '0');
+    progressNum.textContent = num;
+  });
+
+  // ========== MOBILE MENU ==========
+  burger.addEventListener('click', function() {
+    burger.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+  });
+
+  menuItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      const idx = parseInt(item.getAttribute('data-section'));
+      if (sections[idx]) {
+        sections[idx].scrollIntoView({ behavior: 'smooth' });
+      }
+      burger.classList.remove('active');
+      menuOverlay.classList.remove('active');
+    });
+  });
+
+  // ========== INTERSECTION OBSERVER — REVEALS ==========
+  const revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    root: main,
+    threshold: 0.15
+  });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ========== COUNTER ANIMATION ==========
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'));
+        const duration = 1500;
+        const start = performance.now();
+
+        function animate(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(ease * target);
+          el.textContent = current + '+';
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        }
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, {
+    root: main,
+    threshold: 0.5
+  });
+
+  counters.forEach(function(c) {
+    counterObserver.observe(c);
+  });
+
+})();
+</script>
+</body>
+</html>

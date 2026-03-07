@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANNA — Авторские экскурсии по Амальфитанскому побережью</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Libre+Franklin:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-dark: #0A0A0A;
+  --bg-charcoal: #1A1A1A;
+  --text-cream: #F0E6D3;
+  --accent-gold: #C9A96E;
+  --accent-burgundy: #6B2D3E;
+  --font-heading: 'Italiana', serif;
+  --font-body: 'Libre Franklin', sans-serif;
+}
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-gold) var(--bg-dark);
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* Film Grain Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Cursor Glow */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  left: var(--mouse-x, -300px);
+  top: var(--mouse-y, -300px);
+  transition: left 0.3s ease-out, top 0.3s ease-out;
+}
+
+::selection {
+  background: var(--accent-gold);
+  color: var(--bg-dark);
+}
+
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-cream);
+}
+
+section {
+  scroll-snap-align: start;
+}
+
+/* Gold Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.15) 50%, transparent 100%);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.shimmer:hover::after {
+  left: 100%;
+}
+
+/* Text Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+.reveal-delay-5 { transition-delay: 0.75s; }
+
+.word-reveal .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-right: 0.3em;
+}
+
+.word-reveal.visible .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.word-reveal.visible .word:nth-child(1) { transition-delay: 0.05s; }
+.word-reveal.visible .word:nth-child(2) { transition-delay: 0.1s; }
+.word-reveal.visible .word:nth-child(3) { transition-delay: 0.15s; }
+.word-reveal.visible .word:nth-child(4) { transition-delay: 0.2s; }
+.word-reveal.visible .word:nth-child(5) { transition-delay: 0.25s; }
+.word-reveal.visible .word:nth-child(6) { transition-delay: 0.3s; }
+.word-reveal.visible .word:nth-child(7) { transition-delay: 0.35s; }
+.word-reveal.visible .word:nth-child(8) { transition-delay: 0.4s; }
+.word-reveal.visible .word:nth-child(9) { transition-delay: 0.45s; }
+.word-reveal.visible .word:nth-child(10) { transition-delay: 0.5s; }
+
+.letter-reveal .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.letter-reveal.visible .letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== NAVIGATION ==================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.nav.scrolled {
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  padding: 1rem 3rem;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.3em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-cream);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--accent-gold);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.burger span {
+  width: 24px;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: all 0.3s ease;
+}
+
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(10,10,10,0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-menu a {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--text-cream);
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+}
+
+.mobile-menu.active a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active a:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.active a:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.active a:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
+
+.mobile-menu a:hover {
+  color: var(--accent-gold);
+}
+
+/* ==================== HERO ==================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://placehold.co/1920x1080/0A0A0A/C9A96E?text=Amalfi+Coast') center/cover no-repeat;
+  opacity: 0.3;
+  transform: scale(1.1);
+  transition: transform 8s ease;
+}
+
+.hero.visible .hero-bg {
+  transform: scale(1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 40%, rgba(10,10,10,0.7) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 18vw, 16rem);
+  color: var(--text-cream);
+  letter-spacing: 0.25em;
+  line-height: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(80px);
+  animation: heroLetterIn 0.8s ease forwards;
+}
+
+.hero-title .letter:nth-child(1) { animation-delay: 0.5s; }
+.hero-title .letter:nth-child(2) { animation-delay: 0.6s; }
+.hero-title .letter:nth-child(3) { animation-delay: 0.7s; }
+.hero-title .letter:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes heroLetterIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+  text-transform: uppercase;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    transform: translateY(20px);
+  }
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.8s forwards;
+}
+
+.hero-scroll span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(240,230,211,0.5);
+}
+
+.hero-scroll-arrow {
+  width: 1px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-scroll-arrow::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--accent-gold));
+  animation: scrollArrow 2s ease infinite;
+}
+
+@keyframes scrollArrow {
+  0% { top: -100%; }
+  50% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* ==================== ABOUT ==================== */
+.about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 3rem;
+  background: var(--bg-dark);
+  position: relative;
+}
+
+.about-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-image-wrap {
+  position: relative;
+}
+
+.about-image-wrap::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(201,169,110,0.2);
+  transition: all 0.5s ease;
+}
+
+.about-image-wrap:hover::before {
+  top: -10px;
+  left: -10px;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(30%) contrast(1.05);
+  transition: filter 0.5s ease;
+}
+
+.about-image-wrap:hover .about-image {
+  filter: grayscale(0%) contrast(1);
+}
+
+.about-text {
+  position: relative;
+}
+
+.about-quote-mark {
+  font-family: var(--font-heading);
+  font-size: 10rem;
+  color: var(--accent-gold);
+  opacity: 0.15;
+  line-height: 0.5;
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+}
+
+.about-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.about-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  color: var(--text-cream);
+}
+
+.about-desc {
+  font-size: 1rem;
+  line-height: 1.9;
+  opacity: 0.8;
+  margin-bottom: 2.5rem;
+}
+
+.about-pullquote {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  border-left: 2px solid var(--accent-burgundy);
+  padding-left: 1.5rem;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.about-stats {
+  display: flex;
+  gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201,169,110,0.15);
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+/* ==================== OFFERINGS ==================== */
+.offerings {
+  padding: 8rem 0 8rem 0;
+  background: var(--bg-charcoal);
+  position: relative;
+  overflow: hidden;
+}
+
+.offerings-header {
+  padding: 0 3rem;
+  max-width: 1300px;
+  margin: 0 auto 4rem;
+}
+
+.offerings-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.offerings-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: var(--text-cream);
+  line-height: 1;
+}
+
+.filmstrip {
+  display: flex;
+  gap: 2rem;
+  padding: 0 3rem 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-gold) transparent;
+}
+
+.filmstrip::-webkit-scrollbar {
+  height: 3px;
+}
+
+.filmstrip::-webkit-scrollbar-track {
+  background: rgba(201,169,110,0.1);
+}
+
+.filmstrip::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+}
+
+.film-card {
+  flex: 0 0 340px;
+  height: 520px;
+  position: relative;
+  border: 1px solid rgba(201,169,110,0.3);
+  overflow: hidden;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: border-color 0.4s ease;
+}
+
+.film-card:first-child {
+  margin-left: calc((100vw - 1300px) / 2);
+}
+
+.film-card:last-child {
+  margin-right: 3rem;
+}
+
+.film-card:hover {
+  border-color: var(--accent-gold);
+}
+
+.film-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) grayscale(20%);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.film-card:hover .film-card-img {
+  filter: brightness(0.7) grayscale(0%);
+  transform: scale(1.05);
+}
+
+.film-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(0deg, rgba(10,10,10,0.95) 0%, transparent 100%);
+  z-index: 2;
+}
+
+.film-card-number {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: rgba(201,169,110,0.08);
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  line-height: 1;
+}
+
+.film-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-cream);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.film-card-price {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.8rem;
+}
+
+.film-card-desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+.filmstrip-hint {
+  padding: 2rem 3rem 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.filmstrip-hint-arrow {
+  width: 40px;
+  height: 1px;
+  background: var(--accent-gold);
+  position: relative;
+}
+
+.filmstrip-hint-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--accent-gold);
+  border-right: 1px solid var(--accent-gold);
+  transform: rotate(45deg);
+}
+
+/* ==================== INSTAGRAM ==================== */
+.instagram {
+  padding: 8rem 3rem;
+  background: var(--bg-dark);
+}
+
+.instagram-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.instagram-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.instagram-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.instagram-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--text-cream);
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.insta-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,110,0.2);
+  transition: border-color 0.3s ease;
+}
+
+.insta-item:hover {
+  border-color: var(--accent-gold);
+}
+
+.insta-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) grayscale(20%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.insta-item:hover img {
+  filter: brightness(0.85) grayscale(0%);
+  transform: scale(1.05);
+}
+
+.insta-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.6) 100%);
+  pointer-events: none;
+}
+
+.instagram-link {
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  transition: color 0.3s ease;
+}
+
+.instagram-link:hover {
+  color: var(--text-cream);
+}
+
+/* ==================== REVIEWS ==================== */
+.reviews {
+  padding: 8rem 3rem;
+  background: var(--bg-charcoal);
+  position: relative;
+}
+
+.reviews-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.reviews-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.reviews-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--text-cream);
+}
+
+.reviews-stagger {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.review-item {
+  max-width: 650px;
+  position: relative;
+  padding: 2.5rem;
+  background: rgba(10,10,10,0.5);
+  border: 1px solid rgba(201,169,110,0.1);
+}
+
+.review-item:nth-child(1) {
+  align-self: flex-start;
+}
+
+.review-item:nth-child(2) {
+  align-self: flex-end;
+  margin-top: -2rem;
+}
+
+.review-item:nth-child(3) {
+  align-self: center;
+  margin-top: -1rem;
+}
+
+.review-quote-mark {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: var(--accent-gold);
+  opacity: 0.3;
+  line-height: 0.5;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.review-text {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+  opacity: 0.85;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.review-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(201,169,110,0.3);
+  filter: grayscale(30%);
+}
+
+.review-author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-author-name {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--text-cream);
+}
+
+.review-author-location {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+}
+
+/* ==================== CONTACT ==================== */
+.contact {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 3rem;
+  background: var(--bg-dark);
+  position: relative;
+  text-align: center;
+}
+
+.contact-inner {
+  max-width: 700px;
+}
+
+.contact-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--text-cream);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.contact-desc {
+  font-size: 1rem;
+  opacity: 0.7;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.contact-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 3rem;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.contact-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--accent-gold);
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.contact-whatsapp:hover {
+  color: var(--bg-dark);
+}
+
+.contact-whatsapp:hover::before {
+  width: 100%;
+}
+
+.contact-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.contact-details {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.contact-detail {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+}
+
+.contact-detail span {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.3rem;
+  color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+  padding: 2rem 3rem;
+  background: var(--bg-dark);
+  border-top: 1px solid rgba(201,169,110,0.15);
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-socials a {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.footer-socials a:hover {
+  opacity: 1;
+}
+
+.footer-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent-gold);
+}
+
+.footer-made {
+  font-size: 0.7rem;
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+
+/* ==================== FLOATING WHATSAPP ==================== */
+.floating-wa {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: background 0.3s ease, transform 0.3s ease;
+  animation: waPulse 3s ease infinite;
+}
+
+.floating-wa:hover {
+  background: var(--accent-gold);
+  transform: scale(1.1);
+}
+
+.floating-wa svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--accent-gold);
+  transition: fill 0.3s ease;
+}
+
+.floating-wa:hover svg {
+  fill: var(--bg-dark);
+}
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(201,169,110,0); }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1400px) {
+  .film-card:first-child {
+    margin-left: 3rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    padding: 1.2rem 2rem;
+  }
+
+  .nav.scrolled {
+    padding: 0.8rem 2rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-image-wrap {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .review-item:nth-child(1),
+  .review-item:nth-child(2),
+  .review-item:nth-child(3) {
+    align-self: stretch;
+    max-width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-snap-align: none;
+  }
+
+  .hero-title {
+    letter-spacing: 0.15em;
+  }
+
+  .about {
+    padding: 5rem 2rem;
+  }
+
+  .offerings {
+    padding: 5rem 0;
+  }
+
+  .offerings-header {
+    padding: 0 2rem;
+  }
+
+  .film-card {
+    flex: 0 0 280px;
+    height: 440px;
+  }
+
+  .film-card:first-child {
+    margin-left: 2rem;
+  }
+
+  .film-card:last-child {
+    margin-right: 2rem;
+  }
+
+  .filmstrip {
+    padding: 0 2rem 2rem;
+    gap: 1.2rem;
+  }
+
+  .instagram {
+    padding: 5rem 2rem;
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .reviews {
+    padding: 5rem 2rem;
+  }
+
+  .contact {
+    padding: 5rem 2rem;
+  }
+
+  .contact-details {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .film-card {
+    flex: 0 0 260px;
+    height: 400px;
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="nav" id="nav">
+  <a href="#" class="nav-logo">ANNA</a>
+  <ul class="nav-links">
+    <li><a href="#about">О нас</a></li>
+    <li><a href="#offerings">Впечатления</a></li>
+    <li><a href="#instagram">Галерея</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#contact">Контакт</a></li>
+  </ul>
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <nav>
+    <a href="#about">О нас</a>
+    <a href="#offerings">Впечатления</a>
+    <a href="#instagram">Галерея</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#contact">Контакт</a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg" data-parallax="0.3"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="letter">A</span><span class="letter">N</span><span class="letter">N</span><span class="letter">A</span>
+    </h1>
+    <p class="hero-subtitle">Авторские экскурсии по Амальфитанскому побережью</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll to explore</span>
+    <div class="hero-scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image-wrap reveal">
+      <img src="https://placehold.co/500x700/1A1A1A/C9A96E?text=Anna" alt="Anna" class="about-image">
+    </div>
+    <div class="about-text">
+      <div class="about-quote-mark reveal">&ldquo;</div>
+      <span class="about-label reveal reveal-delay-1">О нас</span>
+      <h2 class="about-heading word-reveal">Ваш личный гид по скрытым сокровищам побережья</h2>
+      <p class="about-desc reveal reveal-delay-2">
+        Анна — бывшая IT-предпринимательница, которая оставила мир стартапов ради
+        мечты. Переехав в Италию, она влюбилась в Амальфитанское побережье и теперь
+        делится этой любовью с гостями со всего мира. Каждая экскурсия — это не просто
+        маршрут, а авторская история, рассказанная с душой.
+      </p>
+      <blockquote class="about-pullquote reveal reveal-delay-3">
+        &laquo;Я покажу вам Италию, которую не найти в путеводителях&raquo;
+      </blockquote>
+      <div class="about-stats reveal reveal-delay-4">
+        <div class="stat-item">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Лет в Италии</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Гостей</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Отзывов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Offerings -->
+<section class="offerings" id="offerings">
+  <div class="offerings-header">
+    <span class="offerings-label reveal">Что мы предлагаем</span>
+    <h2 class="offerings-title reveal reveal-delay-1">Впечатления</h2>
+  </div>
+  <div class="filmstrip">
+    <div class="film-card shimmer">
+      <span class="film-card-number">01</span>
+      <img src="https://placehold.co/340x520/1A1A1A/C9A96E?text=Boat+Tour" alt="Лодочная прогулка" class="film-card-img">
+      <div class="film-card-content">
+        <h3 class="film-card-title">Лодочная прогулка</h3>
+        <div class="film-card-price">от €250</div>
+        <p class="film-card-desc">Частная прогулка вдоль побережья с остановками в гротах и секретных бухтах</p>
+      </div>
+    </div>
+    <div class="film-card shimmer">
+      <span class="film-card-number">02</span>
+      <img src="https://placehold.co/340x520/1A1A1A/C9A96E?text=Cabriolet" alt="Тур на кабриолете" class="film-card-img">
+      <div class="film-card-content">
+        <h3 class="film-card-title">Тур на кабриолете</h3>
+        <div class="film-card-price">от €300</div>
+        <p class="film-card-desc">Серпантины Амальфи в кабриолете с панорамными остановками и дегустациями</p>
+      </div>
+    </div>
+    <div class="film-card shimmer">
+      <span class="film-card-number">03</span>
+      <img src="https://placehold.co/340x520/1A1A1A/C9A96E?text=Cooking" alt="Кулинарный мастер-класс" class="film-card-img">
+      <div class="film-card-content">
+        <h3 class="film-card-title">Кулинарный мастер-класс</h3>
+        <div class="film-card-price">от €150</div>
+        <p class="film-card-desc">Готовим с итальянской мамой в доме с видом на Тирренское море</p>
+      </div>
+    </div>
+    <div class="film-card shimmer">
+      <span class="film-card-number">04</span>
+      <img src="https://placehold.co/340x520/1A1A1A/C9A96E?text=Winery" alt="Винодельня и дегустация" class="film-card-img">
+      <div class="film-card-content">
+        <h3 class="film-card-title">Винодельня и дегустация</h3>
+        <div class="film-card-price">от €180</div>
+        <p class="film-card-desc">Визит на семейную винодельню с дегустацией местных сортов и закусками</p>
+      </div>
+    </div>
+    <div class="film-card shimmer">
+      <span class="film-card-number">05</span>
+      <img src="https://placehold.co/340x520/1A1A1A/C9A96E?text=Photoshoot" alt="Фотосессия на побережье" class="film-card-img">
+      <div class="film-card-content">
+        <h3 class="film-card-title">Фотосессия на побережье</h3>
+        <div class="film-card-price">от €200</div>
+        <p class="film-card-desc">Профессиональная фотосессия в самых живописных локациях побережья</p>
+      </div>
+    </div>
+  </div>
+  <div class="filmstrip-hint reveal">
+    <div class="filmstrip-hint-arrow"></div>
+    Листайте вправо
+  </div>
+</section>
+
+<!-- Instagram -->
+<section class="instagram" id="instagram">
+  <div class="instagram-inner">
+    <div class="instagram-header">
+      <span class="instagram-label reveal">Instagram</span>
+      <h2 class="instagram-title reveal reveal-delay-1">В кадре</h2>
+    </div>
+    <div class="instagram-grid">
+      <div class="insta-item reveal">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=1" alt="Instagram photo">
+      </div>
+      <div class="insta-item reveal reveal-delay-1">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=2" alt="Instagram photo">
+      </div>
+      <div class="insta-item reveal reveal-delay-2">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=3" alt="Instagram photo">
+      </div>
+      <div class="insta-item reveal reveal-delay-3">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=4" alt="Instagram photo">
+      </div>
+      <div class="insta-item reveal reveal-delay-4">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=5" alt="Instagram photo">
+      </div>
+      <div class="insta-item reveal reveal-delay-5">
+        <img src="https://placehold.co/400x400/1A1A1A/C9A96E?text=6" alt="Instagram photo">
+      </div>
+    </div>
+    <a href="https://instagram.com/" class="instagram-link" target="_blank" rel="noopener">
+      Подписаться в Instagram &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="reviews-label reveal">Что говорят гости</span>
+      <h2 class="reviews-title reveal reveal-delay-1">Отзывы</h2>
+    </div>
+    <div class="reviews-stagger">
+      <div class="review-item reveal">
+        <div class="review-quote-mark">&ldquo;</div>
+        <p class="review-text">
+          Это была не просто экскурсия, а настоящее приключение. Анна показала нам места,
+          о которых мы никогда бы не узнали. Лодочная прогулка на закате — воспоминание на всю жизнь.
+        </p>
+        <div class="review-author">
+          <img src="https://placehold.co/44x44/1A1A1A/C9A96E?text=M" alt="Мария" class="review-avatar">
+          <div class="review-author-info">
+            <span class="review-author-name">Мария К.</span>
+            <span class="review-author-location">Москва, Россия</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-item reveal">
+        <div class="review-quote-mark">&ldquo;</div>
+        <p class="review-text">
+          Кулинарный мастер-класс превзошёл все ожидания. Мы готовили с настоящей итальянской
+          бабушкой в доме с невероятным видом. Рецепты храним как сокровище.
+        </p>
+        <div class="review-author">
+          <img src="https://placehold.co/44x44/1A1A1A/C9A96E?text=A" alt="Алексей" class="review-avatar">
+          <div class="review-author-info">
+            <span class="review-author-name">Алексей П.</span>
+            <span class="review-author-location">Санкт-Петербург, Россия</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-item reveal">
+        <div class="review-quote-mark">&ldquo;</div>
+        <p class="review-text">
+          Фотосессия получилась волшебной. Анна знает каждый уголок побережья
+          и подобрала идеальные локации. Фотографии — как кадры из фильма.
+        </p>
+        <div class="review-author">
+          <img src="https://placehold.co/44x44/1A1A1A/C9A96E?text=E" alt="Елена" class="review-avatar">
+          <div class="review-author-info">
+            <span class="review-author-name">Елена С.</span>
+            <span class="review-author-location">Киев, Украина</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="contact-label reveal">Связаться</span>
+    <h2 class="contact-title reveal reveal-delay-1">Начните путешествие</h2>
+    <p class="contact-desc reveal reveal-delay-2">
+      Напишите мне, и мы вместе спланируем ваше идеальное путешествие
+      по Амальфитанскому побережью
+    </p>
+    <a href="https://wa.me/393792811354" class="contact-whatsapp shimmer reveal reveal-delay-3">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Написать в WhatsApp
+    </a>
+    <div class="contact-details reveal reveal-delay-4">
+      <div class="contact-detail">
+        <span>Телефон</span>
+        +39 379 281 1354
+      </div>
+      <div class="contact-detail">
+        <span>Email</span>
+        info@anna-amalfi.com
+      </div>
+      <div class="contact-detail">
+        <span>Локация</span>
+        Амальфитанское побережье, Италия
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-copy">&copy; 2026 ANNA. Все права защищены.</div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+      <a href="https://wa.me/393792811354" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+    <div class="footer-made">Made with &#9829; in Amalfi</div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/393792811354" class="floating-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function() {
+  'use strict';
+
+  // ==================== CURSOR GLOW ====================
+  document.addEventListener('mousemove', function(e) {
+    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+  });
+
+  // ==================== NAVIGATION SCROLL ====================
+  var nav = document.getElementById('nav');
+  var lastScroll = 0;
+
+  window.addEventListener('scroll', function() {
+    var currentScroll = window.pageYOffset;
+    if (currentScroll > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = currentScroll;
+  }, { passive: true });
+
+  // ==================== MOBILE MENU ====================
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', function() {
+    burger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      burger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ==================== SMOOTH SCROLL ====================
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ==================== INTERSECTION OBSERVER (REVEAL ANIMATIONS) ====================
+  var revealElements = document.querySelectorAll('.reveal, .word-reveal, .letter-reveal');
+
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ==================== WORD REVEAL SETUP ====================
+  document.querySelectorAll('.word-reveal').forEach(function(el) {
+    var text = el.textContent.trim();
+    var words = text.split(/\s+/);
+    el.innerHTML = words.map(function(word) {
+      return '<span class="word">' + word + '</span>';
+    }).join('');
+  });
+
+  // ==================== HERO LETTER REVEAL SETUP ====================
+  document.querySelectorAll('.letter-reveal').forEach(function(el) {
+    var text = el.textContent.trim();
+    var html = '';
+    for (var i = 0; i < text.length; i++) {
+      var char = text[i] === ' ' ? '&nbsp;' : text[i];
+      var delay = (i * 0.04) + 's';
+      html += '<span class="letter" style="transition-delay:' + delay + '">' + char + '</span>';
+    }
+    el.innerHTML = html;
+  });
+
+  // ==================== PARALLAX ====================
+  var parallaxElements = document.querySelectorAll('[data-parallax]');
+
+  window.addEventListener('scroll', function() {
+    var scrolled = window.pageYOffset;
+    parallaxElements.forEach(function(el) {
+      var speed = parseFloat(el.dataset.parallax);
+      var rect = el.parentElement.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        var yPos = scrolled * speed;
+        el.style.transform = 'scale(1.1) translateY(' + yPos * 0.1 + 'px)';
+      }
+    });
+  }, { passive: true });
+
+  // ==================== HERO VISIBLE CLASS ====================
+  setTimeout(function() {
+    document.querySelector('.hero').classList.add('visible');
+  }, 200);
+
+  // ==================== NAV LINKS ACTIVE STATE ====================
+  var sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.pageYOffset + window.innerHeight / 3;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        document.querySelectorAll('.nav-links a').forEach(function(a) {
+          a.style.opacity = a.getAttribute('href') === '#' + id ? '1' : '0.7';
+        });
+      }
+    });
+  }, { passive: true });
+
+})();
+</script>
+</body>
+</html>
