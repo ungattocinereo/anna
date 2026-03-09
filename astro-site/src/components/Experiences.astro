@@ -1,192 +1,255 @@
 ---
-import { Pizza, ChefHat, Wine, Camera, Clock, Users, Heart, Send } from 'lucide-astro';
+import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
 ---
 
 <section class="section experiences" id="experiences">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label"><Heart size={16} /> Больше впечатлений</span>
       <h2>Другие впечатления</h2>
-      <p>Кулинария, вино, фотосессии и особые события</p>
     </div>
 
-    <div class="exp-grid">
-      <div class="exp-card reveal">
-        <div class="exp-icon-wrap">
-          <Pizza size={32} />
+    <!-- Мастер-класс по пицце -->
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="pizza-content">
+        <div class="tour-block-title">
+          <h3>Мастер-класс по пицце</h3>
+          <span class="tour-block-brief">Приватный мастер-класс с итальянским шеф-поваром у моря</span>
         </div>
-        <h3>Пицца мастер-класс</h3>
-        <div class="exp-meta">
-          <span><Clock size={14} /> 2 часа</span>
-          <span><Users size={14} /> мин. 3 чел.</span>
-        </div>
-        <p>Приватный мастер-класс с итальянским шеф-поваром у моря. Секреты идеального теста, своя пицца из печи &mdash; с видом на море</p>
-        <div class="exp-bottom">
-          <div class="exp-price">&euro;150 <small>/чел.</small></div>
-          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
-            <Send size={14} /> Записаться
-          </a>
-        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
       </div>
-
-      <div class="exp-card reveal">
-        <div class="exp-icon-wrap">
-          <ChefHat size={32} />
+      <div class="tour-block-content open" id="pizza-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Clock size={15} /> 2 часа</span>
+            <span><Users size={15} /> мин. 3 чел.</span>
+          </div>
         </div>
-        <h3>Домашняя итальянская кухня</h3>
-        <div class="exp-meta">
-          <span><Clock size={14} /> 3 часа</span>
-          <span><Users size={14} /> макс. 4 чел.</span>
+        <div class="tour-description">
+          <p>Приватный мастер-класс с&nbsp;итальянским шеф-поваром у&nbsp;моря. Секреты идеального теста, своя пицца из&nbsp;печи&nbsp;&mdash; с&nbsp;видом на&nbsp;море.</p>
         </div>
-        <p>Попасть в настоящий итальянский дом. Домашняя паста, основное блюдо и десерт на панорамной террасе. Обед с вином и невероятным видом</p>
-        <div class="exp-bottom">
-          <div class="exp-price">&euro;600</div>
-          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
-            <Send size={14} /> Записаться
-          </a>
-        </div>
-      </div>
-
-      <div class="exp-card reveal">
-        <div class="exp-icon-wrap">
-          <Wine size={32} />
-        </div>
-        <h3>Семейная винодельня</h3>
-        <div class="exp-meta">
-          <span><Clock size={14} /> 2 часа</span>
-        </div>
-        <p>Небольшая семейная винодельня. Несколько поколений, традиционные рецепты. Дегустация местных вин с легкими региональными закусками</p>
-        <div class="exp-bottom">
-          <div class="exp-price">&euro;80 <small>/чел.</small></div>
-          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
-            <Send size={14} /> Записаться
-          </a>
-        </div>
-      </div>
-
-      <div class="exp-card reveal">
-        <div class="exp-icon-wrap">
-          <Camera size={32} />
-        </div>
-        <h3>Фотосессия на побережье</h3>
-        <div class="exp-meta">
-          <span><Clock size={14} /> 1 час</span>
-          <span><Camera size={14} /> 30 фото</span>
-        </div>
-        <p>Профессиональная фотосессия на самых красивых панорамных точках. Яркие, стильные кадры на фоне моря, скал и знаменитых пейзажей</p>
-        <div class="exp-bottom">
-          <div class="exp-price">&euro;250</div>
-          <a href="https://wa.me/393792811354" class="exp-cta" target="_blank" rel="noopener">
-            <Send size={14} /> Записаться
-          </a>
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;150 <small>/чел.</small></div>
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Домашняя итальянская кухня -->
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="cooking-content">
+        <div class="tour-block-title">
+          <h3>Домашняя итальянская кухня</h3>
+          <span class="tour-block-brief">Настоящий итальянский дом, домашняя паста и панорамная терраса</span>
+        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
+      </div>
+      <div class="tour-block-content open" id="cooking-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Clock size={15} /> 3 часа</span>
+            <span><Users size={15} /> макс. 4 чел.</span>
+          </div>
+        </div>
+        <div class="tour-description">
+          <p>Попасть в&nbsp;настоящий итальянский дом. Домашняя паста, основное блюдо и&nbsp;десерт на&nbsp;панорамной террасе. Обед с&nbsp;вином и&nbsp;невероятным видом.</p>
+        </div>
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;600</div>
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Семейно-идеальная фотосессия -->
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="photo-content">
+        <div class="tour-block-title">
+          <h3>Фотосессия на побережье</h3>
+          <span class="tour-block-brief">Профессиональная фотосессия на самых красивых панорамных точках</span>
+        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
+      </div>
+      <div class="tour-block-content open" id="photo-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Clock size={15} /> 1 час</span>
+            <span><Camera size={15} /> 30 фото</span>
+          </div>
+        </div>
+        <div class="tour-description">
+          <p>Профессиональная фотосессия на&nbsp;самых красивых панорамных точках. Яркие, стильные кадры на&nbsp;фоне моря, скал и&nbsp;знаменитых пейзажей.</p>
+        </div>
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;250</div>
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.experiences [data-toggle]').forEach(header => {
+    header.addEventListener('click', () => {
+      const targetId = header.getAttribute('data-toggle');
+      if (!targetId) return;
+      const content = document.getElementById(targetId);
+      if (!content) return;
+      content.classList.toggle('open');
+      const toggle = header.querySelector('.tour-toggle');
+      if (toggle) toggle.classList.toggle('rotated');
+    });
+  });
+</script>
 
 <style>
   .experiences { background: var(--light); }
 
-  .exp-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .tour-block {
     max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .exp-card {
+    margin: 0 auto 24px;
     background: var(--white);
     border-radius: var(--radius);
-    padding: 32px 28px;
     box-shadow: var(--shadow);
-    transition: transform var(--transition);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  .exp-card:hover { transform: translateY(-5px); }
-
-  .exp-icon-wrap {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(27,58,92,0.06), rgba(44,95,138,0.1));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--blue);
-    margin-bottom: 18px;
-    transition: transform 0.5s ease, background 0.5s ease;
-  }
-  .exp-card:hover .exp-icon-wrap {
-    transform: scale(1.08) rotate(-3deg);
-    background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,107,107,0.15));
-    color: var(--coral);
+    overflow: hidden;
+    border: 1px solid rgba(27,58,92,0.06);
   }
 
-  .exp-card h3 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 10px;
-  }
-
-  .exp-meta {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
-    font-size: 0.82rem;
-  }
-  .exp-meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: #888;
-  }
-
-  .exp-card p {
-    color: #666;
-    line-height: 1.65;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    flex: 1;
-  }
-
-  .exp-bottom {
+  .tour-block-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid rgba(27,58,92,0.06);
+    padding: 24px 32px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
   }
-  .exp-price {
+  .tour-block-header:hover {
+    background: rgba(27,58,92,0.02);
+  }
+
+  .tour-block-title h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+  .tour-block-brief {
+    font-size: 0.88rem;
+    color: #888;
+  }
+
+  .tour-toggle {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(27,58,92,0.12);
+    background: transparent;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .tour-toggle:hover {
+    background: rgba(27,58,92,0.05);
+  }
+  .tour-toggle.rotated {
+    transform: rotate(180deg);
+  }
+
+  .tour-block-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .tour-block-content.open {
+    max-height: 1000px;
+  }
+
+  .tour-info {
+    padding: 0 32px;
+  }
+
+  .tour-meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .tour-meta-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .tour-description {
+    padding: 0 32px 12px;
+  }
+  .tour-description p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+  }
+
+  .tour-pricing {
+    padding: 0 32px 24px;
+  }
+  .tour-pricing-row {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .price-value {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--blue);
   }
-  .exp-price small {
+  .price-value small {
     font-size: 0.7rem;
     font-weight: 500;
     color: #888;
   }
-  .exp-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    color: var(--coral);
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: gap var(--transition);
+
+  .btn-sm {
+    padding: 12px 24px !important;
+    font-size: 0.85rem !important;
   }
-  .exp-cta:hover { gap: 10px; }
 
   @media (max-width: 768px) {
-    .exp-grid { grid-template-columns: 1fr; }
+    .tour-block-header { padding: 20px 20px; }
+    .tour-info, .tour-description, .tour-pricing { padding-left: 20px; padding-right: 20px; }
+    .tour-pricing-row { flex-direction: column; text-align: center; }
+    .tour-block-title h3 { font-size: 1.05rem; }
   }
 </style>

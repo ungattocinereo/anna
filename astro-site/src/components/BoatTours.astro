@@ -1,294 +1,248 @@
 ---
-import { Anchor, Ship, Waves, Users, Sun, Compass, Navigation, MapPin, Sparkles, Eye } from 'lucide-astro';
+import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
 ---
 
-<section class="section boats" id="boats">
+<section class="section boats" id="tours">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label"><Waves size={16} /> На воде</span>
-      <h2>Лодочные экскурсии</h2>
-      <p>Амальфитанское побережье с моря &mdash; совсем другая история</p>
+      <h2>Мои экскурсии</h2>
     </div>
 
-    <div class="tour-intro reveal">
-      <div class="tour-intro-badge">
-        <Sparkles size={16} />
-        <span>Морской хит</span>
-      </div>
-      <h3>Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано</h3>
-      <div class="tour-meta">
-        <span><Sun size={15} /> 4 часа</span>
-        <span><Sparkles size={15} /> Просекко включено</span>
-        <span><Compass size={15} /> Маршрут можно настроить</span>
-      </div>
-    </div>
-
-    <div class="tour-stops">
-      <div class="tour-stop reveal">
-        <div class="tour-stop-icon">
-          <Navigation size={22} />
+    <!-- Boat Tour - Морской хит -->
+    <div class="tour-block reveal" id="boat-tour">
+      <div class="tour-block-header" data-toggle="boat-tour-content">
+        <div class="tour-block-title">
+          <h3>На лодке &mdash; &laquo;Морской хит&raquo;</h3>
+          <span class="tour-block-brief">Амальфитанское побережье с моря &mdash; совсем другая история</span>
         </div>
-        <h4>Прогулка вдоль побережья</h4>
-        <p>Скалы, каскады домиков и уединенные бухты &mdash; все это откроется с борта яхты, вдали от суеты и толп</p>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
       </div>
-      <div class="tour-stop reveal">
-        <div class="tour-stop-icon">
-          <Waves size={22} />
-        </div>
-        <h4>Пляжи только для вас</h4>
-        <p>Остановки у пляжей, куда невозможно добраться по суше. Купание в бирюзовой воде и пикник с просекко</p>
-      </div>
-      <div class="tour-stop reveal">
-        <div class="tour-stop-icon">
-          <Eye size={22} />
-        </div>
-        <h4>Идеальные кадры</h4>
-        <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи &mdash; часть вашей морской сказки</p>
-      </div>
-    </div>
-
-    <div class="boat-grid">
-      <div class="boat-card reveal">
-        <div class="boat-img">
-          <img src="/images/perla_blu.png" alt="Лодка Perla Blu" loading="lazy">
-        </div>
-        <div class="boat-body">
-          <h4>Perla Blu</h4>
-          <div class="boat-specs">
-            <span><Users size={14} /> макс. 3 чел.</span>
+      <div class="tour-block-content open" id="boat-tour-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Sun size={15} /> 4 часа</span>
+            <span><Sparkles size={15} /> Просекко включено</span>
+            <span><Compass size={15} /> Маршрут можно настроить</span>
           </div>
-          <div class="boat-price">&euro;700</div>
-          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
-            Забронировать <span class="boat-cta-arrow">&rarr;</span>
-          </a>
         </div>
-      </div>
 
-      <div class="boat-card boat-card--featured reveal">
-        <div class="boat-badge">
-          <Sparkles size={12} /> Рекомендую
+        <div class="tour-description">
+          <p>Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано. Скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп. Остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Купание в&nbsp;бирюзовой воде и&nbsp;пикник с&nbsp;просекко. Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи&nbsp;&mdash; часть вашей морской сказки.</p>
         </div>
-        <div class="boat-img">
-          <img src="/images/cranchi%20sport.png" alt="Лодка Cranchi Sport" loading="lazy">
-        </div>
-        <div class="boat-body">
-          <h4>Cranchi Sport</h4>
-          <div class="boat-specs">
-            <span><Users size={14} /> макс. 7 чел.</span>
-          </div>
-          <div class="boat-price">&euro;850</div>
-          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
-            Забронировать <span class="boat-cta-arrow">&rarr;</span>
-          </a>
-        </div>
-      </div>
 
-      <div class="boat-card reveal">
-        <div class="boat-img">
-          <img src="/images/reginella.png" alt="Лодка Reginella" loading="lazy">
-        </div>
-        <div class="boat-body">
-          <h4>Reginella</h4>
-          <div class="boat-specs">
-            <span><Users size={14} /> макс. 6 чел.</span>
+        <h4 class="tour-sub-heading">Стоимость зависит от вида лодки</h4>
+
+        <div class="boat-grid">
+          <div class="boat-card">
+            <div class="boat-img">
+              <img src="/images/perla_blu.png" alt="Лодка Perla Blu" loading="lazy">
+            </div>
+            <div class="boat-body">
+              <h4>Perla Blu</h4>
+              <div class="boat-specs">
+                <span><Users size={14} /> макс. 3 чел.</span>
+              </div>
+              <div class="boat-price">&euro;700</div>
+              <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
+                Забронировать &rarr;
+              </a>
+            </div>
           </div>
-          <div class="boat-price">&euro;850</div>
-          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
-            Забронировать <span class="boat-cta-arrow">&rarr;</span>
-          </a>
+
+          <div class="boat-card boat-card--featured">
+            <div class="boat-badge">
+              <Sparkles size={12} /> Рекомендую
+            </div>
+            <div class="boat-img">
+              <img src="/images/cranchi%20sport.png" alt="Лодка Cranchi Sport" loading="lazy">
+            </div>
+            <div class="boat-body">
+              <h4>Cranchi Sport</h4>
+              <div class="boat-specs">
+                <span><Users size={14} /> макс. 7 чел.</span>
+              </div>
+              <div class="boat-price">&euro;850</div>
+              <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
+                Забронировать &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="boat-card">
+            <div class="boat-img">
+              <img src="/images/reginella.png" alt="Лодка Reginella" loading="lazy">
+            </div>
+            <div class="boat-body">
+              <h4>Reginella</h4>
+              <div class="boat-specs">
+                <span><Users size={14} /> макс. 6 чел.</span>
+              </div>
+              <div class="boat-price">&euro;850</div>
+              <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
+                Забронировать &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-departure">
+          <strong>Отправление:</strong> Амальфи, Минори, Майори
         </div>
       </div>
     </div>
-
-    <!-- Departure Map (Leaflet) -->
-    <div class="departure reveal">
-      <div class="departure-header">
-        <MapPin size={18} />
-        <strong>Отправление</strong>
-      </div>
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-      <div id="departure-map" class="departure-map"></div>
-    </div>
-    <script>
-      function initMap() {
-        const mapEl = document.getElementById('departure-map');
-        if (!mapEl || (mapEl as any)._leaflet_id) return;
-
-        const L = (window as any).L;
-        if (!L) return;
-
-        const map = L.map('departure-map', {
-          scrollWheelZoom: false,
-          dragging: !L.Browser.mobile,
-          zoomControl: true,
-          attributionControl: true,
-        });
-
-        // Fit all three cities with padding
-        map.fitBounds([
-          [40.6340, 14.6027],  // Amalfi
-          [40.6500, 14.6275],  // Minori
-          [40.6515, 14.6405],  // Maiori
-        ], { padding: [40, 40] });
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-          subdomains: 'abcd',
-          maxZoom: 18,
-        }).addTo(map);
-
-        const pulseIcon = (label: string) => L.divIcon({
-          className: 'pulse-marker',
-          html: `<div class="pulse-marker-dot"></div><div class="pulse-marker-ring"></div><div class="pulse-marker-label">${label}</div>`,
-          iconSize: [12, 12],
-          iconAnchor: [6, 6],
-        });
-
-        const cities = [
-          { name: 'Амальфи', lat: 40.6340, lng: 14.6027 },
-          { name: 'Минори', lat: 40.6500, lng: 14.6275 },
-          { name: 'Майори', lat: 40.6515, lng: 14.6405 },
-        ];
-
-        cities.forEach(c => {
-          L.marker([c.lat, c.lng], { icon: pulseIcon(c.name) }).addTo(map);
-        });
-      }
-
-      // Load Leaflet JS dynamically
-      if (!(window as any).L) {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.onload = () => initMap();
-        document.head.appendChild(script);
-      } else {
-        initMap();
-      }
-    </script>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('[data-toggle]').forEach(header => {
+    header.addEventListener('click', () => {
+      const targetId = header.getAttribute('data-toggle');
+      if (!targetId) return;
+      const content = document.getElementById(targetId);
+      if (!content) return;
+      content.classList.toggle('open');
+      const toggle = header.querySelector('.tour-toggle');
+      if (toggle) toggle.classList.toggle('rotated');
+    });
+  });
+</script>
 
 <style>
   .boats { background: var(--light); }
 
-  .tour-intro {
-    max-width: 700px;
-    margin: 0 auto 48px;
-    text-align: center;
-    padding: 36px 32px;
+  .tour-block {
+    max-width: 960px;
+    margin: 0 auto 32px;
     background: var(--white);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    overflow: hidden;
   }
-  .tour-intro-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255,107,107,0.08);
-    color: var(--coral);
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 16px;
-  }
-  .tour-intro h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 16px;
-    line-height: 1.4;
-  }
-  .tour-meta {
+
+  .tour-block-header {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+  }
+  .tour-block-header:hover {
+    background: rgba(27,58,92,0.02);
+  }
+
+  .tour-block-title h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+  .tour-block-brief {
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  .tour-toggle {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(27,58,92,0.12);
+    background: transparent;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .tour-toggle:hover {
+    background: rgba(27,58,92,0.05);
+  }
+  .tour-toggle.rotated {
+    transform: rotate(180deg);
+  }
+
+  .tour-block-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .tour-block-content.open {
+    max-height: 2000px;
+  }
+
+  .tour-info {
+    padding: 0 32px;
+  }
+
+  .tour-meta-row {
+    display: flex;
     gap: 24px;
     flex-wrap: wrap;
+    margin-bottom: 20px;
   }
-  .tour-meta span {
+  .tour-meta-row span {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #888;
     font-weight: 500;
   }
 
-  .tour-stops {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto 48px;
+  .tour-description {
+    padding: 0 32px 20px;
   }
-  .tour-stop {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: transform var(--transition);
-  }
-  .tour-stop:hover { transform: translateY(-4px); }
-  .tour-stop-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(27,58,92,0.08), rgba(44,95,138,0.12));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--blue);
-    margin: 0 auto 16px;
-  }
-  .tour-stop h4 {
+  .tour-description p {
     font-size: 0.95rem;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 8px;
+    color: #555;
+    line-height: 1.75;
   }
-  .tour-stop p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 0.88rem;
+
+  .tour-sub-heading {
+    padding: 0 32px 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
   }
 
   .boat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 960px;
-    margin: 0 auto 48px;
+    gap: 20px;
+    padding: 0 32px;
+    margin-bottom: 24px;
   }
   .boat-card {
-    background: var(--white);
+    background: var(--light);
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
     transition: transform var(--transition), box-shadow var(--transition);
     position: relative;
   }
   .boat-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
   }
   .boat-card--featured {
     border: 2px solid rgba(255,107,107,0.2);
   }
   .boat-badge {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 12px;
+    right: 12px;
     z-index: 2;
     background: var(--coral);
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 50px;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-flex;
@@ -296,9 +250,9 @@ import { Anchor, Ship, Waves, Users, Sun, Compass, Navigation, MapPin, Sparkles,
     gap: 4px;
   }
   .boat-img {
-    height: 200px;
+    height: 180px;
     overflow: hidden;
-    background: var(--light);
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -310,31 +264,31 @@ import { Anchor, Ship, Waves, Users, Sun, Compass, Navigation, MapPin, Sparkles,
     transition: transform 0.6s ease;
   }
   .boat-card:hover .boat-img img { transform: scale(1.05); }
-  .boat-body { padding: 22px 24px 24px; }
+  .boat-body { padding: 18px 20px 20px; }
   .boat-body h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 800;
     color: var(--blue);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .boat-specs {
     display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
-    font-size: 0.82rem;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
     color: #888;
   }
   .boat-specs span {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
   }
   .boat-price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
   .boat-cta {
     display: inline-flex;
@@ -342,92 +296,30 @@ import { Anchor, Ship, Waves, Users, Sun, Compass, Navigation, MapPin, Sparkles,
     gap: 6px;
     font-weight: 700;
     color: var(--coral);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: gap var(--transition);
   }
-  .boat-cta:hover { gap: 12px; }
-  .boat-cta-arrow { transition: transform var(--transition); }
+  .boat-cta:hover { gap: 10px; }
 
-  /* Departure map */
-  .departure {
-    max-width: 700px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 28px 32px;
-    box-shadow: var(--shadow);
+  .tour-departure {
+    padding: 16px 32px 28px;
+    font-size: 0.9rem;
+    color: #666;
   }
-  .departure-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .tour-departure strong {
     color: var(--blue);
-    font-size: 0.95rem;
-    margin-bottom: 16px;
-    justify-content: center;
-  }
-  .departure-map {
-    width: 100%;
-    height: 320px;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  /* Leaflet pulse markers */
-  :global(.pulse-marker) {
-    position: relative;
-  }
-  :global(.pulse-marker-dot) {
-    width: 12px;
-    height: 12px;
-    background: var(--coral);
-    border-radius: 50%;
-    border: 2px solid var(--white);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 2;
-  }
-  :global(.pulse-marker-ring) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--coral);
-    animation: leafletPulse 2s ease-out infinite;
-    z-index: 1;
-  }
-  @keyframes leafletPulse {
-    0% { width: 12px; height: 12px; opacity: 0.8; }
-    100% { width: 36px; height: 36px; opacity: 0; }
-  }
-  :global(.pulse-marker-label) {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--blue);
-    background: rgba(255,255,255,0.92);
-    padding: 3px 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    letter-spacing: 0.5px;
   }
 
   @media (max-width: 900px) {
-    .tour-stops { grid-template-columns: 1fr; }
     .boat-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
     .boat-grid { grid-template-columns: 1fr; }
-    .tour-meta { flex-direction: column; gap: 8px; }
+    .tour-block-header { padding: 20px 20px; }
+    .tour-info, .tour-description, .tour-departure, .tour-sub-heading { padding-left: 20px; padding-right: 20px; }
+    .boat-grid { padding: 0 20px; }
+    .tour-meta-row { flex-direction: column; gap: 8px; }
   }
 </style>

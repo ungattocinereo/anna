@@ -1,6 +1,4 @@
 ---
-import { PartyPopper, Heart, Gem, Users, MessageCircle } from 'lucide-astro';
-
 const images = [
   '/images/20250630_195957.jpg',
   '/images/20241030_111216.jpg',
@@ -23,23 +21,15 @@ const images = [
   </div>
   <div class="group-overlay"></div>
   <div class="group-content reveal">
-    <div class="group-icons">
-      <span class="group-icon"><PartyPopper size={20} /></span>
-      <span class="group-icon"><Heart size={20} /></span>
-      <span class="group-icon"><Gem size={20} /></span>
-      <span class="group-icon"><Users size={20} /></span>
-    </div>
-    <h2>Групповые туры, ретриты, девичники, предложения руки и сердца</h2>
-    <p>Организация незабываемых событий на Амальфитанском побережье. Напишите мне, и мы создадим идеальную программу под ваш запрос</p>
-    <a href="https://wa.me/393792811354" class="btn btn-primary" target="_blank" rel="noopener">
-      <MessageCircle size={18} />
+    <p class="group-text">А также групповые туры, ретриты, девичники, предложения руки и сердца</p>
+    <a href="https://wa.me/393792811354" class="btn btn-whatsapp-lg" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L.053 23.52l5.797-1.447A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.74-.51-5.33-1.45l-.38-.23-3.44.86.9-3.36-.25-.39A9.8 9.8 0 012.18 12c0-5.41 4.41-9.82 9.82-9.82 5.41 0 9.82 4.41 9.82 9.82 0 5.41-4.41 9.82-9.82 9.82z"/></svg>
       Обсудить
     </a>
   </div>
 </section>
 
 <script>
-  // Auto-sliding photos
   const slides = document.querySelectorAll('.group-slide');
   if (slides.length > 0) {
     let current = 0;
@@ -54,7 +44,7 @@ const images = [
 <style>
   .group-banner {
     position: relative;
-    min-height: 420px;
+    min-height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,41 +79,37 @@ const images = [
     max-width: 700px;
     padding: 60px 32px;
   }
-  .group-icons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .group-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--yellow);
-    transition: transform 0.4s ease;
-  }
-  .group-icon:hover { transform: scale(1.1) rotate(-5deg); }
-  .group-content h2 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 800;
+  .group-text {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
     color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-  .group-content p {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.65;
     margin-bottom: 28px;
+    line-height: 1.4;
+  }
+  .btn-whatsapp-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    background: #25D366;
+    color: var(--white);
+    border: none;
+    box-shadow: 0 8px 28px rgba(37,211,102,0.35);
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+  }
+  .btn-whatsapp-lg:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(37,211,102,0.5);
   }
 
   @media (max-width: 768px) {
-    .group-banner { min-height: 360px; }
+    .group-banner { min-height: 280px; }
     .group-content { padding: 40px 20px; }
   }
 </style>

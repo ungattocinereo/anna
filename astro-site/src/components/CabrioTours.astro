@@ -1,275 +1,226 @@
 ---
-import { Car, Clock, Users, MapPin, Euro, Mountain, Landmark, Church, Wine, Camera as CameraIcon, Ticket } from 'lucide-astro';
+import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-astro';
 ---
 
 <section class="section cabrio" id="cabrio">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label"><Car size={16} /> На кабриолете</span>
-      <h2>Экскурсии на кабриолете</h2>
-      <p>Серпантины, панорамы и ветер в волосах</p>
-    </div>
-
-    <!-- Road decoration -->
-    <div class="cabrio-road-deco" aria-hidden="true">
-      <svg viewBox="0 0 1000 60" preserveAspectRatio="none">
-        <path d="M0 30 Q100 10 200 30 Q300 50 400 30 Q500 10 600 30 Q700 50 800 30 Q900 10 1000 30" fill="none" stroke="rgba(27,58,92,0.08)" stroke-width="3"/>
-        <line x1="0" y1="30" x2="1000" y2="30" stroke="rgba(27,58,92,0.04)" stroke-width="1" stroke-dasharray="12 8"/>
-      </svg>
-    </div>
 
     <!-- Вечная классика -->
-    <div class="cabrio-card reveal">
-      <div class="cabrio-banner">
-        <img src="/images/IMG_20260306_131345_945.jpg" alt="Экскурсия Вечная классика" loading="lazy">
-        <div class="cabrio-banner-overlay"></div>
-        <div class="cabrio-banner-title">
-          <h3>Вечная классика</h3>
-          <div class="cabrio-meta-line">
-            <span><Clock size={14} /> 9 часов</span>
-            <span><Users size={14} /> до 3 человек</span>
-            <span><Euro size={14} /> 550</span>
-          </div>
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="classic-content">
+        <div class="tour-block-title">
+          <h3>На кабриолете &mdash; &laquo;Вечная классика&raquo;</h3>
+          <span class="tour-block-brief">Серпантины, панорамы и ветер в волосах</span>
         </div>
-        <div class="cabrio-banner-road" aria-hidden="true">
-          <svg viewBox="0 0 800 80" preserveAspectRatio="none">
-            <path d="M0 60 Q100 20 200 50 Q300 80 400 40 Q500 0 600 40 Q700 80 800 50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="8 6"/>
-          </svg>
-        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
       </div>
-      <div class="cabrio-content">
-        <div class="cabrio-route">
-          <MapPin size={15} />
-          Позитано &mdash; Праяно &mdash; Равелло &mdash; долина Трамонти &mdash; Майори &mdash; Минори &mdash; Атрани &mdash; Амальфи
-        </div>
-        <div class="cabrio-stops">
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><Mountain size={18} /></div>
-            <h4>Позитано</h4>
-            <p>Жемчужина побережья. Остановки на 2-х живописных смотровых площадках. Легенды о Позитано и знакомство со знаменитым синьором Сальватором</p>
-          </div>
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><Landmark size={18} /></div>
-            <h4>Равелло</h4>
-            <p>Элегантный городок с душой музыки. Прогулка по садам виллы Чимброне с головокружительным видом (365 метров над морем!)</p>
-          </div>
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><Wine size={18} /></div>
-            <h4>Долина Трамонти</h4>
-            <p>Скрытая от туристов долина виноградников и лимонов. Частная сыроварня со свежайшей домашней моцареллой</p>
-          </div>
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><CameraIcon size={18} /></div>
-            <h4>Атрани</h4>
-            <p>Самый маленький город Италии. Узкие улочки, лодки у берега и ощущение затерянности во времени. Прямо как в сериале &laquo;Рипли&raquo;!</p>
-          </div>
-          <div class="cabrio-stop cabrio-stop--wide">
-            <div class="cabrio-stop-icon"><Church size={18} /></div>
-            <h4>Амальфи</h4>
-            <p>Историческая морская республика с величественным собором. Старинные улочки и обязательное лимонное джелато!</p>
+      <div class="tour-block-content open" id="classic-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Clock size={15} /> 9 часов</span>
+            <span><Users size={15} /> до 3 человек</span>
           </div>
         </div>
-        <div class="cabrio-pricing">
-          <div class="cabrio-pricing-main">
-            <div class="price-main">&euro;550</div>
-            <div class="price-note">
-              <Ticket size={13} /> + &euro;12/чел. вход на виллу Чимброне
+
+        <div class="tour-description">
+          <p class="tour-route"><MapPin size={15} /> Позитано &mdash; Праяно &mdash; Равелло &mdash; долина Трамонти &mdash; Майори &mdash; Минори &mdash; Атрани &mdash; Амальфи</p>
+          <p><strong>Позитано</strong> &mdash; жемчужина побережья. Остановки на&nbsp;двух живописных смотровых площадках. Легенды о&nbsp;Позитано и&nbsp;знакомство со&nbsp;знаменитым синьором Сальватором.</p>
+          <p><strong>Равелло</strong> &mdash; элегантный городок с&nbsp;душой музыки. Прогулка по&nbsp;садам виллы Чимброне с&nbsp;головокружительным видом (365 метров над морем!).</p>
+          <p><strong>Долина Трамонти</strong> &mdash; скрытая от&nbsp;туристов долина виноградников и&nbsp;лимонов. Частная сыроварня со&nbsp;свежайшей домашней моцареллой.</p>
+          <p><strong>Атрани</strong> &mdash; самый маленький город Италии. Узкие улочки, лодки у&nbsp;берега и&nbsp;ощущение затерянности во&nbsp;времени. Прямо как в&nbsp;сериале &laquo;Рипли&raquo;!</p>
+          <p><strong>Амальфи</strong> &mdash; историческая морская республика с&nbsp;величественным собором. Старинные улочки и&nbsp;обязательное лимонное джелато!</p>
+        </div>
+
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;550</div>
+              <div class="price-note"><Ticket size={13} /> + &euro;12/чел. вход на виллу Чимброне</div>
             </div>
+            <div class="tour-pricing-pickup">
+              <strong><Car size={14} /> Забор:</strong>
+              Амальфи &mdash; бесплатно &middot;
+              Сорренто, Салерно &mdash; &euro;50 &middot;
+              Неаполь &mdash; &euro;100
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
-          <div class="cabrio-pricing-pickup">
-            <h5><Car size={14} /> Забор с побережья</h5>
-            <p>Амальфи &mdash; бесплатно</p>
-            <p>Сорренто, Салерно &mdash; &euro;50</p>
-            <p>Неаполь &mdash; &euro;100</p>
-          </div>
-          <a href="https://wa.me/393792811354" class="btn btn-primary" target="_blank" rel="noopener">Забронировать</a>
         </div>
       </div>
     </div>
 
     <!-- Элегантная роскошь -->
-    <div class="cabrio-card reveal">
-      <div class="cabrio-banner">
-        <img src="/images/IMG_20260306_131355_219.jpg" alt="Экскурсия Элегантная роскошь" loading="lazy">
-        <div class="cabrio-banner-overlay"></div>
-        <div class="cabrio-banner-title">
-          <h3>Элегантная роскошь</h3>
-          <div class="cabrio-meta-line">
-            <span><Clock size={14} /> 8 часов</span>
-            <span><Users size={14} /> до 3 человек</span>
-            <span><Euro size={14} /> 550</span>
-          </div>
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="luxury-content">
+        <div class="tour-block-title">
+          <h3>На кабриолете &mdash; &laquo;Элегантная роскошь&raquo;</h3>
+          <span class="tour-block-brief">Позитано и Сорренто в стиле dolce vita</span>
         </div>
-        <div class="cabrio-banner-road" aria-hidden="true">
-          <svg viewBox="0 0 800 80" preserveAspectRatio="none">
-            <path d="M0 40 Q200 0 400 50 Q600 80 800 30" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="8 6"/>
-          </svg>
-        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть">
+          <ChevronDown size={20} />
+        </button>
       </div>
-      <div class="cabrio-content">
-        <div class="cabrio-route">
-          <MapPin size={15} />
-          Позитано &mdash; Сорренто
-        </div>
-        <div class="cabrio-stops">
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><Mountain size={18} /></div>
-            <h4>Позитано</h4>
-            <p>Легендарный город-символ Амальфи. Живописные улочки к морю, знаменитые панорамы. Посещение древней Римской виллы (музей MAR) с уникальными фресками</p>
-          </div>
-          <div class="cabrio-stop">
-            <div class="cabrio-stop-icon"><Landmark size={18} /></div>
-            <h4>Сорренто</h4>
-            <p>Элегантный город на скалах с видом на Везувий. Атмосферный исторический центр, уютные улочки и панорамные террасы. Идеальное сочетание шарма и dolce vita</p>
+      <div class="tour-block-content open" id="luxury-content">
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span><Clock size={15} /> 8 часов</span>
+            <span><Users size={15} /> до 3 человек</span>
           </div>
         </div>
-        <div class="cabrio-pricing">
-          <div class="cabrio-pricing-main">
-            <div class="price-main">&euro;550</div>
-            <div class="price-note">
-              <Ticket size={13} /> + &euro;15/чел. вход на виллу MAR
+
+        <div class="tour-description">
+          <p class="tour-route"><MapPin size={15} /> Позитано &mdash; Сорренто</p>
+          <p><strong>Позитано</strong> &mdash; легендарный город-символ Амальфи. Живописные улочки к&nbsp;морю, знаменитые панорамы. Посещение древней Римской виллы (музей MAR) с&nbsp;уникальными фресками.</p>
+          <p><strong>Сорренто</strong> &mdash; элегантный город на&nbsp;скалах с&nbsp;видом на&nbsp;Везувий. Атмосферный исторический центр, уютные улочки и&nbsp;панорамные террасы. Идеальное сочетание шарма и&nbsp;dolce vita.</p>
+        </div>
+
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;550</div>
+              <div class="price-note"><Ticket size={13} /> + &euro;15/чел. вход на виллу MAR</div>
             </div>
+            <div class="tour-pricing-pickup">
+              <strong><Car size={14} /> Забор:</strong>
+              Амальфи, Сорренто &mdash; бесплатно &middot;
+              Салерно &mdash; &euro;50 &middot;
+              Неаполь &mdash; &euro;100
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
-          <div class="cabrio-pricing-pickup">
-            <h5><Car size={14} /> Забор с побережья</h5>
-            <p>Амальфи, Сорренто &mdash; бесплатно</p>
-            <p>Салерно &mdash; &euro;50 &middot; Неаполь &mdash; &euro;100</p>
-          </div>
-          <a href="https://wa.me/393792811354" class="btn btn-primary" target="_blank" rel="noopener">Забронировать</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  document.querySelectorAll('.cabrio [data-toggle]').forEach(header => {
+    header.addEventListener('click', () => {
+      const targetId = header.getAttribute('data-toggle');
+      if (!targetId) return;
+      const content = document.getElementById(targetId);
+      if (!content) return;
+      content.classList.toggle('open');
+      const toggle = header.querySelector('.tour-toggle');
+      if (toggle) toggle.classList.toggle('rotated');
+    });
+  });
+</script>
+
 <style>
   .cabrio { background: var(--white); }
 
-  .cabrio-road-deco {
-    max-width: 800px;
-    margin: -20px auto 40px;
-    opacity: 0.7;
-  }
-
-  .cabrio-card {
+  .tour-block {
     max-width: 960px;
-    margin: 0 auto 48px;
+    margin: 0 auto 32px;
     background: var(--light);
     border-radius: var(--radius);
-    overflow: hidden;
     box-shadow: var(--shadow);
-    transition: box-shadow var(--transition);
-  }
-  .cabrio-card:hover {
-    box-shadow: var(--shadow-lg);
-  }
-
-  .cabrio-banner {
-    height: 340px;
     overflow: hidden;
-    position: relative;
+    border: 1px solid rgba(27,58,92,0.06);
   }
-  .cabrio-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-  }
-  .cabrio-card:hover .cabrio-banner img {
-    transform: scale(1.03);
-  }
-  .cabrio-banner-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(13,27,42,0.75) 100%);
-  }
-  .cabrio-banner-title {
-    position: absolute;
-    bottom: 28px;
-    left: 32px;
-    z-index: 2;
-  }
-  .cabrio-banner-title h3 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--white);
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
-  }
-  .cabrio-meta-line {
+
+  .tour-block-header {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .cabrio-meta-line span {
-    display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.8);
-    font-weight: 500;
+    justify-content: space-between;
+    padding: 28px 32px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
   }
-  .cabrio-banner-road {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    z-index: 1;
+  .tour-block-header:hover {
+    background: rgba(27,58,92,0.02);
   }
 
-  .cabrio-content {
-    padding: 36px 36px 32px;
+  .tour-block-title h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 4px;
   }
-  .cabrio-route {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+  .tour-block-brief {
     font-size: 0.9rem;
-    color: var(--coral);
-    font-weight: 700;
-    margin-bottom: 28px;
-    letter-spacing: 0.3px;
+    color: #888;
   }
 
-  .cabrio-stops {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 28px;
-  }
-  .cabrio-stop {
-    padding: 20px;
-    background: var(--white);
-    border-radius: var(--radius-sm);
-    transition: transform var(--transition);
-  }
-  .cabrio-stop:hover { transform: translateY(-2px); }
-  .cabrio-stop--wide { grid-column: 1 / -1; }
-  .cabrio-stop-icon {
+  .tour-toggle {
+    flex: 0 0 36px;
     width: 36px;
     height: 36px;
-    border-radius: 10px;
-    background: rgba(27,58,92,0.06);
+    border-radius: 50%;
+    border: 2px solid rgba(27,58,92,0.12);
+    background: transparent;
+    color: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--blue);
-    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
   }
-  .cabrio-stop h4 {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 6px;
+  .tour-toggle:hover {
+    background: rgba(27,58,92,0.05);
   }
-  .cabrio-stop p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 0.88rem;
+  .tour-toggle.rotated {
+    transform: rotate(180deg);
   }
 
-  .cabrio-pricing {
+  .tour-block-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .tour-block-content.open {
+    max-height: 2000px;
+  }
+
+  .tour-info {
+    padding: 0 32px;
+  }
+
+  .tour-meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .tour-meta-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .tour-description {
+    padding: 0 32px 16px;
+  }
+  .tour-description p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .tour-description p:last-child {
+    margin-bottom: 0;
+  }
+  .tour-route {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--coral) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .tour-pricing {
+    padding: 0 32px 28px;
+  }
+  .tour-pricing-row {
     background: var(--white);
     border-radius: 12px;
     padding: 24px 28px;
@@ -277,12 +228,12 @@ import { Car, Clock, Users, MapPin, Euro, Mountain, Landmark, Church, Wine, Came
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 16px;
   }
-  .price-main {
+  .price-value {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: var(--blue);
     margin-bottom: 4px;
   }
@@ -293,29 +244,28 @@ import { Car, Clock, Users, MapPin, Euro, Mountain, Landmark, Church, Wine, Came
     font-size: 0.82rem;
     color: #888;
   }
-  .cabrio-pricing-pickup h5 {
+  .tour-pricing-pickup {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  .tour-pricing-pickup strong {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.82rem;
-    font-weight: 700;
+    gap: 4px;
     color: var(--blue);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
-  .cabrio-pricing-pickup p {
-    font-size: 0.82rem;
-    color: #888;
-    line-height: 1.6;
+
+  .btn-sm {
+    padding: 12px 24px !important;
+    font-size: 0.85rem !important;
   }
 
   @media (max-width: 768px) {
-    .cabrio-banner { height: 240px; }
-    .cabrio-content { padding: 24px 20px; }
-    .cabrio-stops { grid-template-columns: 1fr; }
-    .cabrio-pricing { flex-direction: column; text-align: center; align-items: stretch; }
-    .cabrio-banner-title h3 { font-size: 1.4rem; }
-    .cabrio-meta-line { justify-content: flex-start; gap: 12px; }
+    .tour-block-header { padding: 20px 20px; }
+    .tour-info, .tour-description, .tour-pricing { padding-left: 20px; padding-right: 20px; }
+    .tour-pricing-row { flex-direction: column; text-align: center; align-items: stretch; }
+    .tour-block-title h3 { font-size: 1.1rem; }
+    .tour-meta-row { justify-content: flex-start; gap: 12px; }
   }
 </style>

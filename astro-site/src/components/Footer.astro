@@ -1,6 +1,28 @@
 ---
-import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Star } from 'lucide-astro';
+import { Instagram, Heart, Compass, Ship, Camera, Star } from 'lucide-astro';
 ---
+
+<section class="contacts" id="contacts">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="contacts-title">Контакты</h2>
+    </div>
+    <div class="contacts-buttons reveal">
+      <a href="https://wa.me/393792811354" class="contact-btn contact-btn--whatsapp" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L.053 23.52l5.797-1.447A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.74-.51-5.33-1.45l-.38-.23-3.44.86.9-3.36-.25-.39A9.8 9.8 0 012.18 12c0-5.41 4.41-9.82 9.82-9.82 5.41 0 9.82 4.41 9.82 9.82 0 5.41-4.41 9.82-9.82 9.82z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://t.me/ann_in_rome" class="contact-btn contact-btn--telegram" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram
+      </a>
+      <a href="https://www.instagram.com/ann_in_rome/" class="contact-btn contact-btn--instagram" target="_blank" rel="noopener">
+        <Instagram size={22} />
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="footer-bg" aria-hidden="true"></div>
@@ -11,26 +33,12 @@ import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Sta
         <Heart size={14} class="footer-inline-icon" />
         Авторские экскурсии по Амальфитанскому побережью. Лодочные прогулки, кабриолеты, кулинарные мастер-классы и незабываемые впечатления.
       </p>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener" aria-label="Instagram">
-          <Instagram size={18} />
-        </a>
-        <a href="https://wa.me/393792811354" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <MessageCircle size={18} />
-        </a>
-        <a href="https://t.me/ann_in_rome" target="_blank" rel="noopener" aria-label="Telegram">
-          <Send size={18} />
-        </a>
-        <a href="mailto:a.aharodnikava@gmail.com" aria-label="Email">
-          <Mail size={18} />
-        </a>
-      </div>
     </div>
     <div>
       <h4>Навигация</h4>
       <div class="footer-links">
         <a href="#about"><Compass size={13} /> Обо мне</a>
-        <a href="#boats"><Ship size={13} /> Экскурсии</a>
+        <a href="#tours"><Ship size={13} /> Экскурсии</a>
         <a href="#gallery"><Camera size={13} /> Галерея</a>
         <a href="#reviews"><Star size={13} /> Отзывы</a>
       </div>
@@ -38,9 +46,8 @@ import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Sta
     <div>
       <h4>Контакты</h4>
       <div class="footer-links">
-        <a href="https://wa.me/393792811354" target="_blank" rel="noopener">
-          <MessageCircle size={13} /> WhatsApp
-        </a>
+        <a href="https://wa.me/393792811354" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://t.me/ann_in_rome" target="_blank" rel="noopener">Telegram</a>
         <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">
           <Instagram size={13} /> Instagram
         </a>
@@ -64,6 +71,62 @@ import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Sta
 </a>
 
 <style>
+  /* Contacts section */
+  .contacts {
+    background: var(--white);
+    padding: 80px 24px;
+  }
+  .contacts-title {
+    color: var(--blue) !important;
+  }
+  .contacts-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--white);
+    transition: transform var(--transition), box-shadow var(--transition);
+    letter-spacing: 0.3px;
+  }
+  .contact-btn:hover {
+    transform: translateY(-3px);
+    color: var(--white);
+  }
+  .contact-btn--whatsapp {
+    background: #25D366;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+  }
+  .contact-btn--whatsapp:hover {
+    box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+  }
+  .contact-btn--telegram {
+    background: #0088cc;
+    box-shadow: 0 8px 24px rgba(0,136,204,0.3);
+  }
+  .contact-btn--telegram:hover {
+    box-shadow: 0 12px 32px rgba(0,136,204,0.45);
+  }
+  .contact-btn--instagram {
+    background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+    box-shadow: 0 8px 24px rgba(131,58,180,0.3);
+  }
+  .contact-btn--instagram:hover {
+    box-shadow: 0 12px 32px rgba(131,58,180,0.45);
+  }
+
+  /* Footer */
   .footer {
     position: relative;
     background: var(--dark);
@@ -120,30 +183,6 @@ import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Sta
     vertical-align: middle;
     margin-right: 2px;
     color: var(--coral);
-  }
-
-  .footer-socials {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-  }
-  .footer-socials a {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.7);
-    transition: all var(--transition);
-  }
-  .footer-socials a:hover {
-    background: var(--coral);
-    border-color: var(--coral);
-    color: var(--white);
-    transform: translateY(-3px);
   }
 
   .footer h4 {
@@ -238,5 +277,7 @@ import { Instagram, MessageCircle, Mail, Heart, Send, Compass, Ship, Camera, Sta
     .footer-bottom-inner { flex-direction: column; text-align: center; }
     .footer-legal { justify-content: center; }
     .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    .contacts-buttons { flex-direction: column; align-items: center; }
+    .contact-btn { width: 100%; max-width: 300px; justify-content: center; }
   }
 </style>
