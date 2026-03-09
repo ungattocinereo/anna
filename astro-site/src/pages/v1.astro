@@ -1,0 +1,963 @@
+---
+// V1: "Limoncello" — Bright, Organic, Mediterranean
+---
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANNA — Авторские экскурсии по Амальфитанскому побережью</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-text">ANNA</span>
+    <span class="nav-logo-dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#tours">Экскурсии</a></li>
+    <li><a href="#gallery">Галерея</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="https://wa.me/393792811354" class="nav-cta" target="_blank" rel="noopener">Написать</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">Обо мне</a>
+  <a href="#tours" class="mobile-link">Экскурсии</a>
+  <a href="#gallery" class="mobile-link">Галерея</a>
+  <a href="#reviews" class="mobile-link">Отзывы</a>
+  <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="mobile-link mobile-link--cta">Написать в WhatsApp</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero-circles" aria-hidden="true">
+    <div class="hero-circle hero-circle--1"></div>
+    <div class="hero-circle hero-circle--2"></div>
+    <div class="hero-circle hero-circle--3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-geo">Амальфитанское побережье, Италия</span>
+      <h1>Авторские<br>экскурсии</h1>
+      <p class="hero-tagline">которые становятся лучшей частью вашей поездки в&nbsp;Италию</p>
+      <div class="hero-buttons">
+        <a href="#tours" class="btn btn-primary">Мои экскурсии</a>
+        <a href="https://wa.me/393792811354" class="btn btn-outline" target="_blank" rel="noopener">Написать</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="/images/cabrio-classic.jpg" alt="Экскурсия на кабриолете по Амальфитанскому побережью" loading="eager">
+    </div>
+  </div>
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#FFFDF0"/></svg>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-polaroid">
+          <img src="/images/My foto.jpg" alt="Анна — ваш гид по Амальфитанскому побережью">
+          <span class="about-polaroid-label">Анна</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>Обо мне</h2>
+        <p>Привет! Я&nbsp;&mdash; Анна.</p>
+        <p>Когда-то я&nbsp;строила IT-бизнес в&nbsp;4&nbsp;странах. А&nbsp;потом собрала чемодан, купила <strong>красный Mini Cooper</strong> и&nbsp;переехала жить в&nbsp;Италию.</p>
+        <p>Теперь я&nbsp;живу на&nbsp;Амальфитанском побережье и&nbsp;показываю его своим гостям так, как не&nbsp;покажет ни&nbsp;один путеводитель.</p>
+        <p>Не&nbsp;только красивые виды, но&nbsp;и&nbsp;<strong>секретные места, атмосферные улочки</strong>, лучшие локальные рестораны и&nbsp;настоящий дух Амальфи.</p>
+        <p>Мои гости часто говорят: <em>&laquo;Это была лучшая часть всей поездки в&nbsp;Италию&raquo;</em>.</p>
+        <p>А&nbsp;все потому, что мои экскурсии&nbsp;&mdash; это не&nbsp;&laquo;стандартный тур&raquo;, а&nbsp;ощущение, что вы&nbsp;приехали <strong>к&nbsp;близкому другу</strong>, который знает здесь всё самое красивое и&nbsp;вкусное и&nbsp;хочет поделиться этим с&nbsp;вами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOURS ===================== -->
+<section class="tours" id="tours">
+  <div class="wave-divider wave-divider--top" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,0 720,80 1080,40 C1260,20 1380,30 1440,40 L1440,0 L0,0 Z" fill="#FFFDF0"/></svg>
+  </div>
+  <div class="container">
+    <h2 class="section-title">Мои экскурсии</h2>
+
+    <div class="tour-tabs">
+      <button class="tour-tab active" data-tab="boats">На лодке</button>
+      <button class="tour-tab" data-tab="cabrio">На кабриолете</button>
+      <button class="tour-tab" data-tab="experiences">Впечатления</button>
+    </div>
+
+    <!-- BOATS TAB -->
+    <div class="tab-content active" id="tab-boats">
+      <div class="tour-intro">
+        <h3>Морской хит</h3>
+        <p class="tour-route-line">Минори — Атрани — Амальфи — Прайано — Позитано (маршрут можно задать)</p>
+        <div class="tour-meta">4 часа · Просекко включено · Маршрут можно задать</div>
+      </div>
+      <div class="tour-desc-block">
+        <h4>Прогулка вдоль побережья</h4>
+        <p>Вы увидите Амальфитанское побережье с&nbsp;новой стороны: скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп.</p>
+        <h4>Пляжи только для вас</h4>
+        <p>Мы сделаем остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Можно искупаться в&nbsp;бирюзовой воде, позагорать на&nbsp;борту и&nbsp;устроить пикник с&nbsp;бокалом просекко.</p>
+        <h4>Идеальные кадры</h4>
+        <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с&nbsp;воды&nbsp;&mdash; всё это будет не&nbsp;просто пейзажем, а&nbsp;частью вашей морской сказки.</p>
+      </div>
+      <h4 class="boat-heading">Стоимость зависит от вида лодки</h4>
+      <div class="boat-scroll">
+        <div class="boat-card">
+          <img src="/images/perla_blu.png" alt="Perla Blu">
+          <div class="boat-body">
+            <h4>Perla Blu</h4>
+            <span class="boat-spec">макс. 3 чел.</span>
+            <div class="boat-price">&euro;700</div>
+            <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Забронировать &rarr;</a>
+          </div>
+        </div>
+        <div class="boat-card boat-card--featured">
+          <span class="boat-badge">Рекомендую</span>
+          <img src="/images/cranchi%20sport.png" alt="Cranchi Sport">
+          <div class="boat-body">
+            <h4>Cranchi Sport</h4>
+            <span class="boat-spec">макс. 7 чел.</span>
+            <div class="boat-price">&euro;850</div>
+            <p class="boat-note">*моя любимая, рекомендую именно ее</p>
+            <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Забронировать &rarr;</a>
+          </div>
+        </div>
+        <div class="boat-card">
+          <img src="/images/reginella.png" alt="Reginella">
+          <div class="boat-body">
+            <h4>Reginella</h4>
+            <span class="boat-spec">макс. 6 чел.</span>
+            <div class="boat-price">&euro;850</div>
+            <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Забронировать &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <p class="tour-departure"><strong>Отправление:</strong> Амальфи, Минори, Майори</p>
+    </div>
+
+    <!-- CABRIO TAB -->
+    <div class="tab-content" id="tab-cabrio">
+      <div class="cabrio-card">
+        <div class="cabrio-img">
+          <img src="/images/IMG_20260306_131345_945.jpg" alt="Вечная классика" loading="lazy">
+        </div>
+        <div class="cabrio-text">
+          <h3>Вечная классика</h3>
+          <div class="tour-meta">9 часов · макс. 3 человека</div>
+          <p class="tour-route-line">Позитано — Праяно — Равелло — долина Трамонти — Майори — Минори — Атрани — Амальфи</p>
+          <p>Жемчужина побережья. Мы сделаем остановки на&nbsp;2-х живописных смотровых площадках. Прогулка по&nbsp;садам виллы Чимброне (365 м над уровнем моря!). Скрытая долина виноградников и&nbsp;лимонов с&nbsp;частной сыроварней. Самый маленький город Италии — Атрани. Историческая морская республика Амальфи.</p>
+          <div class="cabrio-price-row">
+            <div>
+              <span class="cabrio-price">&euro;550</span>
+              <span class="cabrio-price-note">+ &euro;12/чел. вход на виллу Чимброне</span>
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
+          </div>
+          <p class="pickup-note"><strong>Забор:</strong> из любой точки побережья Амальфи — бесплатно. Из Сорренто и Салерно — &euro;50. Из Неаполя — &euro;100.</p>
+        </div>
+      </div>
+
+      <div class="cabrio-card">
+        <div class="cabrio-img">
+          <img src="/images/_CNR0477.jpg" alt="Элегантная роскошь" loading="lazy">
+        </div>
+        <div class="cabrio-text">
+          <h3>Элегантная роскошь</h3>
+          <div class="tour-meta">8 часов · макс. 3 человека</div>
+          <p class="tour-route-line">Позитано — Сорренто</p>
+          <p>Легендарный Позитано с&nbsp;его живописными улочками, спускающимися к&nbsp;морю. Древняя Римская вилла (музей MAR) с&nbsp;уникальными фресками. Элегантный Сорренто на&nbsp;скалах с&nbsp;захватывающим видом на&nbsp;Везувий — идеальное сочетание южного шарма, истории и&nbsp;настоящей итальянской dolce vita.</p>
+          <div class="cabrio-price-row">
+            <div>
+              <span class="cabrio-price">&euro;550</span>
+              <span class="cabrio-price-note">+ &euro;15/чел. вход на виллу MAR в Позитано</span>
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
+          </div>
+          <p class="pickup-note"><strong>Забор:</strong> из любой точки побережья Амальфи и Сорренто — бесплатно. Из Салерно — &euro;50. Из Неаполя — &euro;100.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCES TAB -->
+    <div class="tab-content" id="tab-experiences">
+      <div class="exp-grid">
+        <div class="exp-card">
+          <h3>Приватный мастер-класс по пиццe</h3>
+          <div class="tour-meta">2 часа</div>
+          <p>В&nbsp;уютном ресторанчике у&nbsp;самого моря вас ждёт приватный мастер-класс с&nbsp;настоящим итальянским шеф-поваром. Вы узнаете секреты идеального теста и&nbsp;попробуете пиццу свежей из&nbsp;печи.</p>
+          <div class="exp-price">&euro;150 <small>/чел.</small></div>
+          <span class="exp-note">мин. 3 человека или &euro;450</span>
+          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Записаться &rarr;</a>
+        </div>
+        <div class="exp-card">
+          <h3>Мастер-класс по домашней кухне</h3>
+          <div class="tour-meta">3 часа · макс. 4 человека</div>
+          <p>Приватный мастер-класс в&nbsp;настоящем итальянском доме. Домашняя паста, основное блюдо и&nbsp;десерт на&nbsp;панорамной террасе с&nbsp;захватывающим видом.</p>
+          <div class="exp-price">&euro;600</div>
+          <span class="exp-note">макс. 4 человека</span>
+          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Записаться &rarr;</a>
+        </div>
+        <div class="exp-card">
+          <h3>Семейная винодельня</h3>
+          <div class="tour-meta">2 часа</div>
+          <p>Небольшая семейная винодельня, дегустация нескольких местных вин с&nbsp;лёгкими закусками из&nbsp;региональных продуктов.</p>
+          <div class="exp-price">&euro;80 <small>/чел.</small></div>
+          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Записаться &rarr;</a>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card-photo">
+            <img src="/images/photosession-2.jpg" alt="Фотосессия" loading="lazy">
+          </div>
+          <h3>Фотосессия</h3>
+          <div class="tour-meta">1 час · 30 фото</div>
+          <p>Профессиональная фотосессия на&nbsp;самых красивых панорамных точках Амальфитанского побережья. Яркие, стильные и&nbsp;атмосферные кадры.</p>
+          <div class="exp-price">&euro;250</div>
+          <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">Записаться &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GROUP BANNER ===================== -->
+<section class="group-banner">
+  <div class="group-blob" aria-hidden="true"></div>
+  <div class="group-content">
+    <p>А также групповые туры, ретриты, девичники, предложения руки и сердца &mdash; по запросу</p>
+    <a href="https://wa.me/393792811354" class="btn btn-primary" target="_blank" rel="noopener">Написать в WhatsApp</a>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <h2 class="section-title">Галерея</h2>
+    <p class="section-subtitle">Ежедневные истории из жизни на побережье и красоты Амальфи</p>
+    <div class="masonry">
+      <a class="masonry-item masonry-item--tall" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20250630_195957.jpg" alt="Positano на закате" loading="lazy"></a>
+      <a class="masonry-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241030_111216.jpg" alt="Амальфитанское побережье" loading="lazy"></a>
+      <a class="masonry-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241104_150159.jpg" alt="Побережье Амальфи" loading="lazy"></a>
+      <a class="masonry-item masonry-item--tall" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241125_113727.jpg" alt="Виды Амальфи" loading="lazy"></a>
+      <a class="masonry-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241006_175944.jpg" alt="Закат на побережье" loading="lazy"></a>
+      <a class="masonry-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241127_105410.jpg" alt="Побережье" loading="lazy"></a>
+      <a class="masonry-item masonry-item--tall" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20250420_084358.jpg" alt="Экскурсия" loading="lazy"></a>
+      <a class="masonry-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/20241013_192321.jpg" alt="Вечер" loading="lazy"></a>
+    </div>
+    <div class="insta-handle">
+      <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">@ann_in_rome</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <h2 class="section-title section-title--light">Отзывы</h2>
+    <p class="section-subtitle section-subtitle--light">Реальные впечатления от гостей</p>
+    <div class="reviews-carousel">
+      <button class="rev-arrow rev-arrow--left" id="revPrev" aria-label="Предыдущий">&larr;</button>
+      <div class="reviews-track-wrap">
+        <div class="reviews-track" id="revTrack">
+          <div class="rev-polaroid"><div class="rev-tape"></div><img src="/images/Reviews.png" alt="Отзыв 1"></div>
+          <div class="rev-polaroid"><div class="rev-tape"></div><img src="/images/Reviews02.png" alt="Отзыв 2"></div>
+          <div class="rev-polaroid"><div class="rev-tape"></div><img src="/images/Reviews03.png" alt="Отзыв 3"></div>
+          <div class="rev-polaroid"><div class="rev-tape"></div><img src="/images/Reviews04.png" alt="Отзыв 4"></div>
+        </div>
+      </div>
+      <button class="rev-arrow rev-arrow--right" id="revNext" aria-label="Следующий">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTS & FOOTER ===================== -->
+<section class="contacts">
+  <div class="container">
+    <h2 class="section-title">Контакты</h2>
+    <div class="contacts-buttons">
+      <a href="https://wa.me/393792811354" class="contact-btn contact-btn--wa" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://t.me/ann_in_rome" class="contact-btn contact-btn--tg" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.instagram.com/ann_in_rome/" class="contact-btn contact-btn--ig" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3 class="footer-logo">ANNA<span class="footer-dot"></span></h3>
+      <p>Авторские экскурсии по Амальфитанскому побережью. Лодочные прогулки, кабриолеты, кулинарные мастер-классы и незабываемые впечатления.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Навигация</h4>
+      <a href="#about">Обо мне</a>
+      <a href="#tours">Экскурсии</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#reviews">Отзывы</a>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <a href="https://wa.me/393792811354" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://t.me/ann_in_rome" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Anna &mdash; Авторские экскурсии по Амальфитанскому побережью</div>
+</footer>
+
+<!-- WhatsApp floating -->
+<a href="https://wa.me/393792811354" class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<style>
+  /* ============= RESET & BASE ============= */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: #3a3a3a;
+    background: #FFFDF0;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+  button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+  /* ============= PALETTE ============= */
+  :root {
+    --lemon: #FFE066;
+    --olive: #4A6741;
+    --terracotta: #C75B39;
+    --cream: #FFFDF0;
+    --cream-dark: #F5EDD6;
+    --text: #3a3a3a;
+    --text-light: #777;
+    --radius: 20px;
+    --radius-lg: 24px;
+    --shadow: 0 8px 32px rgba(74,103,65,0.1);
+    --transition: 0.3s ease;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============= BUTTONS ============= */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: var(--terracotta); color: #fff;
+    box-shadow: 0 6px 20px rgba(199,91,57,0.3);
+  }
+  .btn-primary:hover { box-shadow: 0 10px 28px rgba(199,91,57,0.45); }
+  .btn-outline {
+    background: transparent; color: var(--olive);
+    border: 2px solid var(--olive);
+  }
+  .btn-outline:hover { background: var(--olive); color: #fff; }
+  .btn-sm { padding: 10px 22px; font-size: 0.82rem; }
+
+  /* ============= NAV ============= */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 48px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,253,240,0.7);
+    backdrop-filter: blur(16px) saturate(160%);
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  .nav.scrolled {
+    background: rgba(255,253,240,0.95);
+    box-shadow: 0 2px 20px rgba(74,103,65,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 4px; }
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-weight: 700; font-size: 1.6rem; color: var(--olive); letter-spacing: 2px;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lemon); margin-top: 8px;
+  }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; font-size: 0.8rem;
+    color: var(--olive); text-transform: uppercase; letter-spacing: 1.2px;
+    padding: 8px 14px; border-radius: 12px;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--terracotta) !important; color: #fff !important;
+    padding: 10px 24px !important; border-radius: 50px !important;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { box-shadow: 0 6px 20px rgba(199,91,57,0.3); }
+
+  .burger { display: none; flex-direction: column; gap: 5px; z-index: 1100; padding: 8px; }
+  .burger span { display: block; width: 26px; height: 2.5px; background: var(--olive); border-radius: 2px; transition: var(--transition); }
+  .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5.5px); background: #fff; }
+  .burger.active span:nth-child(2) { opacity: 0; }
+  .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5.5px); background: #fff; }
+
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 1050;
+    background: linear-gradient(135deg, var(--olive), #2d3d27);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-link {
+    font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700;
+    color: #fff; text-transform: uppercase; letter-spacing: 2px;
+  }
+  .mobile-link:hover { color: var(--lemon); }
+  .mobile-link--cta { color: var(--lemon); }
+
+  @media (max-width: 900px) {
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .burger { display: flex; }
+  }
+
+  /* ============= HERO ============= */
+  .hero {
+    position: relative; min-height: 100vh;
+    background: linear-gradient(160deg, var(--cream) 50%, #f0e8c8 100%);
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-circles { position: absolute; inset: 0; pointer-events: none; }
+  .hero-circle {
+    position: absolute; border-radius: 50%;
+    background: var(--lemon); opacity: 0.25;
+  }
+  .hero-circle--1 { width: 400px; height: 400px; top: -60px; right: 5%; }
+  .hero-circle--2 { width: 200px; height: 200px; bottom: 15%; right: 25%; opacity: 0.15; }
+  .hero-circle--3 { width: 120px; height: 120px; top: 40%; right: 42%; opacity: 0.2; }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1100px; margin: 0 auto;
+    padding: 140px 48px 100px;
+    display: flex; align-items: center; gap: 60px; width: 100%;
+  }
+  .hero-text { flex: 1; }
+  .hero-geo {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 2.5px; color: var(--olive);
+    margin-bottom: 20px; padding: 6px 16px;
+    background: #fff; border-radius: 50px;
+    box-shadow: 0 2px 12px rgba(74,103,65,0.08);
+  }
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 900; color: var(--olive);
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .hero-tagline {
+    font-size: 1.1rem; color: var(--text-light);
+    line-height: 1.7; margin-bottom: 36px; max-width: 380px;
+  }
+  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .hero-photo {
+    flex: 0 0 440px; position: relative;
+  }
+  .hero-photo img {
+    width: 100%; border-radius: var(--radius-lg);
+    transform: rotate(2deg);
+    box-shadow: 0 20px 60px rgba(74,103,65,0.2);
+    transition: transform 0.6s ease;
+  }
+  .hero-photo:hover img { transform: rotate(0deg) scale(1.02); }
+
+  .wave-divider {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+    line-height: 0;
+  }
+  .wave-divider svg { width: 100%; height: 80px; }
+  .wave-divider--top { position: absolute; top: 0; bottom: auto; }
+
+  @media (max-width: 900px) {
+    .hero-inner { flex-direction: column; padding: 120px 24px 80px; gap: 40px; text-align: center; }
+    .hero-photo { flex: none; width: 90%; max-width: 400px; }
+    .hero-buttons { justify-content: center; }
+    .hero-tagline { margin-left: auto; margin-right: auto; }
+    .hero-geo { margin-left: auto; margin-right: auto; }
+    .hero-circle--1 { width: 250px; height: 250px; top: 40%; right: -10%; }
+    .hero-circle--2 { display: none; }
+    .hero-circle--3 { display: none; }
+  }
+
+  /* ============= ABOUT ============= */
+  .about {
+    background: var(--cream); padding: 100px 0;
+  }
+  .about-grid {
+    display: flex; gap: 60px; align-items: center;
+    max-width: 960px; margin: 0 auto;
+  }
+  .about-photo-wrap { flex: 0 0 280px; }
+  .about-polaroid {
+    background: #fff; padding: 16px 16px 40px; border-radius: 4px;
+    box-shadow: 0 12px 40px rgba(74,103,65,0.12);
+    transform: rotate(-3deg);
+    transition: transform 0.5s ease;
+    position: relative;
+  }
+  .about-polaroid:hover { transform: rotate(0deg); }
+  .about-polaroid img {
+    width: 100%; border-radius: 2px; aspect-ratio: 3/4; object-fit: cover;
+  }
+  .about-polaroid::before {
+    content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+    width: 50px; height: 18px; background: rgba(255,224,102,0.6); border-radius: 2px;
+  }
+  .about-polaroid-label {
+    display: block; text-align: center; margin-top: 10px;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--olive);
+  }
+  .about-text { flex: 1; }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--olive); margin-bottom: 20px;
+  }
+  .about-text p {
+    font-size: 1rem; color: #555; line-height: 1.8; margin-bottom: 12px;
+  }
+  .about-text strong { color: var(--terracotta); }
+  .about-text em { color: var(--olive); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .about-grid { flex-direction: column; gap: 40px; text-align: center; }
+    .about-photo-wrap { flex: none; width: 220px; margin: 0 auto; }
+  }
+
+  /* ============= TOURS ============= */
+  .tours {
+    background: var(--cream-dark); padding: 100px 0 80px; position: relative;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700; color: var(--olive); text-align: center; margin-bottom: 12px;
+  }
+  .section-title--light { color: #fff; }
+  .section-subtitle {
+    text-align: center; color: var(--text-light); font-size: 0.95rem; margin-bottom: 40px;
+  }
+  .section-subtitle--light { color: rgba(255,255,255,0.55); }
+
+  .tour-tabs {
+    display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .tour-tab {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem;
+    padding: 12px 28px; border-radius: 50px;
+    background: #fff; color: var(--olive);
+    border: 2px solid rgba(74,103,65,0.15);
+    transition: all var(--transition);
+  }
+  .tour-tab:hover { border-color: var(--olive); }
+  .tour-tab.active {
+    background: var(--olive); color: #fff; border-color: var(--olive);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .tour-intro { text-align: center; margin-bottom: 32px; }
+  .tour-intro h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--olive); margin-bottom: 8px;
+  }
+  .tour-route-line {
+    font-weight: 700; color: var(--terracotta); font-size: 0.9rem; margin-bottom: 8px;
+  }
+  .tour-meta {
+    font-size: 0.85rem; color: var(--text-light); font-weight: 500; margin-bottom: 16px;
+  }
+
+  .tour-desc-block {
+    max-width: 720px; margin: 0 auto 32px; background: #fff;
+    border-radius: var(--radius); padding: 28px 32px;
+    box-shadow: var(--shadow);
+  }
+  .tour-desc-block h4 {
+    font-size: 1rem; font-weight: 700; color: var(--olive);
+    margin-top: 16px; margin-bottom: 6px;
+  }
+  .tour-desc-block h4:first-child { margin-top: 0; }
+  .tour-desc-block p { font-size: 0.95rem; color: #555; line-height: 1.75; }
+
+  .boat-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--olive);
+    text-align: center; margin-bottom: 20px;
+  }
+  .boat-scroll {
+    display: flex; gap: 20px; overflow-x: auto;
+    padding: 8px 4px 20px; scrollbar-width: none;
+  }
+  .boat-scroll::-webkit-scrollbar { display: none; }
+  .boat-card {
+    flex: 0 0 280px; background: #fff; border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: transform var(--transition); position: relative;
+  }
+  .boat-card:hover { transform: translateY(-6px); }
+  .boat-card--featured { border: 2px solid var(--terracotta); }
+  .boat-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    background: var(--terracotta); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .boat-card img {
+    width: 100%; height: 180px; object-fit: cover;
+  }
+  .boat-body { padding: 16px 20px 20px; }
+  .boat-body h4 { font-size: 1rem; font-weight: 800; color: var(--olive); margin-bottom: 4px; }
+  .boat-spec { font-size: 0.8rem; color: var(--text-light); }
+  .boat-price {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 1.2rem; color: var(--olive); margin: 8px 0;
+  }
+  .boat-note { font-size: 0.78rem; color: var(--terracotta); font-style: italic; margin-bottom: 8px; }
+  .boat-cta {
+    font-weight: 700; color: var(--terracotta); font-size: 0.82rem;
+    text-transform: uppercase; letter-spacing: 1px;
+    transition: gap var(--transition); display: inline-flex; align-items: center; gap: 4px;
+  }
+  .boat-cta:hover { gap: 8px; }
+  .tour-departure {
+    font-size: 0.9rem; color: #666; margin-top: 20px; text-align: center;
+  }
+  .tour-departure strong { color: var(--olive); }
+
+  /* Cabrio tab */
+  .cabrio-card {
+    display: flex; gap: 32px; background: #fff;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); margin-bottom: 24px;
+    max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .cabrio-img { flex: 0 0 40%; min-height: 300px; }
+  .cabrio-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cabrio-text { flex: 1; padding: 28px 28px 28px 0; }
+  .cabrio-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--olive); margin-bottom: 8px;
+  }
+  .cabrio-text p { font-size: 0.92rem; color: #555; line-height: 1.75; margin-bottom: 12px; }
+  .cabrio-price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 12px;
+    padding: 16px 20px; background: var(--cream); border-radius: 12px;
+  }
+  .cabrio-price {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 1.4rem; color: var(--olive);
+  }
+  .cabrio-price-note { font-size: 0.8rem; color: var(--text-light); display: block; }
+  .pickup-note { font-size: 0.82rem; color: #888; }
+  .pickup-note strong { color: var(--olive); }
+
+  @media (max-width: 768px) {
+    .cabrio-card { flex-direction: column; }
+    .cabrio-img { min-height: 220px; }
+    .cabrio-text { padding: 20px; }
+  }
+
+  /* Experiences tab */
+  .exp-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .exp-card {
+    background: #fff; border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .exp-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--olive); margin-bottom: 6px;
+  }
+  .exp-card p { font-size: 0.9rem; color: #555; line-height: 1.7; margin-bottom: 12px; }
+  .exp-card-photo {
+    margin: -28px -28px 16px; border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; height: 180px;
+  }
+  .exp-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .exp-price {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 1.2rem; color: var(--olive); margin-bottom: 4px;
+  }
+  .exp-price small { font-size: 0.7rem; font-weight: 500; color: var(--text-light); }
+  .exp-note { font-size: 0.78rem; color: var(--text-light); display: block; margin-bottom: 12px; }
+
+  @media (max-width: 600px) {
+    .exp-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============= GROUP BANNER ============= */
+  .group-banner {
+    background: var(--cream); padding: 80px 24px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .group-blob {
+    position: absolute; width: 400px; height: 400px;
+    border-radius: 50%; background: var(--lemon); opacity: 0.15;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    filter: blur(40px);
+  }
+  .group-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .group-content p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-weight: 700; color: var(--olive); margin-bottom: 24px; line-height: 1.5;
+  }
+
+  /* ============= GALLERY ============= */
+  .gallery {
+    background: var(--cream); padding: 100px 0;
+  }
+  .masonry {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 12px; max-width: 1060px; margin: 0 auto 32px;
+  }
+  .masonry-item {
+    border-radius: var(--radius); overflow: hidden; position: relative;
+    transform: rotate(-1deg);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .masonry-item:nth-child(2) { transform: rotate(1.5deg); }
+  .masonry-item:nth-child(3) { transform: rotate(-0.5deg); }
+  .masonry-item:nth-child(5) { transform: rotate(2deg); }
+  .masonry-item:nth-child(6) { transform: rotate(-1.5deg); }
+  .masonry-item:nth-child(8) { transform: rotate(1deg); }
+  .masonry-item:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 12px 40px rgba(74,103,65,0.2); z-index: 2; }
+  .masonry-item--tall { grid-row: span 2; }
+  .masonry-item img { width: 100%; height: 100%; object-fit: cover; }
+  .insta-handle { text-align: center; }
+  .insta-handle a {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem;
+    color: var(--olive); padding: 12px 28px; border-radius: 50px;
+    border: 2px solid rgba(74,103,65,0.15);
+    transition: all var(--transition);
+  }
+  .insta-handle a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+  @media (max-width: 768px) {
+    .masonry { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  }
+
+  /* ============= REVIEWS ============= */
+  .reviews {
+    background: var(--olive); padding: 100px 0; overflow: hidden;
+  }
+  .reviews-carousel {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .rev-arrow {
+    flex: 0 0 44px; width: 44px; height: 44px;
+    border-radius: 50%; border: 2px solid rgba(255,255,255,0.2);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; transition: all var(--transition);
+  }
+  .rev-arrow:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+  .reviews-track-wrap { flex: 1; overflow: hidden; }
+  .reviews-track {
+    display: flex; gap: 28px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scrollbar-width: none; padding: 20px 8px;
+  }
+  .reviews-track::-webkit-scrollbar { display: none; }
+  .rev-polaroid {
+    flex: 0 0 400px; background: #fff; border-radius: 4px;
+    padding: 14px 14px 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    position: relative; scroll-snap-align: start;
+    transform: rotate(-1deg); transition: transform 0.4s ease;
+  }
+  .rev-polaroid:nth-child(2) { transform: rotate(1.5deg); }
+  .rev-polaroid:nth-child(3) { transform: rotate(-0.5deg); }
+  .rev-polaroid:nth-child(4) { transform: rotate(2deg); }
+  .rev-polaroid:hover { transform: rotate(0deg) scale(1.02); }
+  .rev-tape {
+    position: absolute; top: -8px; left: 50%; transform: translateX(-50%) rotate(2deg);
+    width: 60px; height: 20px; background: rgba(255,224,102,0.6); border-radius: 2px;
+  }
+  .rev-polaroid img { width: 100%; border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    .rev-arrow { display: none; }
+    .rev-polaroid { flex: 0 0 300px; }
+  }
+
+  /* ============= CONTACTS ============= */
+  .contacts { background: var(--cream); padding: 80px 24px; }
+  .contacts-buttons {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 36px; border-radius: 50px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem;
+    color: #fff; transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .contact-btn:hover { transform: translateY(-3px); }
+  .contact-btn--wa { background: #25D366; box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+  .contact-btn--tg { background: #0088cc; box-shadow: 0 8px 24px rgba(0,136,204,0.3); }
+  .contact-btn--ig { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); box-shadow: 0 8px 24px rgba(131,58,180,0.3); }
+
+  @media (max-width: 600px) {
+    .contacts-buttons { flex-direction: column; align-items: center; }
+    .contact-btn { width: 100%; max-width: 300px; justify-content: center; }
+  }
+
+  /* ============= FOOTER ============= */
+  .footer { background: var(--olive); padding: 60px 24px 0; }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+    max-width: 1100px; margin: 0 auto 48px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;
+    color: var(--cream); letter-spacing: 2px; margin-bottom: 12px;
+    display: inline-flex; align-items: flex-start;
+  }
+  .footer-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--lemon);
+    margin-left: 3px; margin-top: 6px; display: inline-block;
+  }
+  .footer-brand p { color: rgba(255,253,240,0.5); line-height: 1.7; font-size: 0.9rem; max-width: 340px; }
+  .footer-col h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--lemon); margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block; color: rgba(255,253,240,0.5);
+    font-size: 0.9rem; margin-bottom: 12px;
+    transition: color var(--transition);
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,253,240,0.1);
+    padding: 24px 0; text-align: center;
+    color: rgba(255,253,240,0.25); font-size: 0.82rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ============= WA FLOAT ============= */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 900;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    color: #fff; box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    transition: transform var(--transition), box-shadow var(--transition);
+    opacity: 0; pointer-events: none;
+  }
+  .wa-float.visible { opacity: 1; pointer-events: all; }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(37,211,102,0.5); }
+
+  /* ============= ANIMATIONS ============= */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Burger
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger?.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    menu?.classList.toggle('open');
+    document.body.style.overflow = menu?.classList.contains('open') ? 'hidden' : '';
+  });
+  menu?.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      burger?.classList.remove('active');
+      menu?.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Tabs
+  document.querySelectorAll('.tour-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tour-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.getElementById('tab-' + tab.dataset.tab);
+      target?.classList.add('active');
+    });
+  });
+
+  // Reviews carousel
+  const track = document.getElementById('revTrack');
+  document.getElementById('revPrev')?.addEventListener('click', () => {
+    track?.scrollBy({ left: -440, behavior: 'smooth' });
+  });
+  document.getElementById('revNext')?.addEventListener('click', () => {
+    track?.scrollBy({ left: 440, behavior: 'smooth' });
+  });
+
+  // WhatsApp float
+  const waFloat = document.getElementById('waFloat');
+  window.addEventListener('scroll', () => {
+    waFloat?.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.about-grid, .tour-intro, .tour-desc-block, .boat-scroll, .cabrio-card, .exp-grid, .group-content, .masonry, .insta-handle, .reviews-carousel, .contacts-buttons').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

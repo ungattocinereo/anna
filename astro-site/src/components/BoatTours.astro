@@ -1,5 +1,4 @@
 ---
-import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
 ---
 
 <section class="section boats" id="tours">
@@ -13,23 +12,30 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
       <div class="tour-block-header" data-toggle="boat-tour-content">
         <div class="tour-block-title">
           <h3>На лодке &mdash; &laquo;Морской хит&raquo;</h3>
-          <span class="tour-block-brief">Амальфитанское побережье с моря &mdash; совсем другая история</span>
+          <span class="tour-block-brief">Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано (маршрут можно задать)</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
       <div class="tour-block-content open" id="boat-tour-content">
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Sun size={15} /> 4 часа</span>
-            <span><Sparkles size={15} /> Просекко включено</span>
-            <span><Compass size={15} /> Маршрут можно настроить</span>
+            <span>4 часа</span>
+            <span>&middot;</span>
+            <span>Просекко включено</span>
+            <span>&middot;</span>
+            <span>Маршрут можно задать</span>
           </div>
         </div>
 
         <div class="tour-description">
-          <p>Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано. Скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп. Остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Купание в&nbsp;бирюзовой воде и&nbsp;пикник с&nbsp;просекко. Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи&nbsp;&mdash; часть вашей морской сказки.</p>
+          <h4>Прогулка вдоль побережья</h4>
+          <p>Вы увидите Амальфитанское побережье с&nbsp;новой стороны: скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп.</p>
+
+          <h4>Пляжи только для вас</h4>
+          <p>Мы сделаем остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Можно искупаться в&nbsp;бирюзовой воде, позагорать на&nbsp;борту и&nbsp;устроить пикник с&nbsp;бокалом просекко.</p>
+
+          <h4>Идеальные кадры</h4>
+          <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с&nbsp;воды&nbsp;&mdash; всё это будет не&nbsp;просто пейзажем, а&nbsp;частью вашей морской сказки.</p>
         </div>
 
         <h4 class="tour-sub-heading">Стоимость зависит от вида лодки</h4>
@@ -42,7 +48,7 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
             <div class="boat-body">
               <h4>Perla Blu</h4>
               <div class="boat-specs">
-                <span><Users size={14} /> макс. 3 чел.</span>
+                <span>макс. 3 чел.</span>
               </div>
               <div class="boat-price">&euro;700</div>
               <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
@@ -52,18 +58,17 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
           </div>
 
           <div class="boat-card boat-card--featured">
-            <div class="boat-badge">
-              <Sparkles size={12} /> Рекомендую
-            </div>
+            <div class="boat-badge">Рекомендую</div>
             <div class="boat-img">
               <img src="/images/cranchi%20sport.png" alt="Лодка Cranchi Sport" loading="lazy">
             </div>
             <div class="boat-body">
               <h4>Cranchi Sport</h4>
               <div class="boat-specs">
-                <span><Users size={14} /> макс. 7 чел.</span>
+                <span>макс. 7 чел.</span>
               </div>
               <div class="boat-price">&euro;850</div>
+              <p class="boat-note">*моя любимая, рекомендую именно ее</p>
               <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
                 Забронировать &rarr;
               </a>
@@ -77,7 +82,7 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
             <div class="boat-body">
               <h4>Reginella</h4>
               <div class="boat-specs">
-                <span><Users size={14} /> макс. 6 чел.</span>
+                <span>макс. 6 чел.</span>
               </div>
               <div class="boat-price">&euro;850</div>
               <a href="https://wa.me/393792811354" class="boat-cta" target="_blank" rel="noopener">
@@ -94,20 +99,6 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     </div>
   </div>
 </section>
-
-<script>
-  document.querySelectorAll('[data-toggle]').forEach(header => {
-    header.addEventListener('click', () => {
-      const targetId = header.getAttribute('data-toggle');
-      if (!targetId) return;
-      const content = document.getElementById(targetId);
-      if (!content) return;
-      content.classList.toggle('open');
-      const toggle = header.querySelector('.tour-toggle');
-      if (toggle) toggle.classList.toggle('rotated');
-    });
-  });
-</script>
 
 <style>
   .boats { background: var(--light); }
@@ -145,50 +136,15 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     color: #888;
   }
 
-  .tour-toggle {
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid rgba(27,58,92,0.12);
-    background: transparent;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
-  }
-  .tour-toggle:hover {
-    background: rgba(27,58,92,0.05);
-  }
-  .tour-toggle.rotated {
-    transform: rotate(180deg);
-  }
-
-  .tour-block-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
-  }
-  .tour-block-content.open {
-    max-height: 2000px;
-  }
-
   .tour-info {
     padding: 0 32px;
   }
 
   .tour-meta-row {
     display: flex;
-    gap: 24px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 20px;
-  }
-  .tour-meta-row span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     font-size: 0.88rem;
     color: #888;
     font-weight: 500;
@@ -196,6 +152,16 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
 
   .tour-description {
     padding: 0 32px 20px;
+  }
+  .tour-description h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+  .tour-description h4:first-child {
+    margin-top: 0;
   }
   .tour-description p {
     font-size: 0.95rem;
@@ -229,7 +195,7 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     box-shadow: var(--shadow);
   }
   .boat-card--featured {
-    border: 2px solid rgba(255,107,107,0.2);
+    border: 2px solid rgba(170,34,2,0.2);
   }
   .boat-badge {
     position: absolute;
@@ -245,9 +211,6 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
   }
   .boat-img {
     height: 180px;
@@ -278,17 +241,19 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     font-size: 0.8rem;
     color: #888;
   }
-  .boat-specs span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
   .boat-price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 1.2rem;
     color: var(--blue);
     margin-bottom: 10px;
+  }
+  .boat-note {
+    font-size: 0.78rem;
+    color: var(--coral);
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.4;
   }
   .boat-cta {
     display: inline-flex;
@@ -320,6 +285,6 @@ import { Users, Sun, Sparkles, Compass, ChevronDown } from 'lucide-astro';
     .tour-block-header { padding: 20px 20px; }
     .tour-info, .tour-description, .tour-departure, .tour-sub-heading { padding-left: 20px; padding-right: 20px; }
     .boat-grid { padding: 0 20px; }
-    .tour-meta-row { flex-direction: column; gap: 8px; }
+    .tour-meta-row { flex-direction: column; gap: 4px; }
   }
 </style>

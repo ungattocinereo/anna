@@ -1,5 +1,5 @@
 ---
-import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
+import { MessageCircle } from 'lucide-astro';
 ---
 
 <nav class="nav" id="nav">
@@ -8,10 +8,10 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
     <span class="nav-logo-dot"></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about"><Compass size={14} /> Обо мне</a></li>
-    <li><a href="#tours"><Ship size={14} /> Экскурсии</a></li>
-    <li><a href="#gallery"><Camera size={14} /> Галерея</a></li>
-    <li><a href="#reviews"><Star size={14} /> Отзывы</a></li>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#tours">Экскурсии</a></li>
+    <li><a href="#gallery">Галерея</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
     <li>
       <a href="https://wa.me/393792811354" class="nav-cta" target="_blank" rel="noopener">
         <MessageCircle size={15} /> Написать
@@ -24,10 +24,10 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" class="mobile-link"><Compass size={20} /> Обо мне</a>
-  <a href="#tours" class="mobile-link"><Ship size={20} /> Экскурсии</a>
-  <a href="#gallery" class="mobile-link"><Camera size={20} /> Галерея</a>
-  <a href="#reviews" class="mobile-link"><Star size={20} /> Отзывы</a>
+  <a href="#about" class="mobile-link">Обо мне</a>
+  <a href="#tours" class="mobile-link">Экскурсии</a>
+  <a href="#gallery" class="mobile-link">Галерея</a>
+  <a href="#reviews" class="mobile-link">Отзывы</a>
   <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="mobile-link mobile-link--cta">
     <MessageCircle size={20} /> Написать в WhatsApp
   </a>
@@ -43,13 +43,14 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(16px) saturate(160%);
     transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s;
   }
   .nav.scrolled {
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(24px) saturate(180%);
-    box-shadow: 0 1px 20px rgba(27,58,92,0.06);
+    box-shadow: 0 1px 20px rgba(27,58,92,0.08);
   }
 
   .nav-logo {
@@ -61,18 +62,16 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 1.6rem;
-    color: var(--white);
+    color: var(--blue);
     letter-spacing: 2px;
-    transition: color var(--transition);
   }
   .nav-logo-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--coral);
+    background: #aa2202;
     margin-top: 8px;
   }
-  .nav.scrolled .nav-logo-text { color: var(--blue); }
 
   .nav-links {
     display: flex;
@@ -83,31 +82,29 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.85);
+    color: var(--blue);
     transition: color var(--transition);
     text-transform: uppercase;
     letter-spacing: 1.2px;
     padding: 8px 14px;
     border-radius: 8px;
   }
-  .nav.scrolled .nav-links a { color: var(--blue); }
-  .nav-links a:hover { color: var(--yellow); }
-  .nav.scrolled .nav-links a:hover { color: var(--coral); }
+  .nav-links a:hover { color: #aa2202; }
 
   .nav-cta {
-    background: var(--coral) !important;
+    background: #aa2202 !important;
     color: var(--white) !important;
     padding: 10px 22px !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
     letter-spacing: 0.5px !important;
-    transition: transform var(--transition), box-shadow var(--transition), background var(--transition) !important;
+    transition: transform var(--transition), box-shadow var(--transition) !important;
   }
   .nav-cta:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(255,107,107,0.35);
+    box-shadow: 0 6px 20px rgba(170,34,2,0.3);
     color: var(--white) !important;
   }
 
@@ -125,11 +122,10 @@ import { Compass, Ship, Camera, MessageCircle, Star, Menu } from 'lucide-astro';
     display: block;
     width: 26px;
     height: 2.5px;
-    background: var(--white);
+    background: var(--blue);
     border-radius: 2px;
     transition: var(--transition);
   }
-  .nav.scrolled .burger span { background: var(--blue); }
   :global(.burger.active) span:nth-child(1) { transform: rotate(45deg) translate(5px, 5.5px); background: var(--white); }
   :global(.burger.active) span:nth-child(2) { opacity: 0; }
   :global(.burger.active) span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5.5px); background: var(--white); }

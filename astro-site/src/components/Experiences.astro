@@ -1,5 +1,4 @@
 ---
-import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
 ---
 
 <section class="section experiences" id="experiences">
@@ -12,27 +11,31 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
     <div class="tour-block reveal">
       <div class="tour-block-header" data-toggle="pizza-content">
         <div class="tour-block-title">
-          <h3>Мастер-класс по пицце</h3>
+          <h3>Приватный мастер-класс по приготовлению итальянской пиццы</h3>
           <span class="tour-block-brief">Приватный мастер-класс с итальянским шеф-поваром у моря</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
       <div class="tour-block-content open" id="pizza-content">
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Clock size={15} /> 2 часа</span>
-            <span><Users size={15} /> мин. 3 чел.</span>
+            <span>2 часа</span>
           </div>
         </div>
         <div class="tour-description">
-          <p>Приватный мастер-класс с&nbsp;итальянским шеф-поваром у&nbsp;моря. Секреты идеального теста, своя пицца из&nbsp;печи&nbsp;&mdash; с&nbsp;видом на&nbsp;море.</p>
+          <p>Хотите узнать, как на&nbsp;самом деле готовят пиццу в&nbsp;Италии?</p>
+          <p>В&nbsp;уютном ресторанчике у&nbsp;самого моря вас ждёт приватный мастер-класс с&nbsp;настоящим итальянским шеф-поваром. Только вы и&nbsp;ваша компания&nbsp;&mdash; без посторонних гостей.</p>
+          <p>Вы узнаете секреты идеального теста, приготовите свою пиццу своими руками и&nbsp;попробуете её свежей из&nbsp;печи в&nbsp;атмосфере южной Италии&nbsp;&mdash; с&nbsp;видом на&nbsp;море и&nbsp;ароматом морского воздуха.</p>
+          <p>Один из&nbsp;самых вкусных и&nbsp;атмосферных опытов на&nbsp;Амальфитанском побережье.</p>
         </div>
         <div class="tour-pricing">
           <div class="tour-pricing-row">
             <div class="tour-pricing-main">
               <div class="price-value">&euro;150 <small>/чел.</small></div>
+              <div class="price-note">мин. 3 человека или &euro;450</div>
+            </div>
+            <div class="tour-pricing-pickup">
+              <strong>Забор:</strong> из любой точки побережья Амальфи&nbsp;&mdash; бесплатно. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
           </div>
@@ -44,27 +47,39 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
     <div class="tour-block reveal">
       <div class="tour-block-header" data-toggle="cooking-content">
         <div class="tour-block-title">
-          <h3>Домашняя итальянская кухня</h3>
+          <h3>Приватный мастер-класс по домашней итальянской кухне</h3>
           <span class="tour-block-brief">Настоящий итальянский дом, домашняя паста и панорамная терраса</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
       <div class="tour-block-content open" id="cooking-content">
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Clock size={15} /> 3 часа</span>
-            <span><Users size={15} /> макс. 4 чел.</span>
+            <span>3 часа</span>
+            <span>&middot;</span>
+            <span>макс. 4 человека</span>
           </div>
         </div>
         <div class="tour-description">
-          <p>Попасть в&nbsp;настоящий итальянский дом. Домашняя паста, основное блюдо и&nbsp;десерт на&nbsp;панорамной террасе. Обед с&nbsp;вином и&nbsp;невероятным видом.</p>
+          <p>Редкая возможность попасть в&nbsp;настоящий итальянский дом, а&nbsp;не&nbsp;просто в&nbsp;ресторан.</p>
+          <p>Вы отправитесь в&nbsp;гости к&nbsp;местной хозяйке, где на&nbsp;её панорамной террасе с&nbsp;захватывающим видом пройдёт приватный мастер-класс по&nbsp;приготовлению традиционных блюд. Только вы и&nbsp;ваша компания&nbsp;&mdash; в&nbsp;тёплой и&nbsp;аутентичной атмосфере.</p>
+          <p>Вместе вы приготовите домашнюю пасту, основное блюдо и&nbsp;классический итальянский десерт, узнаете секреты местной кухни и&nbsp;семейные рецепты, которые передаются из&nbsp;поколения в&nbsp;поколение.</p>
+          <p>А&nbsp;затем самое приятное&nbsp;&mdash;</p>
+          <ul class="tour-list">
+            <li>попробовать всё, что вы приготовили</li>
+            <li>за бокалом вина</li>
+            <li>на террасе с невероятным видом.</li>
+          </ul>
+          <p>Настоящий домашний опыт Италии, который невозможно найти в&nbsp;обычных туристических программах.</p>
         </div>
         <div class="tour-pricing">
           <div class="tour-pricing-row">
             <div class="tour-pricing-main">
               <div class="price-value">&euro;600</div>
+              <div class="price-note">макс. 4 человека</div>
+            </div>
+            <div class="tour-pricing-pickup">
+              <strong>Забор:</strong> из любой точки побережья Амальфи&nbsp;&mdash; бесплатно. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
           </div>
@@ -72,26 +87,65 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
       </div>
     </div>
 
-    <!-- Семейно-идеальная фотосессия -->
+    <!-- Посещение семейной винодельни -->
     <div class="tour-block reveal">
-      <div class="tour-block-header" data-toggle="photo-content">
+      <div class="tour-block-header" data-toggle="winery-content">
         <div class="tour-block-title">
-          <h3>Фотосессия на побережье</h3>
-          <span class="tour-block-brief">Профессиональная фотосессия на самых красивых панорамных точках</span>
+          <h3>Посещение семейной винодельни</h3>
+          <span class="tour-block-brief">Дегустация местных вин и лёгкие закуски из региональных продуктов</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
-      <div class="tour-block-content open" id="photo-content">
+      <div class="tour-block-content open" id="winery-content">
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Clock size={15} /> 1 час</span>
-            <span><Camera size={15} /> 30 фото</span>
+            <span>2 часа</span>
           </div>
         </div>
         <div class="tour-description">
-          <p>Профессиональная фотосессия на&nbsp;самых красивых панорамных точках. Яркие, стильные кадры на&nbsp;фоне моря, скал и&nbsp;знаменитых пейзажей.</p>
+          <p>Вы отправитесь на&nbsp;небольшую семейную винодельню, где уже несколько поколений производят вино по&nbsp;традиционным местным рецептам. Вы узнаете много интересного о&nbsp;процессе производства и&nbsp;особенностях вин Амальфитанского побережья.</p>
+          <p>Вас ждёт дегустация нескольких местных вин, которые подаются с&nbsp;лёгкими закусками из&nbsp;региональных продуктов.</p>
+          <p>Это возможность познакомиться с&nbsp;винной культурой региона и&nbsp;почувствовать настоящий вкус Италии.</p>
+        </div>
+        <div class="tour-pricing">
+          <div class="tour-pricing-row">
+            <div class="tour-pricing-main">
+              <div class="price-value">&euro;80 <small>/чел.</small></div>
+            </div>
+            <div class="tour-pricing-pickup">
+              <strong>Забор:</strong> из Минори, Майори&nbsp;&mdash; бесплатно. Из&nbsp;Атрани, Амальфи&nbsp;&mdash; &euro;50. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;100. Из&nbsp;Неаполя&nbsp;&mdash; &euro;150.
+            </div>
+            <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Записаться</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Фотосессия -->
+    <div class="tour-block reveal">
+      <div class="tour-block-header" data-toggle="photo-content">
+        <div class="tour-block-title">
+          <h3>Фотосессия с профессиональным фотографом</h3>
+          <span class="tour-block-brief">Профессиональная фотосессия на самых красивых панорамных точках</span>
+        </div>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
+      </div>
+      <div class="tour-block-content open" id="photo-content">
+        <div class="tour-cover">
+          <img src="/images/photosession-2.jpg" alt="Фотосессия на Амальфитанском побережье" loading="lazy">
+        </div>
+        <div class="tour-info">
+          <div class="tour-meta-row">
+            <span>1 час</span>
+            <span>&middot;</span>
+            <span>30 фото</span>
+          </div>
+        </div>
+        <div class="tour-description">
+          <p>Запечатлеть вашу поездку так, чтобы эти моменты хотелось пересматривать снова и&nbsp;снова.</p>
+          <p>На&nbsp;самых красивых панорамных точках Амальфитанского побережья вас ждёт фотосессия с&nbsp;профессиональным фотографом, который знает лучшие локации, свет и&nbsp;ракурсы этого невероятного места.</p>
+          <p>Вы получите яркие, стильные и&nbsp;атмосферные фотографии на&nbsp;фоне моря, скал и&nbsp;знаменитых пейзажей побережья&nbsp;&mdash; кадры, которые выглядят как из&nbsp;журнала.</p>
+          <p>Идеальный способ сохранить воспоминания о&nbsp;путешествии по&nbsp;Амальфи в&nbsp;по-настоящему красивых кадрах.</p>
         </div>
         <div class="tour-pricing">
           <div class="tour-pricing-row">
@@ -106,20 +160,6 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
 
   </div>
 </section>
-
-<script>
-  document.querySelectorAll('.experiences [data-toggle]').forEach(header => {
-    header.addEventListener('click', () => {
-      const targetId = header.getAttribute('data-toggle');
-      if (!targetId) return;
-      const content = document.getElementById(targetId);
-      if (!content) return;
-      content.classList.toggle('open');
-      const toggle = header.querySelector('.tour-toggle');
-      if (toggle) toggle.classList.toggle('rotated');
-    });
-  });
-</script>
 
 <style>
   .experiences { background: var(--light); }
@@ -158,34 +198,17 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
     color: #888;
   }
 
-  .tour-toggle {
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid rgba(27,58,92,0.12);
-    background: transparent;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
-  }
-  .tour-toggle:hover {
-    background: rgba(27,58,92,0.05);
-  }
-  .tour-toggle.rotated {
-    transform: rotate(180deg);
-  }
-
-  .tour-block-content {
-    max-height: 0;
+  .tour-cover {
+    margin: 0 32px 24px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: max-height 0.5s ease;
+    max-height: 340px;
   }
-  .tour-block-content.open {
-    max-height: 1000px;
+  .tour-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .tour-info {
@@ -194,14 +217,9 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
 
   .tour-meta-row {
     display: flex;
-    gap: 24px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 12px;
-  }
-  .tour-meta-row span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     font-size: 0.88rem;
     color: #888;
     font-weight: 500;
@@ -210,10 +228,32 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
   .tour-description {
     padding: 0 32px 12px;
   }
+  .tour-description h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
   .tour-description p {
     font-size: 0.95rem;
     color: #555;
     line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .tour-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .tour-list {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+  .tour-list li {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+    list-style: disc;
   }
 
   .tour-pricing {
@@ -240,6 +280,19 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
     font-weight: 500;
     color: #888;
   }
+  .price-note {
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 2px;
+  }
+  .tour-pricing-pickup {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  .tour-pricing-pickup strong {
+    color: var(--blue);
+  }
 
   .btn-sm {
     padding: 12px 24px !important;
@@ -248,6 +301,7 @@ import { Clock, Users, Camera, ChevronDown } from 'lucide-astro';
 
   @media (max-width: 768px) {
     .tour-block-header { padding: 20px 20px; }
+    .tour-cover { margin-left: 20px; margin-right: 20px; max-height: 240px; }
     .tour-info, .tour-description, .tour-pricing { padding-left: 20px; padding-right: 20px; }
     .tour-pricing-row { flex-direction: column; text-align: center; }
     .tour-block-title h3 { font-size: 1.05rem; }

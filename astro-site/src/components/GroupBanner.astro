@@ -1,89 +1,33 @@
 ---
-const images = [
-  '/images/20250630_195957.jpg',
-  '/images/20241030_111216.jpg',
-  '/images/20241104_150159.jpg',
-  '/images/20241125_113727.jpg',
-  '/images/20241006_175944.jpg',
-  '/images/20250420_084358.jpg',
-  '/images/20241218_122948.jpg',
-  '/images/20241013_152005.jpg',
-];
 ---
 
 <section class="group-banner" id="groups">
-  <div class="group-slideshow" aria-hidden="true">
-    {images.map((img, i) => (
-      <div class={`group-slide ${i === 0 ? 'active' : ''}`}>
-        <img src={img} alt="" loading="lazy">
-      </div>
-    ))}
-  </div>
-  <div class="group-overlay"></div>
   <div class="group-content reveal">
-    <p class="group-text">А также групповые туры, ретриты, девичники, предложения руки и сердца</p>
+    <p class="group-text">А также групповые туры, ретриты, девичники, предложения руки и сердца &mdash; по запросу</p>
     <a href="https://wa.me/393792811354" class="btn btn-whatsapp-lg" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L.053 23.52l5.797-1.447A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.91 0-3.74-.51-5.33-1.45l-.38-.23-3.44.86.9-3.36-.25-.39A9.8 9.8 0 012.18 12c0-5.41 4.41-9.82 9.82-9.82 5.41 0 9.82 4.41 9.82 9.82 0 5.41-4.41 9.82-9.82 9.82z"/></svg>
-      Обсудить
+      Написать в WhatsApp
     </a>
   </div>
 </section>
 
-<script>
-  const slides = document.querySelectorAll('.group-slide');
-  if (slides.length > 0) {
-    let current = 0;
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 4000);
-  }
-</script>
-
 <style>
   .group-banner {
-    position: relative;
-    min-height: 320px;
+    background: var(--light);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-  }
-  .group-slideshow {
-    position: absolute;
-    inset: 0;
-  }
-  .group-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
-  .group-slide.active { opacity: 1; }
-  .group-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .group-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(13,27,42,0.85) 0%, rgba(27,58,92,0.8) 100%);
-    z-index: 1;
   }
   .group-content {
-    position: relative;
-    z-index: 2;
     text-align: center;
     max-width: 700px;
-    padding: 60px 32px;
+    padding: 80px 32px;
   }
   .group-text {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
-    color: var(--white);
+    color: var(--blue);
     margin-bottom: 28px;
     line-height: 1.4;
   }
@@ -109,7 +53,6 @@ const images = [
   }
 
   @media (max-width: 768px) {
-    .group-banner { min-height: 280px; }
-    .group-content { padding: 40px 20px; }
+    .group-content { padding: 60px 20px; }
   }
 </style>

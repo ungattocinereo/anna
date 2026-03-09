@@ -1,5 +1,4 @@
 ---
-import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-astro';
 ---
 
 <section class="section cabrio" id="cabrio">
@@ -10,40 +9,49 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
       <div class="tour-block-header" data-toggle="classic-content">
         <div class="tour-block-title">
           <h3>На кабриолете &mdash; &laquo;Вечная классика&raquo;</h3>
-          <span class="tour-block-brief">Серпантины, панорамы и ветер в волосах</span>
+          <span class="tour-block-brief">Экскурсия на кабриолете через всё побережье с пешеходными прогулками в Амальфи и Равелло</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
       <div class="tour-block-content open" id="classic-content">
+        <div class="tour-cover">
+          <img src="/images/IMG_20260306_131345_945.jpg" alt="Экскурсия на кабриолете по Амальфитанскому побережью" loading="lazy">
+        </div>
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Clock size={15} /> 9 часов</span>
-            <span><Users size={15} /> до 3 человек</span>
+            <span>9 часов</span>
+            <span>&middot;</span>
+            <span>макс. 3 человека</span>
           </div>
         </div>
 
         <div class="tour-description">
-          <p class="tour-route"><MapPin size={15} /> Позитано &mdash; Праяно &mdash; Равелло &mdash; долина Трамонти &mdash; Майори &mdash; Минори &mdash; Атрани &mdash; Амальфи</p>
-          <p><strong>Позитано</strong> &mdash; жемчужина побережья. Остановки на&nbsp;двух живописных смотровых площадках. Легенды о&nbsp;Позитано и&nbsp;знакомство со&nbsp;знаменитым синьором Сальватором.</p>
-          <p><strong>Равелло</strong> &mdash; элегантный городок с&nbsp;душой музыки. Прогулка по&nbsp;садам виллы Чимброне с&nbsp;головокружительным видом (365 метров над морем!).</p>
-          <p><strong>Долина Трамонти</strong> &mdash; скрытая от&nbsp;туристов долина виноградников и&nbsp;лимонов. Частная сыроварня со&nbsp;свежайшей домашней моцареллой.</p>
-          <p><strong>Атрани</strong> &mdash; самый маленький город Италии. Узкие улочки, лодки у&nbsp;берега и&nbsp;ощущение затерянности во&nbsp;времени. Прямо как в&nbsp;сериале &laquo;Рипли&raquo;!</p>
-          <p><strong>Амальфи</strong> &mdash; историческая морская республика с&nbsp;величественным собором. Старинные улочки и&nbsp;обязательное лимонное джелато!</p>
+          <p class="tour-route">Позитано &mdash; Праяно &mdash; Равелло &mdash; долина Трамонти &mdash; Майори &mdash; Минори &mdash; Атрани &mdash; Амальфи</p>
+
+          <h4>Позитано</h4>
+          <p>Жемчужина побережья. Мы сделаем остановки на&nbsp;2-х живописных смотровых площадках с&nbsp;захватывающим видом. Я&nbsp;расскажу вам легенды о&nbsp;Позитано, а&nbsp;также познакомлю со&nbsp;самым знаменитым владельцем фруктовой лавки на&nbsp;побережье&nbsp;&mdash; синьором Сальватором.</p>
+
+          <h4>Равелло</h4>
+          <p>Элегантный городок с&nbsp;душой музыки и&nbsp;искусства. Вас ждёт прогулка по&nbsp;садам и&nbsp;террасе виллы Чимброне с&nbsp;головокружительным видом на&nbsp;побережье (365 метров над уровнем моря!).</p>
+
+          <h4>Долина Трамонти</h4>
+          <p>Скрытая от&nbsp;туристических троп, долина виноградников и&nbsp;лимонов. Здесь мы заедем в&nbsp;частную сыроварню, чтобы попробовать свежайшую домашнюю моцареллу и&nbsp;узнать, как она создаётся.</p>
+
+          <h4>Атрани</h4>
+          <p>Самый маленький город Италии, по-настоящему аутентичный и&nbsp;кинематографичный. Узкие улочки, лодки у&nbsp;берега и&nbsp;ощущение затерянности во&nbsp;времени. Прямо как в&nbsp;сериале &laquo;Рипли&raquo;!</p>
+
+          <h4>Амальфи</h4>
+          <p>Историческая морская республика с&nbsp;величественным собором, старинными улочками и&nbsp;духом эпохи. Попробовать лимонное джелато&nbsp;&mdash; обязательно!</p>
         </div>
 
         <div class="tour-pricing">
           <div class="tour-pricing-row">
             <div class="tour-pricing-main">
               <div class="price-value">&euro;550</div>
-              <div class="price-note"><Ticket size={13} /> + &euro;12/чел. вход на виллу Чимброне</div>
+              <div class="price-note">+ &euro;12/чел. вход на виллу Чимброне</div>
             </div>
             <div class="tour-pricing-pickup">
-              <strong><Car size={14} /> Забор:</strong>
-              Амальфи &mdash; бесплатно &middot;
-              Сорренто, Салерно &mdash; &euro;50 &middot;
-              Неаполь &mdash; &euro;100
+              <strong>Забор:</strong> из любой точки побережья Амальфи&nbsp;&mdash; бесплатно. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
@@ -56,37 +64,40 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
       <div class="tour-block-header" data-toggle="luxury-content">
         <div class="tour-block-title">
           <h3>На кабриолете &mdash; &laquo;Элегантная роскошь&raquo;</h3>
-          <span class="tour-block-brief">Позитано и Сорренто в стиле dolce vita</span>
+          <span class="tour-block-brief">Экскурсия на кабриолете с прогулками в Позитано и Сорренто</span>
         </div>
-        <button class="tour-toggle" aria-label="Свернуть/развернуть">
-          <ChevronDown size={20} />
-        </button>
+        <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
       <div class="tour-block-content open" id="luxury-content">
+        <div class="tour-cover">
+          <img src="/images/_CNR0477.jpg" alt="Элегантная роскошь — Позитано и Сорренто" loading="lazy">
+        </div>
         <div class="tour-info">
           <div class="tour-meta-row">
-            <span><Clock size={15} /> 8 часов</span>
-            <span><Users size={15} /> до 3 человек</span>
+            <span>8 часов</span>
+            <span>&middot;</span>
+            <span>макс. 3 человека</span>
           </div>
         </div>
 
         <div class="tour-description">
-          <p class="tour-route"><MapPin size={15} /> Позитано &mdash; Сорренто</p>
-          <p><strong>Позитано</strong> &mdash; легендарный город-символ Амальфи. Живописные улочки к&nbsp;морю, знаменитые панорамы. Посещение древней Римской виллы (музей MAR) с&nbsp;уникальными фресками.</p>
-          <p><strong>Сорренто</strong> &mdash; элегантный город на&nbsp;скалах с&nbsp;видом на&nbsp;Везувий. Атмосферный исторический центр, уютные улочки и&nbsp;панорамные террасы. Идеальное сочетание шарма и&nbsp;dolce vita.</p>
+          <p class="tour-route">Позитано &mdash; Сорренто</p>
+
+          <h4>Позитано</h4>
+          <p>Легендарный город, ставший символом Амальфитанского побережья. Мы остановимся здесь, чтобы прогуляться по&nbsp;живописным улочкам, спускающимся к&nbsp;морю, полюбоваться знаменитыми панорамами и&nbsp;почувствовать атмосферу настоящей итальянской dolce far niente. Также посетим древнюю Римскую виллу (музей MAR) с&nbsp;уникальными фресками и&nbsp;вы узнаете удивительные истории этого места, включая необычные монашеские захоронения.</p>
+
+          <h4>Сорренто</h4>
+          <p>Элегантный город на&nbsp;скалах с&nbsp;захватывающим видом на&nbsp;Везувий и&nbsp;Неаполитанский залив. Мы прогуляемся по&nbsp;атмосферному историческому центру, уютным улочкам и&nbsp;панорамным террасам, узнаем истории города, который вдохновлял поэтов, художников и&nbsp;музыкантов. Сорренто&nbsp;&mdash; это идеальное сочетание южного шарма, истории и&nbsp;настоящей итальянской dolce vita.</p>
         </div>
 
         <div class="tour-pricing">
           <div class="tour-pricing-row">
             <div class="tour-pricing-main">
               <div class="price-value">&euro;550</div>
-              <div class="price-note"><Ticket size={13} /> + &euro;15/чел. вход на виллу MAR</div>
+              <div class="price-note">+ &euro;15/чел. вход на виллу MAR в Позитано</div>
             </div>
             <div class="tour-pricing-pickup">
-              <strong><Car size={14} /> Забор:</strong>
-              Амальфи, Сорренто &mdash; бесплатно &middot;
-              Салерно &mdash; &euro;50 &middot;
-              Неаполь &mdash; &euro;100
+              <strong>Забор:</strong> из любой точки побережья Амальфи и&nbsp;Сорренто&nbsp;&mdash; бесплатно. Из&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
@@ -95,20 +106,6 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
     </div>
   </div>
 </section>
-
-<script>
-  document.querySelectorAll('.cabrio [data-toggle]').forEach(header => {
-    header.addEventListener('click', () => {
-      const targetId = header.getAttribute('data-toggle');
-      if (!targetId) return;
-      const content = document.getElementById(targetId);
-      if (!content) return;
-      content.classList.toggle('open');
-      const toggle = header.querySelector('.tour-toggle');
-      if (toggle) toggle.classList.toggle('rotated');
-    });
-  });
-</script>
 
 <style>
   .cabrio { background: var(--white); }
@@ -147,34 +144,17 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
     color: #888;
   }
 
-  .tour-toggle {
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid rgba(27,58,92,0.12);
-    background: transparent;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
-  }
-  .tour-toggle:hover {
-    background: rgba(27,58,92,0.05);
-  }
-  .tour-toggle.rotated {
-    transform: rotate(180deg);
-  }
-
-  .tour-block-content {
-    max-height: 0;
+  .tour-cover {
+    margin: 0 32px 24px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: max-height 0.5s ease;
+    max-height: 340px;
   }
-  .tour-block-content.open {
-    max-height: 2000px;
+  .tour-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .tour-info {
@@ -183,14 +163,9 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
 
   .tour-meta-row {
     display: flex;
-    gap: 24px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 16px;
-  }
-  .tour-meta-row span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     font-size: 0.88rem;
     color: #888;
     font-weight: 500;
@@ -198,6 +173,16 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
 
   .tour-description {
     padding: 0 32px 16px;
+  }
+  .tour-description h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+  .tour-description h4:first-of-type {
+    margin-top: 8px;
   }
   .tour-description p {
     font-size: 0.95rem;
@@ -209,9 +194,6 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
     margin-bottom: 0;
   }
   .tour-route {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-weight: 700;
     color: var(--coral) !important;
     margin-bottom: 16px !important;
@@ -238,9 +220,6 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
     margin-bottom: 4px;
   }
   .price-note {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
     font-size: 0.82rem;
     color: #888;
   }
@@ -250,9 +229,6 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
     line-height: 1.6;
   }
   .tour-pricing-pickup strong {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
     color: var(--blue);
   }
 
@@ -263,9 +239,10 @@ import { Car, Clock, Users, MapPin, Euro, Ticket, ChevronDown } from 'lucide-ast
 
   @media (max-width: 768px) {
     .tour-block-header { padding: 20px 20px; }
+    .tour-cover { margin-left: 20px; margin-right: 20px; max-height: 240px; }
     .tour-info, .tour-description, .tour-pricing { padding-left: 20px; padding-right: 20px; }
     .tour-pricing-row { flex-direction: column; text-align: center; align-items: stretch; }
     .tour-block-title h3 { font-size: 1.1rem; }
-    .tour-meta-row { justify-content: flex-start; gap: 12px; }
+    .tour-meta-row { justify-content: flex-start; gap: 8px; }
   }
 </style>
