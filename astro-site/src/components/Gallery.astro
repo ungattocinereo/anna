@@ -47,7 +47,7 @@ if (INSTAGRAM_TOKEN) {
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label"><Instagram size={16} /> Мой Инстаграм</span>
-      <div class="gallery-title-wrap">
+      <div class="gallery-title-row">
         <h2>Галерея</h2>
         {isLive && <span class="live-badge"><span class="live-dot"></span>live</span>}
       </div>
@@ -83,18 +83,16 @@ if (INSTAGRAM_TOKEN) {
 <style>
   .gallery { background: var(--white); }
 
-  .gallery-title-wrap {
-    position: relative;
-    display: inline-block;
+  .gallery-title-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
   }
   .live-badge {
-    position: absolute;
-    right: -52px;
-    top: -14px;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: linear-gradient(135deg, #ff3366, #ff6b3d, #ff3366);
+    background: linear-gradient(135deg, #00c853, #1de9b6, #00c853);
     background-size: 200% 200%;
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
@@ -102,10 +100,10 @@ if (INSTAGRAM_TOKEN) {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    padding: 3px 10px 3px 8px;
+    padding: 4px 11px 4px 9px;
     border-radius: 50px;
     animation: liveGradient 3s ease infinite;
-    box-shadow: 0 2px 12px rgba(255, 51, 102, 0.4);
+    box-shadow: 0 2px 12px rgba(0, 200, 83, 0.4);
   }
   .live-dot {
     width: 6px;
