@@ -46,7 +46,7 @@ import { MapPin } from 'lucide-astro';
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('/images/cabrio-classic.jpg') right bottom / cover no-repeat;
+    background: url('/images/_CNR0477.jpg') 80% center / cover no-repeat;
     animation: heroKenBurns 30s ease-in-out infinite alternate;
   }
   @keyframes heroKenBurns {
@@ -61,10 +61,10 @@ import { MapPin } from 'lucide-astro';
     background: linear-gradient(
       105deg,
       rgba(253,248,240, 0.97) 0%,
-      rgba(253,248,240, 0.93) 20%,
-      rgba(253,248,240, 0.75) 38%,
-      rgba(253,248,240, 0.3) 52%,
-      transparent 62%
+      rgba(253,248,240, 0.93) 15%,
+      rgba(253,248,240, 0.7) 30%,
+      rgba(253,248,240, 0.25) 42%,
+      transparent 52%
     );
     z-index: 1;
   }
@@ -106,7 +106,8 @@ import { MapPin } from 'lucide-astro';
     color: var(--blue);
     margin-bottom: 24px;
     padding: 6px 16px 6px 12px;
-    background: var(--white);
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(8px);
     border-radius: 50px;
     box-shadow: 0 2px 12px rgba(27,58,92,0.08);
   }
@@ -183,7 +184,7 @@ import { MapPin } from 'lucide-astro';
       min-height: 100vh;
     }
     .hero-bg {
-      background-position: 65% center;
+      background-position: 60% 85%;
     }
     .hero-gradient {
       background: linear-gradient(

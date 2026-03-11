@@ -16,9 +16,12 @@
       <p>
         Не&nbsp;только красивые виды, но&nbsp;и&nbsp;<span class="highlight">секретные места, атмосферные улочки</span>, лучшие локальные рестораны и&nbsp;настоящий дух Амальфи.
       </p>
-      <p>
-        Мои гости часто говорят: <span class="highlight-quote">&laquo;Это была лучшая часть всей поездки в&nbsp;Италию&raquo;</span>.
-      </p>
+      <p>Мои гости часто говорят:</p>
+      <blockquote class="about-quote">
+        <span class="bq-mark">&laquo;</span>
+        Это была лучшая часть всей поездки в&nbsp;Италию
+        <span class="bq-mark">&raquo;</span>
+      </blockquote>
       <p>
         А&nbsp;все потому, что мои экскурсии&nbsp;&mdash; это не&nbsp;&laquo;стандартный тур&raquo;, а&nbsp;ощущение, что вы&nbsp;приехали <span class="highlight">к&nbsp;близкому другу</span>, который знает здесь всё самое красивое и&nbsp;вкусное и&nbsp;хочет поделиться этим с&nbsp;вами.
       </p>
@@ -57,10 +60,21 @@
     font-weight: 600;
   }
 
-  .about-block .highlight-quote {
-    color: var(--blue);
-    font-weight: 600;
+  .about-quote {
+    margin: 24px 0;
+    padding: 20px 24px;
+    background: #FEF0D6;
+    border-radius: 12px;
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
     font-style: italic;
+    color: #2B1A0E;
+    text-align: center;
+  }
+  .bq-mark {
+    color: #E69B30;
+    font-size: 1.6rem;
   }
 
   @media (max-width: 768px) {

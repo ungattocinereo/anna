@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna — Авторские экскурсии по Амальфитанскому побережью</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: #4A4A4A;
+      background-color: #FFFFF0;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .section-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #C4704B;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1.5rem;
+      color: #3A3A3A;
+    }
+
+    .section-subtext {
+      font-size: 1.05rem;
+      max-width: 560px;
+      color: #6B6B6B;
+      line-height: 1.8;
+    }
+
+    /* ========================================
+       UTILITY
+       ======================================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: #C4704B;
+      margin: 3rem auto;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 240, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.8rem 2rem;
+      box-shadow: 0 1px 0 rgba(74, 74, 74, 0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #FFFFF0;
+      transition: color 0.4s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .nav.scrolled .nav-logo {
+      color: #3A3A3A;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 240, 0.85);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav.scrolled .nav-links a {
+      color: #4A4A4A;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C4704B;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #C4704B;
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: #FFFFF0;
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled .nav-mobile-toggle span {
+      background: #4A4A4A;
+    }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(74, 74, 74, 0.1) 0%,
+          rgba(74, 74, 74, 0.15) 40%,
+          rgba(74, 74, 74, 0.55) 100%
+        ),
+        url('https://placehold.co/1200x800/C4704B/FFFFF0?text=Anna+Amalfi') center/cover no-repeat;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 6rem;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 240, 0.75);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      color: #FFFFF0;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 240, 0.85);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FFFFF0;
+      border: 1px solid rgba(255, 255, 240, 0.4);
+      padding: 1rem 2.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .hero-cta:hover {
+      background: #FFFFF0;
+      color: #4A4A4A;
+      border-color: #FFFFF0;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 240, 0.6);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255, 255, 240, 0.6), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ========================================
+       ABOUT STRIP
+       ======================================== */
+    .about-strip {
+      padding: 6rem 0;
+      border-bottom: 1px solid rgba(74, 74, 74, 0.08);
+    }
+
+    .about-strip-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-strip-text h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin-bottom: 1.5rem;
+      color: #3A3A3A;
+    }
+
+    .about-strip-text h2 em {
+      color: #C4704B;
+      font-style: italic;
+    }
+
+    .about-strip-text p {
+      color: #6B6B6B;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .about-strip-image {
+      position: relative;
+    }
+
+    .about-strip-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+
+    .about-strip-image::after {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      right: -1.5rem;
+      bottom: -1.5rem;
+      left: 1.5rem;
+      border: 1px solid #C4704B;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* ========================================
+       OFFERINGS
+       ======================================== */
+    .offerings {
+      padding: 7rem 0;
+    }
+
+    .offerings-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .offerings-header .section-subtext {
+      margin: 0 auto;
+    }
+
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .offering-card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      cursor: pointer;
+    }
+
+    .offering-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(74, 74, 74, 0.1);
+    }
+
+    .offering-card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/2;
+    }
+
+    .offering-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .offering-card:hover .offering-card-image img {
+      transform: scale(1.05);
+    }
+
+    .offering-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(74, 74, 74, 0.4) 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .offering-card:hover .offering-card-overlay {
+      opacity: 1;
+    }
+
+    .offering-card-body {
+      padding: 1.75rem 1.75rem 2rem;
+    }
+
+    .offering-card-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8rem;
+      color: #C4704B;
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .offering-card-body h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      color: #3A3A3A;
+    }
+
+    .offering-card-body p {
+      font-size: 0.88rem;
+      color: #7A7A7A;
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .offering-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(74, 74, 74, 0.08);
+    }
+
+    .offering-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #C4704B;
+    }
+
+    .offering-cta {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4A4A4A;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s ease, gap 0.3s ease;
+    }
+
+    .offering-cta:hover {
+      color: #C4704B;
+      gap: 0.75rem;
+    }
+
+    .offering-cta svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Feature card spanning full width */
+    .offering-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .offering-card.featured .offering-card-image {
+      aspect-ratio: auto;
+      min-height: 350px;
+    }
+
+    .offering-card.featured .offering-card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+    }
+
+    /* ========================================
+       INSTAGRAM
+       ======================================== */
+    .instagram {
+      padding: 7rem 0;
+      background: #FAF9F3;
+    }
+
+    .instagram-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .instagram-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 1rem;
+      color: #C4704B;
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .instagram-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .instagram-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .instagram-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .instagram-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(196, 112, 75, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .instagram-item:hover .instagram-item-overlay {
+      opacity: 1;
+    }
+
+    .instagram-item-overlay svg {
+      width: 28px;
+      height: 28px;
+      color: #FFFFF0;
+    }
+
+    .instagram-handle {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .instagram-handle a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C4704B;
+      transition: opacity 0.3s ease;
+    }
+
+    .instagram-handle a:hover {
+      opacity: 0.7;
+    }
+
+    /* ========================================
+       REVIEWS
+       ======================================== */
+    .reviews {
+      padding: 7rem 0;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reviews-header .section-subtext {
+      margin: 0 auto;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .review-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(74, 74, 74, 0.08);
+    }
+
+    .review-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #C4704B;
+      opacity: 0.25;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-card p {
+      font-size: 0.92rem;
+      color: #6B6B6B;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .review-author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .review-author-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3A3A3A;
+    }
+
+    .review-author-detail {
+      font-size: 0.75rem;
+      color: #9A9A9A;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .review-stars svg {
+      width: 14px;
+      height: 14px;
+      color: #C4704B;
+    }
+
+    /* ========================================
+       CONTACT
+       ======================================== */
+    .contact {
+      padding: 7rem 0;
+      background: #3A3A3A;
+      color: #FFFFF0;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact .section-eyebrow {
+      color: rgba(255, 255, 240, 0.5);
+    }
+
+    .contact .section-heading {
+      color: #FFFFF0;
+    }
+
+    .contact .section-subtext {
+      color: rgba(255, 255, 240, 0.7);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1.15rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1EBE5A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: transparent;
+      color: #FFFFF0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border: 1px solid rgba(255, 255, 240, 0.3);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 240, 0.1);
+      border-color: rgba(255, 255, 240, 0.5);
+    }
+
+    .contact-details {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-detail-item {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 240, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-detail-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      padding: 3rem 0;
+      background: #2E2E2E;
+      color: rgba(255, 255, 240, 0.4);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 240, 0.6);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      color: rgba(255, 255, 240, 0.4);
+      transition: color 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      color: #C4704B;
+    }
+
+    .footer-socials svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+    }
+
+    /* ========================================
+       FLOATING WHATSAPP
+       ======================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: all 0.4s ease;
+      animation: floatPulse 3s ease infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 26px;
+      height: 26px;
+      color: #fff;
+    }
+
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
+    }
+
+    /* ========================================
+       MOBILE NAV OVERLAY
+       ======================================== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(255, 255, 240, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #3A3A3A;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: #C4704B;
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: #4A4A4A;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .offerings-grid {
+        gap: 1.5rem;
+      }
+
+      .offering-card.featured {
+        grid-template-columns: 1fr;
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 0 0 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .about-strip-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-strip-image {
+        order: -1;
+      }
+
+      .about-strip-image::after {
+        display: none;
+      }
+
+      .offerings-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .offering-card.featured {
+        grid-template-columns: 1fr;
+      }
+
+      .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .contact-actions {
+        align-items: center;
+      }
+
+      .contact-details {
+        align-items: center;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .hero-scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section-heading {
+        font-size: 1.8rem;
+      }
+
+      .offerings,
+      .reviews,
+      .contact {
+        padding: 5rem 0;
+      }
+
+      .instagram {
+        padding: 5rem 0;
+      }
+
+      .btn-whatsapp,
+      .btn-outline {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================================
+       NAVIGATION
+       ====================================== -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">Anna Amalfi</a>
+    <ul class="nav-links">
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#offerings">Экскурсии</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileClose" aria-label="Закрыть меню">&times;</button>
+    <a href="#about" class="mobile-nav-link">Обо мне</a>
+    <a href="#offerings" class="mobile-nav-link">Экскурсии</a>
+    <a href="#instagram" class="mobile-nav-link">Instagram</a>
+    <a href="#reviews" class="mobile-nav-link">Отзывы</a>
+    <a href="#contact" class="mobile-nav-link">Контакты</a>
+  </div>
+
+  <!-- ======================================
+       HERO
+       ====================================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Амальфитанское побережье &middot; Италия</p>
+      <h1>Откройте <em>настоящую</em><br>Италию с Анной</h1>
+      <p class="hero-description">
+        Авторские экскурсии, созданные с любовью к каждой детали. Лодочные прогулки, кабриолеты вдоль побережья, кулинарные приключения и незабываемые закаты.
+      </p>
+      <a href="#offerings" class="hero-cta">
+        Выбрать экскурсию
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       ABOUT
+       ====================================== -->
+  <section class="about-strip" id="about">
+    <div class="container">
+      <div class="about-strip-inner">
+        <div class="about-strip-text fade-in-left">
+          <p class="section-eyebrow">Обо мне</p>
+          <h2>Из мира IT &mdash;<br>на берег <em>Средиземного моря</em></h2>
+          <p>
+            Привет! Я Анна &mdash; бывшая IT-предпринимательница, которая однажды влюбилась в Амальфитанское побережье и решила остаться здесь навсегда.
+          </p>
+          <p>
+            Теперь я создаю авторские экскурсии для тех, кто хочет увидеть настоящую Италию &mdash; без туристических клише, но с аутентичной атмосферой, вкусами и историями, которые знают только местные.
+          </p>
+          <p>
+            Каждая поездка &mdash; это тщательно продуманный маршрут, внимание к деталям и искреннее желание показать вам лучшее.
+          </p>
+        </div>
+        <div class="about-strip-image fade-in-right">
+          <img src="https://placehold.co/600x750/C4704B/FFFFF0?text=Anna" alt="Анна на фоне Амальфитанского побережья">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       OFFERINGS
+       ====================================== -->
+  <section class="offerings" id="offerings">
+    <div class="container">
+      <div class="offerings-header fade-in">
+        <p class="section-eyebrow">Экскурсии и впечатления</p>
+        <h2 class="section-heading">Выберите ваше<br>приключение</h2>
+        <p class="section-subtext">
+          Каждая экскурсия &mdash; это авторский маршрут, созданный специально для того, чтобы вы почувствовали магию Амальфитанского побережья.
+        </p>
+      </div>
+
+      <div class="offerings-grid">
+
+        <!-- Card 1 — Featured -->
+        <div class="offering-card featured fade-in">
+          <div class="offering-card-image">
+            <img src="https://placehold.co/600x400/3A7CA5/FFFFF0?text=Boat+Tour" alt="Лодочная прогулка по Амальфитанскому побережью">
+            <div class="offering-card-overlay"></div>
+          </div>
+          <div class="offering-card-body">
+            <span class="offering-card-number">01</span>
+            <h3>Лодочная прогулка</h3>
+            <p>Приватная морская прогулка вдоль побережья с остановками в скрытых гротах и бухтах. Купание в кристально чистой воде, аперитив на закате и виды, от которых перехватывает дыхание.</p>
+            <div class="offering-card-footer">
+              <span class="offering-price">от &euro;350</span>
+              <a href="https://wa.me/393792811354" class="offering-cta">
+                Забронировать
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="offering-card fade-in">
+          <div class="offering-card-image">
+            <img src="https://placehold.co/600x400/B8860B/FFFFF0?text=Cabrio+Tour" alt="Тур на кабриолете">
+            <div class="offering-card-overlay"></div>
+          </div>
+          <div class="offering-card-body">
+            <span class="offering-card-number">02</span>
+            <h3>Тур на кабриолете</h3>
+            <p>Легендарная дорога Амальфи в кабриолете. Серпантины с панорамными видами, остановки в живописных деревнях и обед в ресторане с видом на море.</p>
+            <div class="offering-card-footer">
+              <span class="offering-price">от &euro;280</span>
+              <a href="https://wa.me/393792811354" class="offering-cta">
+                Забронировать
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="offering-card fade-in">
+          <div class="offering-card-image">
+            <img src="https://placehold.co/600x400/8B7355/FFFFF0?text=Cooking+Class" alt="Кулинарный мастер-класс">
+            <div class="offering-card-overlay"></div>
+          </div>
+          <div class="offering-card-body">
+            <span class="offering-card-number">03</span>
+            <h3>Кулинарный мастер-класс</h3>
+            <p>Готовим настоящую итальянскую пасту и десерты вместе с местным шефом. Секреты семейных рецептов, свежайшие ингредиенты и ужин под звёздами.</p>
+            <div class="offering-card-footer">
+              <span class="offering-price">от &euro;180</span>
+              <a href="https://wa.me/393792811354" class="offering-cta">
+                Забронировать
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="offering-card fade-in">
+          <div class="offering-card-image">
+            <img src="https://placehold.co/600x400/722F37/FFFFF0?text=Wine+Tasting" alt="Винодельня и дегустация">
+            <div class="offering-card-overlay"></div>
+          </div>
+          <div class="offering-card-body">
+            <span class="offering-card-number">04</span>
+            <h3>Винодельня и дегустация</h3>
+            <p>Визит на семейную винодельню на склонах Везувия. Дегустация редких региональных вин, знакомство с виноделами и прогулка по виноградникам.</p>
+            <div class="offering-card-footer">
+              <span class="offering-price">от &euro;200</span>
+              <a href="https://wa.me/393792811354" class="offering-cta">
+                Забронировать
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="offering-card fade-in">
+          <div class="offering-card-image">
+            <img src="https://placehold.co/600x400/D4A574/4A4A4A?text=Photo+Session" alt="Фотосессия на побережье">
+            <div class="offering-card-overlay"></div>
+          </div>
+          <div class="offering-card-body">
+            <span class="offering-card-number">05</span>
+            <h3>Фотосессия на побережье</h3>
+            <p>Профессиональная фотосессия в самых инстаграмных местах побережья. Идеальный свет, невероятные локации и 50+ обработанных фотографий на память.</p>
+            <div class="offering-card-footer">
+              <span class="offering-price">от &euro;250</span>
+              <a href="https://wa.me/393792811354" class="offering-cta">
+                Забронировать
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       INSTAGRAM
+       ====================================== -->
+  <section class="instagram" id="instagram">
+    <div class="container">
+      <div class="instagram-header fade-in">
+        <svg class="instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+        <p class="section-eyebrow">Instagram</p>
+        <h2 class="section-heading">Моменты побережья</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="instagram-grid">
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/C4704B/FFFFF0?text=01" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/3A7CA5/FFFFF0?text=02" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/8B7355/FFFFF0?text=03" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/B8860B/FFFFF0?text=04" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/D4A574/4A4A4A?text=05" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/722F37/FFFFF0?text=06" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/4A4A4A/FFFFF0?text=07" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+        <div class="instagram-item fade-in">
+          <img src="https://placehold.co/400x400/C4704B/FFFFF0?text=08" alt="Instagram пост">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="instagram-handle fade-in">
+        <a href="#" target="_blank">@anna.amalfi &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       REVIEWS
+       ====================================== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <p class="section-eyebrow">Отзывы</p>
+        <h2 class="section-heading">Что говорят гости</h2>
+        <p class="section-subtext">
+          Каждый отзыв &mdash; это история незабываемого путешествия.
+        </p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card fade-in">
+          <div class="review-quote">&ldquo;</div>
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>Лодочная прогулка с Анной &mdash; это было что-то невероятное! Скрытые бухты, потрясающие виды и атмосфера полного расслабления. Однозначно лучший день нашего отпуска!</p>
+          <div class="review-author">
+            <img class="review-avatar" src="https://placehold.co/80x80/C4704B/FFFFF0?text=МК" alt="Мария К.">
+            <div class="review-author-info">
+              <span class="review-author-name">Мария К.</span>
+              <span class="review-author-detail">Москва &middot; Август 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-in">
+          <div class="review-quote">&ldquo;</div>
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>Кулинарный мастер-класс превзошёл все ожидания. Мы научились готовить настоящую пасту, узнали секреты итальянской кухни и провели прекрасный вечер в кругу новых друзей.</p>
+          <div class="review-author">
+            <img class="review-avatar" src="https://placehold.co/80x80/3A7CA5/FFFFF0?text=АД" alt="Алексей Д.">
+            <div class="review-author-info">
+              <span class="review-author-name">Алексей Д.</span>
+              <span class="review-author-detail">Санкт-Петербург &middot; Сентябрь 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card fade-in">
+          <div class="review-quote">&ldquo;</div>
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>Фотосессия на побережье &mdash; мечта! Анна знает потрясающие локации, о которых не пишут в путеводителях. Фотографии получились как из журнала. Огромное спасибо!</p>
+          <div class="review-author">
+            <img class="review-avatar" src="https://placehold.co/80x80/8B7355/FFFFF0?text=ЕС" alt="Елена С.">
+            <div class="review-author-info">
+              <span class="review-author-name">Елена С.</span>
+              <span class="review-author-detail">Дубай &middot; Октябрь 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       CONTACT
+       ====================================== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="fade-in-left">
+          <p class="section-eyebrow">Контакты</p>
+          <h2 class="section-heading">Давайте спланируем<br>ваше путешествие</h2>
+          <p class="section-subtext">
+            Напишите мне в WhatsApp &mdash; я помогу подобрать идеальную экскурсию, учту все ваши пожелания и сделаю ваш отдых незабываемым.
+          </p>
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Амальфитанское побережье, Италия
+            </div>
+            <div class="contact-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +39 379 281 1354
+            </div>
+            <div class="contact-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ежедневно, 9:00 &mdash; 20:00 (CET)
+            </div>
+          </div>
+        </div>
+        <div class="contact-actions fade-in-right">
+          <a href="https://wa.me/393792811354" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Написать в WhatsApp
+          </a>
+          <a href="mailto:hello@anna-amalfi.com" class="btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Написать на почту
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       FOOTER
+       ====================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">Anna Amalfi</span>
+        <div class="footer-socials">
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Telegram -->
+          <a href="#" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/393792811354" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+        <span class="footer-copy">&copy; 2026 Anna Amalfi. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================
+       FLOATING WHATSAPP BUTTON
+       ====================================== -->
+  <a href="https://wa.me/393792811354" class="whatsapp-float" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ======================================
+       JAVASCRIPT
+       ====================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      /* ----------------------------------
+         Navigation scroll behavior
+         ---------------------------------- */
+      const nav = document.getElementById('nav');
+      let lastScroll = 0;
+
+      function handleNavScroll() {
+        const scrollY = window.scrollY;
+        if (scrollY > 80) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+        lastScroll = scrollY;
+      }
+
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+
+      /* ----------------------------------
+         Mobile navigation
+         ---------------------------------- */
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileClose = document.getElementById('mobileClose');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      mobileToggle.addEventListener('click', function() {
+        mobileNav.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+
+      mobileClose.addEventListener('click', function() {
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileNav.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+
+      /* ----------------------------------
+         Parallax hero background
+         ---------------------------------- */
+      const heroBg = document.getElementById('heroBg');
+
+      function handleParallax() {
+        if (window.innerWidth < 768) return;
+        const scrollY = window.scrollY;
+        const heroHeight = document.getElementById('hero').offsetHeight;
+        if (scrollY <= heroHeight) {
+          heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+        }
+      }
+
+      window.addEventListener('scroll', handleParallax, { passive: true });
+
+      /* ----------------------------------
+         Fade-in on scroll (IntersectionObserver)
+         ---------------------------------- */
+      var fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        fadeElements.forEach(function(el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback: show all elements
+        fadeElements.forEach(function(el) {
+          el.classList.add('visible');
+        });
+      }
+
+      /* ----------------------------------
+         Smooth scroll for anchor links
+         ---------------------------------- */
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            var offset = nav.offsetHeight + 10;
+            var targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>

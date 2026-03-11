@@ -4,15 +4,17 @@
 <section class="section boats" id="tours">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Мои экскурсии</h2>
+      <span class="section-hand-label">Что вас ждёт</span>
+      <h2>Мои экскурсии и впечатления</h2>
     </div>
 
     <!-- Boat Tour - Морской хит -->
+    <span class="tour-category-tag reveal">На лодке</span>
     <div class="tour-block reveal" id="boat-tour">
       <div class="tour-block-header" data-toggle="boat-tour-content">
         <div class="tour-block-title">
-          <h3>На лодке &mdash; &laquo;Морской хит&raquo;</h3>
-          <span class="tour-block-brief">Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано (маршрут можно задать)</span>
+          <h3>&laquo;Морской хит&raquo;</h3>
+          <span class="tour-block-brief">Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано</span>
         </div>
         <button class="tour-toggle" aria-label="Свернуть/развернуть"></button>
       </div>
@@ -22,20 +24,22 @@
             <span>4 часа</span>
             <span>&middot;</span>
             <span>Просекко включено</span>
-            <span>&middot;</span>
-            <span>Маршрут можно задать</span>
           </div>
         </div>
 
-        <div class="tour-description">
-          <h4>Прогулка вдоль побережья</h4>
-          <p>Вы увидите Амальфитанское побережье с&nbsp;новой стороны: скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп.</p>
-
-          <h4>Пляжи только для вас</h4>
-          <p>Мы сделаем остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Можно искупаться в&nbsp;бирюзовой воде, позагорать на&nbsp;борту и&nbsp;устроить пикник с&nbsp;бокалом просекко.</p>
-
-          <h4>Идеальные кадры</h4>
-          <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с&nbsp;воды&nbsp;&mdash; всё это будет не&nbsp;просто пейзажем, а&nbsp;частью вашей морской сказки.</p>
+        <div class="tour-description tour-desc-3col">
+          <div class="tour-desc-item">
+            <h4>Прогулка вдоль побережья</h4>
+            <p>Вы увидите Амальфитанское побережье с&nbsp;новой стороны: скалы, каскады домиков и&nbsp;уединённые бухты&nbsp;&mdash; всё это откроется с&nbsp;борта яхты, вдали от&nbsp;суеты и&nbsp;толп.</p>
+          </div>
+          <div class="tour-desc-item">
+            <h4>Пляжи только для вас</h4>
+            <p>Мы сделаем остановки у&nbsp;пляжей, куда невозможно добраться по&nbsp;суше. Можно искупаться в&nbsp;бирюзовой воде, позагорать на&nbsp;борту и&nbsp;устроить пикник с&nbsp;бокалом просекко.</p>
+          </div>
+          <div class="tour-desc-item">
+            <h4>Идеальные кадры</h4>
+            <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с&nbsp;воды&nbsp;&mdash; всё это будет не&nbsp;просто пейзажем, а&nbsp;частью вашей морской сказки.</p>
+          </div>
         </div>
 
         <h4 class="tour-sub-heading">Стоимость зависит от вида лодки</h4>
@@ -103,6 +107,32 @@
 <style>
   .boats { background: var(--light); }
 
+  .section-hand-label {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+
+  .tour-category-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+    background: var(--white);
+    border: 1.5px solid rgba(27,58,92,0.15);
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .tour-block {
     max-width: 960px;
     margin: 0 auto 32px;
@@ -152,6 +182,11 @@
 
   .tour-description {
     padding: 0 32px 20px;
+  }
+  .tour-desc-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
   .tour-description h4 {
     font-size: 1rem;
@@ -281,6 +316,7 @@
     .boat-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
+    .tour-desc-3col { grid-template-columns: 1fr; }
     .boat-grid { grid-template-columns: 1fr; }
     .tour-block-header { padding: 20px 20px; }
     .tour-info, .tour-description, .tour-departure, .tour-sub-heading { padding-left: 20px; padding-right: 20px; }
