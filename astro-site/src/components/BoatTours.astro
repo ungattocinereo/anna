@@ -107,13 +107,7 @@
 <style>
   .boats { background: var(--light); }
 
-  .section-hand-label {
-    display: block;
-    font-family: 'Caveat', cursive;
-    font-size: 1.3rem;
-    color: var(--coral);
-    margin-bottom: 8px;
-  }
+  .tour-block { background: var(--white); }
 
   .tour-category-tag {
     display: inline-block;
@@ -133,75 +127,10 @@
     margin-right: auto;
   }
 
-  .tour-block {
-    max-width: 960px;
-    margin: 0 auto 32px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .tour-block-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 32px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s;
-  }
-  .tour-block-header:hover {
-    background: rgba(27,58,92,0.02);
-  }
-
-  .tour-block-title h3 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--blue);
-    margin-bottom: 4px;
-  }
-  .tour-block-brief {
-    font-size: 0.9rem;
-    color: #888;
-  }
-
-  .tour-info {
-    padding: 0 32px;
-  }
-
-  .tour-meta-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    font-size: 0.88rem;
-    color: #888;
-    font-weight: 500;
-  }
-
-  .tour-description {
-    padding: 0 32px 20px;
-  }
   .tour-desc-3col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-  }
-  .tour-description h4 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 6px;
-    margin-top: 16px;
-  }
-  .tour-description h4:first-child {
-    margin-top: 0;
-  }
-  .tour-description p {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.75;
   }
 
   .tour-sub-heading {
@@ -274,7 +203,7 @@
     gap: 12px;
     margin-bottom: 10px;
     font-size: 0.8rem;
-    color: #888;
+    color: var(--text-muted);
   }
   .boat-price {
     font-family: 'Montserrat', sans-serif;
@@ -303,24 +232,12 @@
   }
   .boat-cta:hover { gap: 10px; }
 
-  .tour-departure {
-    padding: 16px 32px 28px;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  .tour-departure strong {
-    color: var(--blue);
-  }
-
   @media (max-width: 900px) {
     .boat-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
     .tour-desc-3col { grid-template-columns: 1fr; }
-    .boat-grid { grid-template-columns: 1fr; }
-    .tour-block-header { padding: 20px 20px; }
-    .tour-info, .tour-description, .tour-departure, .tour-sub-heading { padding-left: 20px; padding-right: 20px; }
-    .boat-grid { padding: 0 20px; }
-    .tour-meta-row { flex-direction: column; gap: 4px; }
+    .boat-grid { grid-template-columns: 1fr; padding: 0 20px; }
+    .tour-sub-heading { padding-left: 20px; padding-right: 20px; }
   }
 </style>

@@ -71,9 +71,6 @@ import { Instagram } from 'lucide-astro';
     background: var(--white);
     padding: 80px 24px;
   }
-  .contacts-title {
-    color: var(--blue) !important;
-  }
   .contacts-buttons {
     display: flex;
     justify-content: center;
@@ -100,14 +97,14 @@ import { Instagram } from 'lucide-astro';
     color: var(--white);
   }
   .contact-btn--whatsapp {
-    background: #25D366;
+    background: var(--whatsapp);
     box-shadow: 0 8px 24px rgba(37,211,102,0.3);
   }
   .contact-btn--whatsapp:hover {
     box-shadow: 0 12px 32px rgba(37,211,102,0.45);
   }
   .contact-btn--telegram {
-    background: #0088cc;
+    background: var(--telegram);
     box-shadow: 0 8px 24px rgba(0,136,204,0.3);
   }
   .contact-btn--telegram:hover {
@@ -244,7 +241,7 @@ import { Instagram } from 'lucide-astro';
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #25D366;
+    background: var(--whatsapp);
     display: flex;
     align-items: center;
     justify-content: center;

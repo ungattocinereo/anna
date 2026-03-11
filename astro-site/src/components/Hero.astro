@@ -128,7 +128,7 @@ import { MapPin } from 'lucide-astro';
   .hero-text h1 {
     font-size: clamp(2.6rem, 5vw, 4.2rem);
     font-weight: 900;
-    color: #aa2202;
+    color: var(--coral);
     margin-bottom: 16px;
     line-height: 1.08;
     letter-spacing: -1.5px;
@@ -149,33 +149,32 @@ import { MapPin } from 'lucide-astro';
     align-items: center;
   }
   .hero .btn-primary {
-    background: #aa2202;
-    box-shadow: 0 8px 28px rgba(123,4,28,0.3);
+    box-shadow: 0 8px 28px rgba(170,34,2,0.3);
   }
   .hero .btn-primary:hover {
-    box-shadow: 0 12px 36px rgba(123,4,28,0.45);
+    box-shadow: 0 12px 36px rgba(170,34,2,0.45);
   }
   .btn-whatsapp, .btn-telegram {
-    padding: 14px !important;
-    gap: 0 !important;
+    padding: 14px;
+    gap: 0;
   }
   .btn-whatsapp {
-    background: #25D366 !important;
-    color: var(--white) !important;
-    border: none !important;
+    background: var(--whatsapp);
+    color: var(--white);
+    border: none;
     box-shadow: 0 8px 28px rgba(37,211,102,0.3);
   }
   .btn-whatsapp:hover {
-    box-shadow: 0 12px 36px rgba(37,211,102,0.45) !important;
+    box-shadow: 0 12px 36px rgba(37,211,102,0.45);
   }
   .btn-telegram {
-    background: #0088cc !important;
-    color: var(--white) !important;
-    border: none !important;
+    background: var(--telegram);
+    color: var(--white);
+    border: none;
     box-shadow: 0 8px 28px rgba(0,136,204,0.3);
   }
   .btn-telegram:hover {
-    box-shadow: 0 12px 36px rgba(0,136,204,0.45) !important;
+    box-shadow: 0 12px 36px rgba(0,136,204,0.45);
   }
 
   /* ---- Mobile ---- */

@@ -69,7 +69,7 @@ import { MessageCircle } from 'lucide-astro';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #aa2202;
+    background: var(--coral);
     margin-top: 8px;
   }
 
@@ -91,21 +91,21 @@ import { MessageCircle } from 'lucide-astro';
     padding: 8px 14px;
     border-radius: 8px;
   }
-  .nav-links a:hover { color: #aa2202; }
+  .nav-links a:hover { color: var(--coral); }
 
   .nav-cta {
-    background: #aa2202 !important;
-    color: var(--white) !important;
-    padding: 10px 22px !important;
-    border-radius: 50px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.5px !important;
-    transition: transform var(--transition), box-shadow var(--transition) !important;
+    background: var(--coral);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform var(--transition), box-shadow var(--transition);
   }
   .nav-cta:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(170,34,2,0.3);
-    color: var(--white) !important;
+    color: var(--white);
   }
 
   .burger {
