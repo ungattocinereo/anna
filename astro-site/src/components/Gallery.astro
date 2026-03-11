@@ -53,9 +53,9 @@ if (INSTAGRAM_TOKEN) {
     </div>
 
     <div class="insta-grid reveal">
-      {photos.map((photo, i) => (
+      {photos.map((photo) => (
         <a
-          class={`insta-item ${i === 0 ? 'insta-item--large' : ''}`}
+          class="insta-item"
           href={photo.permalink}
           target="_blank"
           rel="noopener"
@@ -103,17 +103,13 @@ if (INSTAGRAM_TOKEN) {
   .insta-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 240px);
     gap: 10px;
     max-width: 1060px;
     margin: 0 auto;
   }
-  .insta-item--large {
-    grid-column: 1 / 3;
-    grid-row: 1 / 3;
-  }
   .insta-item {
     position: relative;
+    aspect-ratio: 4 / 5;
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -164,14 +160,9 @@ if (INSTAGRAM_TOKEN) {
   @media (max-width: 768px) {
     .insta-grid {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(4, 160px);
-    }
-    .insta-item--large {
-      grid-column: 1 / 3;
-      grid-row: 1 / 2;
     }
   }
   @media (max-width: 480px) {
-    .insta-grid { grid-template-rows: repeat(4, 140px); gap: 8px; }
+    .insta-grid { gap: 8px; }
   }
 </style>
