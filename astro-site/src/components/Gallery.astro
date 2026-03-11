@@ -46,10 +46,12 @@ if (INSTAGRAM_TOKEN) {
 <section class="section gallery" id="gallery">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label"><Instagram size={16} /> Мои фото</span>
-      <h2>Галерея</h2>
+      <span class="section-label"><Instagram size={16} /> Мой Инстаграм</span>
+      <div class="gallery-title-wrap">
+        <h2>Галерея</h2>
+        {isLive && <span class="live-badge"><span class="live-dot"></span>live</span>}
+      </div>
       <p>Ежедневные истории из жизни на побережье и красоты Амальфи</p>
-      {isLive && <span class="live-badge">live</span>}
     </div>
 
     <div class="insta-grid reveal">
@@ -81,23 +83,45 @@ if (INSTAGRAM_TOKEN) {
 <style>
   .gallery { background: var(--white); }
 
-  .live-badge {
+  .gallery-title-wrap {
+    position: relative;
     display: inline-block;
-    background: #25D366;
+  }
+  .live-badge {
+    position: absolute;
+    right: -52px;
+    top: -14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #ff3366, #ff6b3d, #ff3366);
+    background-size: 200% 200%;
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    padding: 3px 10px;
+    padding: 3px 10px 3px 8px;
     border-radius: 50px;
-    margin-top: 8px;
-    animation: livePulse 2s ease infinite;
+    animation: liveGradient 3s ease infinite;
+    box-shadow: 0 2px 12px rgba(255, 51, 102, 0.4);
   }
-  @keyframes livePulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--white);
+    animation: liveDot 1.5s ease infinite;
+  }
+  @keyframes liveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes liveDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
   }
 
   .insta-grid {
