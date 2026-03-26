@@ -141,7 +141,7 @@ if (INSTAGRAM_TOKEN) {
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -168,7 +168,11 @@ if (INSTAGRAM_TOKEN) {
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="/images/cabrio/optimized/_CNR0477.webp" alt="Amalfi Coast" loading="eager">
+    <picture>
+      <source media="(max-width: 768px)" srcset="/images/cabrio/optimized/_CNR0477-mobile.webp">
+      <source media="(max-width: 1200px)" srcset="/images/cabrio/optimized/_CNR0477-tablet.webp">
+      <img src="/images/cabrio/optimized/_CNR0477.webp" alt="Amalfi Coast" loading="eager">
+    </picture>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -646,7 +650,7 @@ if (INSTAGRAM_TOKEN) {
     border: 2px solid rgba(255,255,255,0.5);
   }
   .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-  .btn-sm { padding: 10px 22px; font-size: 0.75rem; letter-spacing: 1.5px; }
+  .btn-sm { padding: 12px 24px; font-size: 0.75rem; letter-spacing: 1.5px; min-height: 44px; }
 
   /* ============= SECTION LABELS ============= */
   .section-label {
@@ -803,6 +807,11 @@ if (INSTAGRAM_TOKEN) {
   @media (max-width: 768px) {
     .hero-content { padding: 0 24px 80px; }
     .hero-content h1 { font-size: 2.6rem; letter-spacing: 2px; }
+    .hero-bg img, .hero-bg picture img { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg img, .hero-bg picture img { animation: none; }
+    .live-badge, .live-dot { animation: none; }
   }
 
   /* ============= ABOUT ============= */
@@ -1231,11 +1240,14 @@ if (INSTAGRAM_TOKEN) {
 </style>
 
 <script>
-  // Nav scroll
+  // Nav scroll + WhatsApp float (combined, passive)
   const nav = document.getElementById('nav');
+  const waFloat = document.getElementById('waFloat');
   window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 60);
-  });
+    const y = window.scrollY;
+    nav?.classList.toggle('scrolled', y > 60);
+    waFloat?.classList.toggle('visible', y > 400);
+  }, { passive: true });
 
   // Burger
   const burger = document.getElementById('burger');
@@ -1251,12 +1263,6 @@ if (INSTAGRAM_TOKEN) {
       menu?.classList.remove('open');
       document.body.style.overflow = '';
     });
-  });
-
-  // WhatsApp float
-  const waFloat = document.getElementById('waFloat');
-  window.addEventListener('scroll', () => {
-    waFloat?.classList.toggle('visible', window.scrollY > 400);
   });
 
   // Reveal on scroll
