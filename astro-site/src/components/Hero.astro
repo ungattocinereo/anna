@@ -17,7 +17,7 @@ import { MapPin } from 'lucide-astro';
         <span class="hero-accent-line"></span>
         <h1>Авторские<br>экскурсии</h1>
       </div>
-      <p class="hero-tagline">которые становятся лучшей частью вашей поездки в&nbsp;Италию</p>
+      <p class="hero-tagline">Это была лучшая часть всей поездки в&nbsp;Италию</p>
       <div class="hero-buttons">
         <a href="#tours" class="btn btn-primary">
           Мои экскурсии
@@ -54,18 +54,11 @@ import { MapPin } from 'lucide-astro';
     100% { transform: scale(1.05) translate(-8px, -4px); }
   }
 
-  /* Warm cream gradient from left — text readability without darkening the photo */
+  /* Dark overlay for readability */
   .hero-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      105deg,
-      rgba(253,248,240, 0.97) 0%,
-      rgba(253,248,240, 0.93) 15%,
-      rgba(253,248,240, 0.7) 30%,
-      rgba(253,248,240, 0.25) 42%,
-      transparent 52%
-    );
+    background: rgba(0, 0, 0, 0.35);
     z-index: 1;
   }
 
@@ -76,7 +69,7 @@ import { MapPin } from 'lucide-astro';
     z-index: 1;
     background:
       radial-gradient(ellipse at 5% 90%, rgba(244,208,63,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 15% 30%, rgba(170,34,2,0.06) 0%, transparent 40%);
+      radial-gradient(ellipse at 15% 30%, rgba(225,110,83,0.06) 0%, transparent 40%);
     pointer-events: none;
   }
 
@@ -120,7 +113,7 @@ import { MapPin } from 'lucide-astro';
     display: block;
     width: 48px;
     height: 3px;
-    background: linear-gradient(90deg, var(--coral), var(--yellow));
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 2px;
     margin-bottom: 20px;
   }
@@ -128,16 +121,19 @@ import { MapPin } from 'lucide-astro';
   .hero-text h1 {
     font-size: clamp(2.6rem, 5vw, 4.2rem);
     font-weight: 900;
-    color: var(--coral);
+    color: var(--white);
+    text-transform: uppercase;
     margin-bottom: 16px;
     line-height: 1.08;
     letter-spacing: -1.5px;
   }
 
   .hero-tagline {
-    font-size: 1.15rem;
-    color: #5a6a7a;
-    line-height: 1.7;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.5;
     margin-bottom: 40px;
     max-width: 380px;
   }
@@ -149,10 +145,10 @@ import { MapPin } from 'lucide-astro';
     align-items: center;
   }
   .hero .btn-primary {
-    box-shadow: 0 8px 28px rgba(170,34,2,0.3);
+    box-shadow: 0 8px 28px rgba(225,110,83,0.3);
   }
   .hero .btn-primary:hover {
-    box-shadow: 0 12px 36px rgba(170,34,2,0.45);
+    box-shadow: 0 12px 36px rgba(225,110,83,0.45);
   }
   .btn-whatsapp, .btn-telegram {
     padding: 14px;
@@ -186,16 +182,7 @@ import { MapPin } from 'lucide-astro';
       background-position: 60% 85%;
     }
     .hero-gradient {
-      background: linear-gradient(
-        180deg,
-        rgba(253,248,240, 0.95) 0%,
-        rgba(253,248,240, 0.85) 30%,
-        rgba(253,248,240, 0.3) 55%,
-        transparent 70%,
-        transparent 85%,
-        rgba(253,248,240, 0.7) 95%,
-        rgba(253,248,240, 0.9) 100%
-      );
+      background: rgba(0, 0, 0, 0.35);
     }
     .hero-inner {
       padding: 100px 24px 0;

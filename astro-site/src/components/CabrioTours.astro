@@ -5,7 +5,8 @@
   <div class="container">
 
     <!-- Вечная классика -->
-    <div class="tour-block reveal">
+    <div class="tour-block tour-block--tagged reveal">
+      <span class="tour-category-tag">На машине</span>
       <div class="tour-block-header" data-toggle="classic-content">
         <div class="tour-block-title">
           <h3>На кабриолете &mdash; &laquo;Вечная классика&raquo;</h3>
@@ -46,12 +47,14 @@
 
         <div class="tour-pricing">
           <div class="tour-pricing-row">
-            <div class="tour-pricing-main">
-              <div class="price-value">&euro;550</div>
-              <div class="price-note">+ &euro;12/чел. вход на виллу Чимброне</div>
-            </div>
-            <div class="tour-pricing-pickup">
-              <strong>Забор:</strong> из любой точки побережья Амальфи&nbsp;&mdash; бесплатно. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
+            <div class="tour-pricing-left">
+              <div class="tour-pricing-main">
+                <div class="price-value">&euro;550</div>
+                <div class="price-note">+ &euro;12/чел. вход на виллу Чимброне</div>
+              </div>
+              <div class="tour-pricing-pickup">
+                <strong>Забор:</strong> из любой точки побережья Амальфи&nbsp;&mdash; бесплатно. Из&nbsp;Сорренто и&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
+              </div>
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
@@ -60,7 +63,8 @@
     </div>
 
     <!-- Элегантная роскошь -->
-    <div class="tour-block reveal">
+    <div class="tour-block tour-block--tagged reveal">
+      <span class="tour-category-tag">На машине</span>
       <div class="tour-block-header" data-toggle="luxury-content">
         <div class="tour-block-title">
           <h3>На кабриолете &mdash; &laquo;Элегантная роскошь&raquo;</h3>
@@ -92,12 +96,14 @@
 
         <div class="tour-pricing">
           <div class="tour-pricing-row">
-            <div class="tour-pricing-main">
-              <div class="price-value">&euro;550</div>
-              <div class="price-note">+ &euro;15/чел. вход на виллу MAR в Позитано</div>
-            </div>
-            <div class="tour-pricing-pickup">
-              <strong>Забор:</strong> из любой точки побережья Амальфи и&nbsp;Сорренто&nbsp;&mdash; бесплатно. Из&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
+            <div class="tour-pricing-left">
+              <div class="tour-pricing-main">
+                <div class="price-value">&euro;550</div>
+                <div class="price-note">+ &euro;15/чел. вход на виллу MAR в Позитано</div>
+              </div>
+              <div class="tour-pricing-pickup">
+                <strong>Забор:</strong> из любой точки побережья Амальфи и&nbsp;Сорренто&nbsp;&mdash; бесплатно. Из&nbsp;Салерно&nbsp;&mdash; &euro;50. Из&nbsp;Неаполя&nbsp;&mdash; &euro;100.
+              </div>
             </div>
             <a href="https://wa.me/393792811354" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Забронировать</a>
           </div>
@@ -110,5 +116,23 @@
 <style>
   .cabrio { background: var(--white); }
   .tour-block { background: var(--light); border: 1px solid rgba(27,58,92,0.06); }
+  .tour-block--tagged { position: relative; overflow: visible !important; }
+  .tour-category-tag {
+    position: absolute;
+    top: -16px;
+    right: 32px;
+    z-index: 2;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+    background: var(--white);
+    border: 1.5px solid rgba(27,58,92,0.15);
+    padding: 8px 20px;
+    border-radius: 50px;
+  }
   .tour-pricing-row { background: var(--white); }
 </style>
