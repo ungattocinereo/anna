@@ -1,11 +1,139 @@
 ---
 // V2: "Dolce Vita" — Editorial, Bold, Magazine
+
+// Instagram Gallery: fetch at build time
+const fallbackPhotos = [
+  { src: '/images/optimized/20250630_195957.webp', alt: 'Positano на закате', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241030_111216.webp', alt: 'Амальфитанское побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241104_150159.webp', alt: 'Побережье Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241125_113727.webp', alt: 'Виды Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241006_175944.webp', alt: 'Закат на побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241127_105410.webp', alt: 'Побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20250420_084358.webp', alt: 'Экскурсия', permalink: 'https://www.instagram.com/ann_in_rome/' },
+  { src: '/images/optimized/20241013_192321.webp', alt: 'Вечер', permalink: 'https://www.instagram.com/ann_in_rome/' },
+];
+
+const INSTAGRAM_TOKEN = import.meta.env.INSTAGRAM_TOKEN;
+let photos = fallbackPhotos;
+let isLive = false;
+
+if (INSTAGRAM_TOKEN) {
+  try {
+    const res = await fetch(
+      `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,thumbnail_url,media_type&limit=20&access_token=${INSTAGRAM_TOKEN}`
+    );
+    if (res.ok) {
+      const data = await res.json();
+      const instaPhotos = data.data
+        .slice(0, 8)
+        .map((item: any) => ({
+          src: item.media_type === 'VIDEO' ? item.thumbnail_url : item.media_url,
+          alt: item.caption?.slice(0, 80) || 'Instagram фото',
+          permalink: item.permalink,
+        }));
+      if (instaPhotos.length >= 4) {
+        photos = instaPhotos;
+        isLive = true;
+      }
+    }
+  } catch (e) {
+    // Silently fall back to local photos
+  }
+}
 ---
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ANNA — Авторские экскурсии по Амальфитанскому побережью</title>
+  <meta name="description" content="Авторские экскурсии по Амальфитанскому побережью с Анной — лодочные прогулки, кабриолеты, кулинарные мастер-классы и фотосессии. Живу в Италии и показываю побережье так, как не покажет ни один путеводитель.">
+  <link rel="canonical" href="https://anna.amalfi.day/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://anna.amalfi.day/">
+  <meta property="og:title" content="ANNA — Авторские экскурсии по Амальфитанскому побережью">
+  <meta property="og:description" content="Авторские экскурсии по Амальфитанскому побережью с Анной — лодочные прогулки, кабриолеты, кулинарные мастер-классы и фотосессии. Живу в Италии и показываю побережье так, как не покажет ни один путеводитель.">
+  <meta property="og:image" content="https://anna.amalfi.day/images/_CNR0477.jpg">
+  <meta property="og:image:width" content="3406">
+  <meta property="og:image:height" content="2271">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="ANNA — Amalfi Coast Tours">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ANNA — Авторские экскурсии по Амальфитанскому побережью">
+  <meta name="twitter:description" content="Авторские экскурсии по Амальфитанскому побережью с Анной — лодочные прогулки, кабриолеты, кулинарные мастер-классы и фотосессии.">
+  <meta name="twitter:image" content="https://anna.amalfi.day/images/_CNR0477.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": "ANNA — Авторские экскурсии по Амальфитанскому побережью",
+    "description": "Авторские экскурсии по Амальфитанскому побережью с Анной — лодочные прогулки, кабриолеты, кулинарные мастер-классы и фотосессии.",
+    "url": "https://anna.amalfi.day",
+    "image": "https://anna.amalfi.day/images/_CNR0477.jpg",
+    "touristType": "Cultural",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "ANNA Amalfi Coast Tours",
+      "url": "https://anna.amalfi.day",
+      "telephone": "+393792811354",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Amalfi Coast",
+        "addressCountry": "IT"
+      },
+      "sameAs": [
+        "https://www.instagram.com/ann_in_rome/"
+      ]
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Лодочная экскурсия — Морской хит",
+        "priceCurrency": "EUR",
+        "price": "700",
+        "description": "Морская прогулка вдоль Амальфитанского побережья"
+      },
+      {
+        "@type": "Offer",
+        "name": "Кабриолет — Вечная классика",
+        "priceCurrency": "EUR",
+        "price": "550",
+        "description": "Экскурсия на классическом кабриолете по побережью"
+      },
+      {
+        "@type": "Offer",
+        "name": "Кабриолет — Дольче Вита",
+        "priceCurrency": "EUR",
+        "price": "550",
+        "description": "Экскурсия на кабриолете по побережью — расширенный маршрут"
+      },
+      {
+        "@type": "Offer",
+        "name": "Кулинарный мастер-класс",
+        "priceCurrency": "EUR",
+        "price": "150",
+        "description": "Мастер-класс по итальянской кухне на побережье"
+      },
+      {
+        "@type": "Offer",
+        "name": "Фотосессия",
+        "priceCurrency": "EUR",
+        "price": "250",
+        "description": "Профессиональная фотосессия на Амальфитанском побережье"
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -381,19 +509,19 @@
 <section class="gallery" id="gallery">
   <div class="container">
     <span class="section-label section-label--center">INSTAGRAM</span>
-    <h2 class="section-title">ГАЛЕРЕЯ</h2>
+    <div class="gallery-title-row">
+      <h2 class="section-title">ГАЛЕРЕЯ</h2>
+      {isLive && <span class="live-badge"><span class="live-dot"></span>live</span>}
+    </div>
     <div class="coral-rule"></div>
   </div>
   <div class="filmstrip">
     <div class="filmstrip-track" id="filmstrip">
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20250630_195957.webp" alt="Positano" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241030_111216.webp" alt="Амальфитанское побережье" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241104_150159.webp" alt="Побережье Амальфи" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241125_113727.webp" alt="Виды Амальфи" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241006_175944.webp" alt="Закат" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241127_105410.webp" alt="Побережье" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20250420_084358.webp" alt="Экскурсия" loading="lazy"></a>
-      <a class="film-item" href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener"><img src="/images/optimized/20241013_192321.webp" alt="Вечер" loading="lazy"></a>
+      {photos.map((photo) => (
+        <a class="film-item" href={photo.permalink} target="_blank" rel="noopener">
+          <img src={photo.src} alt={photo.alt} loading="lazy">
+        </a>
+      ))}
       <div class="film-item film-item--cta">
         <span>@ann_in_rome</span>
         <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener" class="btn btn-outline btn-sm">INSTAGRAM &rarr;</a>
@@ -938,6 +1066,32 @@
 
   /* ============= GALLERY ============= */
   .gallery { background: var(--sand); padding: 100px 0 80px; }
+  .gallery-title-row {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: linear-gradient(135deg, #00c853, #1de9b6, #00c853);
+    background-size: 200% 200%;
+    color: #fff; font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; padding: 4px 11px 4px 9px;
+    border-radius: 50px; animation: liveGradient 3s ease infinite;
+    box-shadow: 0 2px 12px rgba(0, 200, 83, 0.4);
+  }
+  .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #fff; animation: liveDot 1.5s ease infinite;
+  }
+  @keyframes liveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes liveDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
   .filmstrip {
     overflow-x: auto; scrollbar-width: none;
     padding: 0 24px 20px;
