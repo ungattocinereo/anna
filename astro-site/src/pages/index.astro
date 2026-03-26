@@ -9,8 +9,6 @@ const fallbackPhotos = [
   { src: '/images/optimized/20241125_113727.webp', alt: 'Виды Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
   { src: '/images/optimized/20241006_175944.webp', alt: 'Закат на побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
   { src: '/images/optimized/20241127_105410.webp', alt: 'Побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20250420_084358.webp', alt: 'Экскурсия', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241013_192321.webp', alt: 'Вечер', permalink: 'https://www.instagram.com/ann_in_rome/' },
 ];
 
 const INSTAGRAM_TOKEN = import.meta.env.INSTAGRAM_TOKEN;
@@ -25,7 +23,7 @@ if (INSTAGRAM_TOKEN) {
     if (res.ok) {
       const data = await res.json();
       const instaPhotos = data.data
-        .slice(0, 8)
+        .slice(0, 6)
         .map((item: any) => ({
           src: item.media_type === 'VIDEO' ? item.thumbnail_url : item.media_url,
           alt: item.caption?.slice(0, 80) || 'Instagram фото',
@@ -515,18 +513,15 @@ if (INSTAGRAM_TOKEN) {
     </div>
     <div class="coral-rule"></div>
   </div>
-  <div class="filmstrip">
-    <div class="filmstrip-track" id="filmstrip">
-      {photos.map((photo) => (
-        <a class="film-item" href={photo.permalink} target="_blank" rel="noopener">
-          <img src={photo.src} alt={photo.alt} loading="lazy">
-        </a>
-      ))}
-      <div class="film-item film-item--cta">
-        <span>@ann_in_rome</span>
-        <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener" class="btn btn-outline btn-sm">INSTAGRAM &rarr;</a>
-      </div>
-    </div>
+  <div class="insta-grid">
+    {photos.map((photo) => (
+      <a class="insta-item" href={photo.permalink} target="_blank" rel="noopener">
+        <img src={photo.src} alt={photo.alt} loading="lazy">
+      </a>
+    ))}
+  </div>
+  <div class="insta-handle">
+    <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">@ann_in_rome &rarr;</a>
   </div>
 </section>
 
@@ -1092,38 +1087,31 @@ if (INSTAGRAM_TOKEN) {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.7); }
   }
-  .filmstrip {
-    overflow-x: auto; scrollbar-width: none;
-    padding: 0 24px 20px;
+  .insta-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; max-width: 1060px; margin: 0 auto; padding: 0 24px;
   }
-  .filmstrip::-webkit-scrollbar { display: none; }
-  .filmstrip-track {
-    display: flex; gap: 16px; width: max-content;
+  .insta-item {
+    position: relative; aspect-ratio: 4 / 5;
+    border-radius: var(--radius); overflow: hidden;
   }
-  .film-item {
-    flex: 0 0 320px; height: 240px; border-radius: var(--radius);
-    overflow: hidden; position: relative;
-  }
-  .film-item img {
+  .insta-item img {
     width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.6s ease;
   }
-  .film-item:hover img { transform: scale(1.05); }
-  .film-item--cta {
-    background: var(--navy); display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 16px;
-    flex: 0 0 200px;
+  .insta-item:hover img { transform: scale(1.05); }
+  .insta-handle {
+    text-align: center; margin-top: 32px;
   }
-  .film-item--cta span {
-    font-family: 'Montserrat', sans-serif; font-weight: 800;
-    font-size: 0.9rem; color: #fff; letter-spacing: 2px;
+  .insta-handle a {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 0.9rem; color: var(--navy); letter-spacing: 1.5px;
+    text-transform: uppercase; transition: color var(--transition);
   }
-  .film-item--cta .btn-outline {
-    color: #fff; border-color: rgba(255,255,255,0.3);
-  }
+  .insta-handle a:hover { color: var(--coral); }
 
   @media (max-width: 768px) {
-    .film-item { flex: 0 0 260px; height: 200px; }
+    .insta-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* ============= REVIEWS ============= */
