@@ -28,7 +28,7 @@
     :root {
       --blue: #1B3A5C;
       --yellow: #F4D03F;
-      --coral: #FF6B6B;
+      --coral: #E16E53;
       --white: #FFFFFF;
       --light: #F8F9FA;
       --dark: #0D1B2A;
@@ -249,9 +249,9 @@
     .btn-primary {
       background: var(--coral);
       color: var(--white);
-      box-shadow: 0 8px 30px rgba(255,107,107,0.35);
+      box-shadow: 0 8px 30px rgba(225,110,83,0.35);
     }
-    .btn-primary:hover { box-shadow: 0 12px 40px rgba(255,107,107,0.5); }
+    .btn-primary:hover { box-shadow: 0 12px 40px rgba(225,110,83,0.5); }
     .btn-outline {
       background: transparent;
       color: var(--white);
@@ -303,12 +303,55 @@
       margin-bottom: 12px;
     }
 
+    /* ========== TOUR TAG ========== */
+    .tour-card-wrapper {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto 56px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 48px 40px 40px;
+      box-shadow: var(--shadow);
+    }
+    .tour-tag {
+      position: absolute;
+      top: -18px;
+      right: 32px;
+      background: var(--white);
+      color: var(--blue);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 10px 28px;
+      border-radius: 50px;
+      border: 2px solid var(--blue);
+      z-index: 2;
+    }
+
     /* ========== BOAT TOURS ========== */
     .boats { background: var(--light); }
+    .tour-card-wrapper .tour-intro {
+      margin: 0 0 48px;
+      text-align: left;
+    }
+    .tour-card-wrapper .tour-stops {
+      margin: 0 0 56px;
+    }
+    .tour-card-wrapper .boat-grid {
+      margin: 0 0 40px;
+    }
+    .tour-card-wrapper .departure-info {
+      margin: 0 auto;
+    }
+    .tour-card-wrapper .tour-stop {
+      background: var(--light);
+    }
     .tour-intro {
       max-width: 800px;
       margin: 0 auto 48px;
-      text-align: center;
+      text-align: left;
     }
     .tour-intro h3 {
       font-size: 1.6rem;
@@ -841,6 +884,8 @@
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
+      .tour-card-wrapper { padding: 40px 20px 28px; }
+      .tour-tag { right: 20px; font-size: 0.7rem; padding: 8px 20px; }
       .nav { padding: 0 20px; }
       .nav-links { display: none; }
       .burger { display: flex; }
@@ -954,28 +999,31 @@
         <h2>Лодочные экскурсии</h2>
       </div>
 
-      <div class="tour-intro reveal">
-        <h3>Морской хит</h3>
-        <div class="tour-route">Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано</div>
-        <div class="tour-meta-line">4 часа &middot; Просекко включено &middot; Маршрут можно настроить</div>
-      </div>
+      <div class="tour-card-wrapper reveal">
+        <div class="tour-tag">На лодке</div>
+        <div class="tour-intro">
+          <h3>&laquo;Морской хит&raquo;</h3>
+          <div class="tour-route">Минори &mdash; Атрани &mdash; Амальфи &mdash; Прайано &mdash; Позитано</div>
+          <div class="tour-meta-line">4 часа &middot; Просекко включено &middot; Маршрут можно настроить</div>
+        </div>
 
-      <div class="tour-stops">
-        <div class="tour-stop reveal">
-          <h4>Прогулка вдоль побережья</h4>
-          <p>Вы увидите Амальфитанское побережье с новой стороны: скалы, каскады домиков и уединенные бухты &mdash; все это откроется с борта яхты, вдали от суеты и толп.</p>
+        <div class="tour-stops">
+          <div class="tour-stop reveal">
+            <h4>Прогулка вдоль побережья</h4>
+            <p>Вы увидите Амальфитанское побережье с новой стороны: скалы, каскады домиков и уединенные бухты &mdash; все это откроется с борта яхты, вдали от суеты и толп.</p>
+          </div>
+          <div class="tour-stop reveal">
+            <h4>Пляжи только для вас</h4>
+            <p>Мы сделаем остановки у пляжей, куда невозможно добраться по суше. Можно искупаться в бирюзовой воде, позагорать на борту и устроить пикник с бокалом просекко.</p>
+          </div>
+          <div class="tour-stop reveal">
+            <h4>Идеальные кадры</h4>
+            <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с воды &mdash; все это будет не просто пейзажем, а частью вашей морской сказки.</p>
+          </div>
         </div>
-        <div class="tour-stop reveal">
-          <h4>Пляжи только для вас</h4>
-          <p>Мы сделаем остановки у пляжей, куда невозможно добраться по суше. Можно искупаться в бирюзовой воде, позагорать на борту и устроить пикник с бокалом просекко.</p>
-        </div>
-        <div class="tour-stop reveal">
-          <h4>Идеальные кадры</h4>
-          <p>Разноцветные домики Позитано, белоснежный Прайано, роскошный Амальфи с воды &mdash; все это будет не просто пейзажем, а частью вашей морской сказки.</p>
-        </div>
-      </div>
 
-      <div class="boat-grid">
+        <h4 class="boat-grid-title" style="font-size:1.1rem;font-weight:800;color:var(--blue);margin-bottom:24px;">Стоимость зависит от вида лодки</h4>
+        <div class="boat-grid">
         <div class="boat-card reveal">
           <div class="boat-img">
             <img src="images/perla_blu.png" alt="Лодка Perla Blu" loading="lazy">
@@ -1018,8 +1066,9 @@
         </div>
       </div>
 
-      <div class="departure-info reveal">
-        <strong>Отправление:</strong> Амальфи, Минори, Майори
+        <div class="departure-info reveal">
+          <strong>Отправление:</strong> Амальфи, Минори, Майори
+        </div>
       </div>
     </div>
   </section>
@@ -1033,7 +1082,8 @@
       </div>
 
       <!-- Вечная классика -->
-      <div class="cabrio-card reveal">
+      <div class="cabrio-card reveal" style="position:relative;overflow:visible;">
+        <div class="tour-tag">На машине</div>
         <div class="cabrio-banner">
           <img src="images/IMG_20260306_131345_945.jpg" alt="Экскурсия Вечная классика" loading="lazy">
           <div class="cabrio-banner-overlay"></div>
