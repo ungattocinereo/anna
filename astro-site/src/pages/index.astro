@@ -1,8 +1,8 @@
 ---
 // V2: "Dolce Vita" — Editorial, Bold, Magazine
 
-// Instagram Gallery: fetch at build time
-const fallbackPhotos = [
+// Instagram Gallery: local photos with a stable profile link
+const galleryPhotos = [
   { src: '/images/optimized/20250630_195957.webp', alt: 'Positano на закате', permalink: 'https://www.instagram.com/ann_in_rome/' },
   { src: '/images/optimized/20241030_111216.webp', alt: 'Амальфитанское побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
   { src: '/images/optimized/20241104_150159.webp', alt: 'Побережье Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
@@ -10,34 +10,6 @@ const fallbackPhotos = [
   { src: '/images/optimized/20241006_175944.webp', alt: 'Закат на побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
   { src: '/images/optimized/20241127_105410.webp', alt: 'Побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
 ];
-
-const INSTAGRAM_TOKEN = import.meta.env.INSTAGRAM_TOKEN;
-let photos = fallbackPhotos;
-let isLive = false;
-
-if (INSTAGRAM_TOKEN) {
-  try {
-    const res = await fetch(
-      `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,thumbnail_url,media_type&limit=20&access_token=${INSTAGRAM_TOKEN}`
-    );
-    if (res.ok) {
-      const data = await res.json();
-      const instaPhotos = data.data
-        .slice(0, 6)
-        .map((item: any) => ({
-          src: item.media_type === 'VIDEO' ? item.thumbnail_url : item.media_url,
-          alt: item.caption?.slice(0, 80) || 'Instagram фото',
-          permalink: item.permalink,
-        }));
-      if (instaPhotos.length >= 4) {
-        photos = instaPhotos;
-        isLive = true;
-      }
-    }
-  } catch (e) {
-    // Silently fall back to local photos
-  }
-}
 ---
 <html lang="ru">
 <head>
@@ -251,8 +223,8 @@ if (INSTAGRAM_TOKEN) {
             <div class="boat-card-body">
               <h4>Perla Blu</h4>
               <span class="boat-spec">макс. 3 человека</span>
-              <div class="boat-price">&euro;700 <small>&mdash; 4 часа</small></div>
-              <div class="boat-price">&euro;1000 <small>&mdash; 8 часов</small></div>
+              <div class="boat-price">&euro;700 <small>&mdash; 3.5 часа</small></div>
+              <div class="boat-price">&euro;1000 <small>&mdash; 7 часов</small></div>
               <a href="https://wa.me/393792811354" class="tour-cta-link" target="_blank" rel="noopener">Забронировать &rarr;</a>
             </div>
           </div>
@@ -262,8 +234,8 @@ if (INSTAGRAM_TOKEN) {
             <div class="boat-card-body">
               <h4>Cranchi Sport</h4>
               <span class="boat-spec">макс. 7 человек</span>
-              <div class="boat-price">&euro;850 <small>&mdash; 4 часа</small></div>
-              <div class="boat-price">&euro;1300 <small>&mdash; 8 часов</small></div>
+              <div class="boat-price">&euro;850 <small>&mdash; 3.5 часа</small></div>
+              <div class="boat-price">&euro;1300 <small>&mdash; 7 часов</small></div>
 
               <a href="https://wa.me/393792811354" class="tour-cta-link" target="_blank" rel="noopener">Забронировать &rarr;</a>
             </div>
@@ -273,8 +245,18 @@ if (INSTAGRAM_TOKEN) {
             <div class="boat-card-body">
               <h4>Reginella</h4>
               <span class="boat-spec">макс. 6 человек</span>
-              <div class="boat-price">&euro;850 <small>&mdash; 4 часа</small></div>
-              <div class="boat-price">&euro;1300 <small>&mdash; 8 часов</small></div>
+              <div class="boat-price">&euro;850 <small>&mdash; 3.5 часа</small></div>
+              <div class="boat-price">&euro;1300 <small>&mdash; 7 часов</small></div>
+              <a href="https://wa.me/393792811354" class="tour-cta-link" target="_blank" rel="noopener">Забронировать &rarr;</a>
+            </div>
+          </div>
+          <div class="boat-card">
+            <div class="boat-card-img"><img src="/images/optimized/premium-boat-9.jpg" alt="Premium Boat" loading="lazy"></div>
+            <div class="boat-card-body">
+              <h4>Premium Boat</h4>
+              <span class="boat-spec">макс. 9 человек</span>
+              <div class="boat-price">&euro;1050 <small>&mdash; 3.5 часа</small></div>
+              <div class="boat-price">&euro;1600 <small>&mdash; 7 часов</small></div>
               <a href="https://wa.me/393792811354" class="tour-cta-link" target="_blank" rel="noopener">Забронировать &rarr;</a>
             </div>
           </div>
@@ -291,7 +273,7 @@ if (INSTAGRAM_TOKEN) {
         <div class="tour-cover-overlay"></div>
         <div class="tour-cover-content">
           <h3>Вечная классика</h3>
-          <p class="tour-route">Позитано &mdash; Праяно &mdash; Равелло &mdash; долина Трамонти &mdash; Майори &mdash; Минори &mdash; Атрани &mdash; Амальфи</p>
+          <p class="tour-route">Позитано &mdash; Праяно &mdash; Амальфи &mdash; Равелло &mdash; Атрани &mdash; Долина Трамонти</p>
           <div class="tour-meta-line">9 часов &middot; макс. 3 человека</div>
         </div>
       </div>
@@ -520,19 +502,18 @@ if (INSTAGRAM_TOKEN) {
     <span class="section-label section-label--center">INSTAGRAM</span>
     <div class="gallery-title-row">
       <h2 class="section-title">ГАЛЕРЕЯ</h2>
-      {isLive && <span class="live-badge"><span class="live-dot"></span>live</span>}
     </div>
     <div class="coral-rule"></div>
   </div>
   <div class="insta-grid">
-    {photos.map((photo) => (
+    {galleryPhotos.map((photo) => (
       <a class="insta-item" href={photo.permalink} target="_blank" rel="noopener">
         <img src={photo.src} alt={photo.alt} loading="lazy">
       </a>
     ))}
   </div>
   <div class="insta-handle">
-    <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">@ann_in_rome &rarr;</a>
+    <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">Смотреть Instagram Анны &rarr;</a>
   </div>
 </section>
 
@@ -811,7 +792,6 @@ if (INSTAGRAM_TOKEN) {
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-bg img, .hero-bg picture img { animation: none; }
-    .live-badge, .live-dot { animation: none; }
   }
 
   /* ============= ABOUT ============= */
@@ -968,7 +948,7 @@ if (INSTAGRAM_TOKEN) {
   }
 
   .boat-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px; margin-bottom: 20px;
   }
   .boat-card {
@@ -1042,8 +1022,10 @@ if (INSTAGRAM_TOKEN) {
 
   .section-divider { margin: 60px 0 20px; }
 
+  @media (max-width: 1050px) {
+    .boat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 900px) {
-    .boat-grid { grid-template-columns: 1fr 1fr; }
     .tour-desc-cols, .tour-desc-cols--3 { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
@@ -1079,29 +1061,6 @@ if (INSTAGRAM_TOKEN) {
   .gallery { background: var(--sand); padding: 100px 0 80px; }
   .gallery-title-row {
     display: flex; align-items: center; justify-content: center; gap: 12px;
-  }
-  .live-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: linear-gradient(135deg, #00c853, #1de9b6, #00c853);
-    background-size: 200% 200%;
-    color: #fff; font-family: 'Montserrat', sans-serif;
-    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1.5px; padding: 4px 11px 4px 9px;
-    border-radius: 50px; animation: liveGradient 3s ease infinite;
-    box-shadow: 0 2px 12px rgba(0, 200, 83, 0.4);
-  }
-  .live-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: #fff; animation: liveDot 1.5s ease infinite;
-  }
-  @keyframes liveGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes liveDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
   }
   .insta-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
