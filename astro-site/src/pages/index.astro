@@ -1,14 +1,18 @@
 ---
 // V2: "Dolce Vita" — Editorial, Bold, Magazine
 
-// Instagram Gallery: local photos with a stable profile link
-const galleryPhotos = [
-  { src: '/images/optimized/20250630_195957.webp', alt: 'Positano на закате', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241030_111216.webp', alt: 'Амальфитанское побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241104_150159.webp', alt: 'Побережье Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241125_113727.webp', alt: 'Виды Амальфи', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241006_175944.webp', alt: 'Закат на побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
-  { src: '/images/optimized/20241127_105410.webp', alt: 'Побережье', permalink: 'https://www.instagram.com/ann_in_rome/' },
+import { Instagram, Play, X } from 'lucide-astro';
+
+const instagramProfileUrl = 'https://www.instagram.com/ann_in_rome/';
+
+// Instagram Gallery: optimized local videos with a stable profile link
+const galleryVideos = [
+  { poster: '/video/posters/amalfi-gallery-01.jpg', src: '/video/optimized/amalfi-gallery-01.mp4', alt: 'Видео из путешествия по Амальфитанскому побережью', permalink: instagramProfileUrl },
+  { poster: '/video/posters/amalfi-gallery-02.jpg', src: '/video/optimized/amalfi-gallery-02.mp4', alt: 'Видео с атмосферой побережья Амальфи', permalink: instagramProfileUrl },
+  { poster: '/video/posters/amalfi-gallery-03.jpg', src: '/video/optimized/amalfi-gallery-03.mp4', alt: 'Видео Анны с маршрутов по Амальфитанскому побережью', permalink: instagramProfileUrl },
+  { poster: '/video/posters/amalfi-gallery-04.jpg', src: '/video/optimized/amalfi-gallery-04.mp4', alt: 'Видео с видами Италии и Амальфи', permalink: instagramProfileUrl },
+  { poster: '/video/posters/amalfi-gallery-05.jpg', src: '/video/optimized/amalfi-gallery-05.mp4', alt: 'Видео с прогулки по побережью', permalink: instagramProfileUrl },
+  { poster: '/video/posters/amalfi-gallery-06.jpg', src: '/video/optimized/amalfi-gallery-06.mp4', alt: 'Видео из Instagram Анны о жизни на побережье', permalink: instagramProfileUrl },
 ];
 ---
 <html lang="ru">
@@ -506,15 +510,42 @@ const galleryPhotos = [
     <div class="coral-rule"></div>
   </div>
   <div class="insta-grid">
-    {galleryPhotos.map((photo) => (
-      <a class="insta-item" href={photo.permalink} target="_blank" rel="noopener">
-        <img src={photo.src} alt={photo.alt} loading="lazy">
+    {galleryVideos.map((item, index) => (
+      <a
+        class="insta-item"
+        href={item.permalink}
+        target="_blank"
+        rel="noopener"
+        aria-label={`Открыть видео ${index + 1} в Instagram`}
+        data-gallery-card
+        data-video-src={item.src}
+        data-poster-src={item.poster}
+        data-instagram-url={item.permalink}
+      >
+        <img src={item.poster} alt={item.alt} loading="lazy" decoding="async">
+        <video muted loop playsinline preload="none" poster={item.poster} aria-hidden="true"></video>
+        <span class="insta-item__shade" aria-hidden="true"></span>
+        <span class="insta-item__play" aria-hidden="true"><Play size={20} strokeWidth={2.4} /></span>
+        <span class="insta-item__instagram" aria-hidden="true"><Instagram size={17} strokeWidth={2.2} /></span>
       </a>
     ))}
   </div>
   <div class="insta-handle">
-    <a href="https://www.instagram.com/ann_in_rome/" target="_blank" rel="noopener">Смотреть Instagram Анны &rarr;</a>
+    <a href={instagramProfileUrl} target="_blank" rel="noopener">Смотреть Instagram Анны &rarr;</a>
   </div>
+  <dialog class="gallery-modal" data-gallery-modal aria-label="Просмотр видео из Instagram">
+    <div class="gallery-modal__backdrop" data-gallery-close></div>
+    <div class="gallery-modal__panel">
+      <button class="gallery-modal__close" type="button" aria-label="Закрыть видео" data-gallery-close>
+        <X size={19} strokeWidth={2.3} />
+      </button>
+      <video class="gallery-modal__video" controls playsinline preload="none" data-gallery-modal-video></video>
+      <a class="gallery-modal__cta" href={instagramProfileUrl} target="_blank" rel="noopener" data-gallery-modal-link>
+        <Instagram size={18} strokeWidth={2.2} />
+        Смотреть в Инстаграме
+      </a>
+    </div>
+  </dialog>
 </section>
 
 <!-- ===================== REVIEWS ===================== -->
@@ -1058,23 +1089,126 @@ const galleryPhotos = [
   }
 
   /* ============= GALLERY ============= */
-  .gallery { background: var(--sand); padding: 100px 0 80px; }
+  .gallery {
+    background: var(--sand);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
   .gallery-title-row {
     display: flex; align-items: center; justify-content: center; gap: 12px;
   }
   .insta-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; max-width: 1060px; margin: 0 auto; padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
   .insta-item {
-    position: relative; aspect-ratio: 4 / 5;
-    border-radius: var(--radius); overflow: hidden;
+    position: relative;
+    display: block;
+    aspect-ratio: 9 / 16;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--navy-dark);
+    box-shadow: 0 18px 44px rgba(26,54,93,0.16);
+    isolation: isolate;
+    touch-action: manipulation;
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
+  }
+  .insta-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .insta-item img,
+  .insta-item video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .insta-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
+    z-index: 1;
+    transition: opacity 0.35s ease, transform 0.7s ease;
   }
-  .insta-item:hover img { transform: scale(1.05); }
+  .insta-item video {
+    z-index: 2;
+    opacity: 0;
+    background: var(--navy-dark);
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+  }
+  .insta-item__shade {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background:
+      linear-gradient(180deg, rgba(15,34,64,0.18) 0%, transparent 40%),
+      linear-gradient(0deg, rgba(15,34,64,0.42) 0%, transparent 42%);
+    opacity: 0.72;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .insta-item__play,
+  .insta-item__instagram {
+    position: absolute;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(15,34,64,0.46);
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+  }
+  .insta-item__play {
+    left: 50%;
+    top: 50%;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 28px rgba(15,34,64,0.28);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+  .insta-item__instagram {
+    right: 12px;
+    top: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+  }
+  .insta-item.is-playing video { opacity: 1; }
+  .insta-item.is-playing img { opacity: 0; }
+  .insta-item.is-playing .insta-item__play {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+  .insta-item.is-loading .insta-item__play {
+    background: rgba(232,114,92,0.72);
+  }
+  .insta-item:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .insta-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 54px rgba(26,54,93,0.22);
+    }
+    .insta-item:hover img { transform: scale(1.035); }
+    .insta-item:hover .insta-item__shade { opacity: 0.38; }
+  }
   .insta-handle {
     text-align: center; margin-top: 32px;
   }
@@ -1085,8 +1219,137 @@ const galleryPhotos = [
   }
   .insta-handle a:hover { color: var(--coral); }
 
+  .gallery-modal {
+    border: 0;
+    padding: 0;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    background: transparent;
+    color: var(--white);
+  }
+  .gallery-modal::backdrop {
+    background: rgba(15,34,64,0.78);
+    backdrop-filter: blur(12px);
+  }
+  .gallery-modal[open] {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+  }
+  .gallery-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(232,114,92,0.26), transparent 34%),
+      rgba(15,34,64,0.68);
+    backdrop-filter: blur(12px);
+  }
+  .gallery-modal__panel {
+    position: relative;
+    z-index: 1;
+    width: min(430px, calc(100vw - 32px));
+    max-height: calc(100dvh - 36px);
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+  .gallery-modal__video {
+    width: 100%;
+    max-height: min(78dvh, 760px);
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+    background: #050b14;
+    border-radius: 6px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.42);
+  }
+  .gallery-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    background: rgba(15,34,64,0.72);
+    border: 1px solid rgba(255,255,255,0.26);
+    backdrop-filter: blur(12px);
+    transition: transform var(--transition), background var(--transition);
+  }
+  .gallery-modal__close:hover {
+    transform: scale(1.06);
+    background: rgba(232,114,92,0.9);
+  }
+  .gallery-modal__cta {
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: var(--coral);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    box-shadow: 0 16px 36px rgba(232,114,92,0.34);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .gallery-modal__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 42px rgba(232,114,92,0.42);
+  }
+  .gallery-modal__close:focus-visible,
+  .gallery-modal__cta:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+  body.gallery-modal-open { overflow: hidden; }
+
   @media (max-width: 768px) {
-    .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery { padding: 84px 0 72px; }
+    .insta-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 14px;
+    }
+    .insta-item {
+      border-radius: 5px;
+      box-shadow: 0 12px 30px rgba(26,54,93,0.14);
+    }
+    .insta-item__play {
+      width: 44px;
+      height: 44px;
+    }
+    .insta-item__instagram {
+      width: 30px;
+      height: 30px;
+      right: 9px;
+      top: 9px;
+    }
+    .gallery-modal[open] {
+      align-items: end;
+      padding: 12px;
+    }
+    .gallery-modal__panel {
+      width: min(430px, 100%);
+      max-height: calc(100dvh - 24px);
+    }
+    .gallery-modal__video {
+      max-height: calc(100dvh - 94px);
+    }
+    .gallery-modal__cta {
+      min-height: 52px;
+      font-size: 0.86rem;
+    }
   }
 
   /* ============= REVIEWS ============= */
@@ -1228,9 +1491,120 @@ const galleryPhotos = [
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.about-inner, .tour-block, .section-divider, .group-content, .filmstrip-track, .reviews-grid, .contacts-buttons').forEach(el => {
+  document.querySelectorAll('.about-inner, .tour-block, .section-divider, .group-content, .insta-grid, .reviews-grid, .contacts-buttons').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
+  });
+
+  // Instagram video gallery: desktop hover previews, mobile tap-to-watch.
+  const galleryCards = document.querySelectorAll('[data-gallery-card]');
+  const galleryDialog = document.querySelector('[data-gallery-modal]');
+  const galleryModalVideo = galleryDialog?.querySelector('[data-gallery-modal-video]');
+  const galleryModalLink = galleryDialog?.querySelector('[data-gallery-modal-link]');
+  const galleryCanHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  const loadGalleryVideo = (video, src, poster, muted) => {
+    if (!video || !src) return;
+    if (video.dataset.loadedSrc !== src) {
+      video.pause();
+      video.src = src;
+      video.poster = poster || '';
+      video.dataset.loadedSrc = src;
+      video.load();
+    }
+    video.muted = muted;
+    video.playsInline = true;
+  };
+
+  const resetGalleryModal = () => {
+    if (!galleryModalVideo) return;
+    galleryModalVideo.pause();
+    galleryModalVideo.removeAttribute('src');
+    galleryModalVideo.removeAttribute('poster');
+    delete galleryModalVideo.dataset.loadedSrc;
+    galleryModalVideo.load();
+    document.body.classList.remove('gallery-modal-open');
+  };
+
+  const closeGalleryModal = () => {
+    if (!galleryDialog) return;
+    if ('close' in galleryDialog && galleryDialog.open) {
+      galleryDialog.close();
+      return;
+    }
+    galleryDialog.removeAttribute('open');
+    resetGalleryModal();
+  };
+
+  const openGalleryModal = (card) => {
+    const src = card.dataset.videoSrc;
+    const poster = card.dataset.posterSrc;
+    const instagramUrl = card.dataset.instagramUrl || card.href;
+
+    if (!galleryDialog || !galleryModalVideo || !src) {
+      window.open(instagramUrl, '_blank', 'noopener');
+      return;
+    }
+
+    if (galleryModalLink) galleryModalLink.href = instagramUrl;
+    loadGalleryVideo(galleryModalVideo, src, poster, false);
+    document.body.classList.add('gallery-modal-open');
+
+    if ('showModal' in galleryDialog) {
+      if (!galleryDialog.open) galleryDialog.showModal();
+    } else {
+      galleryDialog.setAttribute('open', '');
+    }
+
+    const playPromise = galleryModalVideo.play();
+    if (playPromise) playPromise.catch(() => {});
+  };
+
+  galleryCards.forEach((card) => {
+    const video = card.querySelector('video');
+    const src = card.dataset.videoSrc;
+    const poster = card.dataset.posterSrc;
+
+    card.addEventListener('pointerenter', () => {
+      if (!galleryCanHover.matches || !video || !src) return;
+      card.classList.add('is-loading');
+      loadGalleryVideo(video, src, poster, true);
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (!playPromise) {
+        card.classList.add('is-playing');
+        card.classList.remove('is-loading');
+        return;
+      }
+      playPromise
+        .then(() => {
+          card.classList.add('is-playing');
+          card.classList.remove('is-loading');
+        })
+        .catch(() => {
+          card.classList.remove('is-loading', 'is-playing');
+        });
+    });
+
+    card.addEventListener('pointerleave', () => {
+      if (!galleryCanHover.matches || !video) return;
+      video.pause();
+      card.classList.remove('is-loading', 'is-playing');
+    });
+
+    card.addEventListener('click', (event) => {
+      if (galleryCanHover.matches) return;
+      event.preventDefault();
+      openGalleryModal(card);
+    });
+  });
+
+  galleryDialog?.querySelectorAll('[data-gallery-close]').forEach((control) => {
+    control.addEventListener('click', closeGalleryModal);
+  });
+  galleryDialog?.addEventListener('close', resetGalleryModal);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && galleryDialog?.open) closeGalleryModal();
   });
 </script>
 

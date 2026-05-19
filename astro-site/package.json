@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check:gallery": "node scripts/check-video-gallery.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
