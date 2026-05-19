@@ -131,14 +131,19 @@ const galleryVideos = [
     <li><a href="#reviews">Отзывы</a></li>
     <li><a href="https://wa.me/393792811354" class="nav-cta" target="_blank" rel="noopener">Написать</a></li>
   </ul>
-  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" class="mobile-link">Обо мне</a>
-  <a href="#tours" class="mobile-link">Экскурсии</a>
-  <a href="#gallery" class="mobile-link">Галерея</a>
-  <a href="#reviews" class="mobile-link">Отзывы</a>
-  <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="mobile-link mobile-link--cta">Написать в WhatsApp</a>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-close" id="mobileClose" type="button" aria-label="Закрыть меню">
+    <X size={30} strokeWidth={2.2} />
+  </button>
+  <nav class="mobile-menu__links" aria-label="Мобильная навигация">
+    <a href="#about" class="mobile-link">Обо мне</a>
+    <a href="#tours" class="mobile-link">Экскурсии</a>
+    <a href="#gallery" class="mobile-link">Галерея</a>
+    <a href="#reviews" class="mobile-link">Отзывы</a>
+    <a href="https://wa.me/393792811354" target="_blank" rel="noopener" class="mobile-link mobile-link--cta">Написать в WhatsApp</a>
+  </nav>
 </div>
 
 <!-- ===================== HERO ===================== -->
@@ -740,7 +745,11 @@ const galleryVideos = [
   .nav-cta::after { display: none !important; }
   .nav-cta:hover { box-shadow: 0 4px 16px rgba(232,114,92,0.3); }
 
-  .burger { display: none; flex-direction: column; gap: 5px; z-index: 1100; padding: 8px; }
+  .burger {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; z-index: 1100; width: 44px; height: 44px; padding: 8px;
+    background: transparent; border: 0; cursor: pointer;
+  }
   .burger span { display: block; width: 26px; height: 2.5px; background: #fff; border-radius: 1px; transition: var(--transition); }
   .nav.scrolled .burger span { background: var(--navy); }
   .burger.active span { background: #fff !important; }
@@ -750,22 +759,87 @@ const galleryVideos = [
 
   .mobile-menu {
     position: fixed; inset: 0; z-index: 1050;
-    background: linear-gradient(135deg, var(--navy), var(--navy-dark));
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-    opacity: 0; pointer-events: none; transition: opacity 0.4s;
+    background:
+      linear-gradient(135deg, rgba(26,54,93,0.98), rgba(15,34,64,0.98)),
+      linear-gradient(180deg, rgba(244,208,63,0.08), transparent 46%);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateY(-18px) scale(0.985);
+    transition:
+      opacity 0.36s ease,
+      transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.48s;
+    will-change: opacity, transform;
   }
-  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu.open {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition:
+      opacity 0.36s ease,
+      transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s;
+  }
+  .mobile-menu__links {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+    padding: 96px 24px 64px;
+  }
+  .mobile-close {
+    position: absolute;
+    top: max(18px, env(safe-area-inset-top));
+    right: max(18px, env(safe-area-inset-right));
+    width: 50px; height: 50px;
+    display: grid; place-items: center;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+  .mobile-close:hover,
+  .mobile-close:focus-visible {
+    background: rgba(225,110,83,0.2);
+    border-color: rgba(225,110,83,0.72);
+    transform: rotate(90deg);
+    outline: none;
+  }
   .mobile-link {
     font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 800;
     color: #fff; text-transform: uppercase; letter-spacing: 4px;
+    line-height: 1.25; text-align: center; max-width: min(86vw, 420px);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: color 0.25s ease, opacity 0.34s ease, transform 0.34s ease;
   }
+  .mobile-menu.open .mobile-link { opacity: 1; transform: translateY(0); }
+  .mobile-menu.open .mobile-link:nth-child(1) { transition-delay: 0.08s; }
+  .mobile-menu.open .mobile-link:nth-child(2) { transition-delay: 0.13s; }
+  .mobile-menu.open .mobile-link:nth-child(3) { transition-delay: 0.18s; }
+  .mobile-menu.open .mobile-link:nth-child(4) { transition-delay: 0.23s; }
+  .mobile-menu.open .mobile-link:nth-child(5) { transition-delay: 0.28s; }
   .mobile-link:hover { color: var(--coral); }
   .mobile-link--cta { color: var(--coral); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu.open,
+    .mobile-link,
+    .mobile-close,
+    .burger span {
+      transition: none;
+      transform: none;
+    }
+  }
 
   @media (max-width: 900px) {
     .nav { padding: 0 20px; }
     .nav-links { display: none; }
     .burger { display: flex; }
+  }
+
+  @media (max-width: 380px) {
+    .mobile-link { font-size: 1.05rem; letter-spacing: 2.8px; }
+    .mobile-menu__links { gap: 22px; }
   }
 
   /* ============= HERO ============= */
@@ -1543,18 +1617,35 @@ const galleryVideos = [
   // Burger
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');
-  burger?.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    menu?.classList.toggle('open');
-    document.body.style.overflow = menu?.classList.contains('open') ? 'hidden' : '';
-  });
-  menu?.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      burger?.classList.remove('active');
-      menu?.classList.remove('open');
-      document.body.style.overflow = '';
+  const mobileClose = document.getElementById('mobileClose');
+  if (burger && menu) {
+    const setMobileMenuOpen = (isOpen) => {
+      burger.classList.toggle('active', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      menu.classList.toggle('open', isOpen);
+      menu.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) mobileClose?.focus({ preventScroll: true });
+      if (!isOpen && document.activeElement && menu.contains(document.activeElement)) {
+        burger.focus({ preventScroll: true });
+      }
+    };
+
+    burger.addEventListener('click', () => {
+      setMobileMenuOpen(!menu.classList.contains('open'));
     });
-  });
+    mobileClose?.addEventListener('click', () => {
+      setMobileMenuOpen(false);
+    });
+    menu.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => setMobileMenuOpen(false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.classList.contains('open')) {
+        setMobileMenuOpen(false);
+      }
+    });
+  }
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
