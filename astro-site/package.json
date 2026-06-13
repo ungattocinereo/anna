@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "check:gallery": "node scripts/check-video-gallery.mjs",
+    "check:tours": "node scripts/check-tour-content.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
