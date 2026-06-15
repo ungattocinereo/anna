@@ -61,6 +61,9 @@ assert(classicBlock && !classicBlock.includes('<h4>Атрани</h4>'), 'Classic
 assertNotIncludes('Позитано — Праяно — Изумрудный грот — Амальфи — Атрани', 'Old classic route');
 
 assertIncludes('Дольче Вита', 'Dolce Vita tour title');
+assert(dolceVitaBlock && dolceVitaBlock.includes('Позитано — Сорренто'), 'Dolce Vita Positano-Sorrento route is missing');
+assert(dolceVitaBlock && dolceVitaBlock.includes('6 часов · макс. 3 человека'), 'Dolce Vita duration should be 6 hours');
+assert(dolceVitaBlock && !dolceVitaBlock.includes('8 часов · макс. 3 человека'), 'Dolce Vita duration should not be 8 hours');
 assert(dolceVitaBlock && !dolceVitaBlock.includes('Также посетим древнюю Римскую виллу'), 'Dolce Vita MAR paragraph should be removed');
 assert(dolceVitaBlock && !dolceVitaBlock.includes('+ €15/чел. билет на виллу'), 'Dolce Vita villa ticket note should be removed');
 
