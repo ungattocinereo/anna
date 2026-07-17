@@ -50,6 +50,28 @@ const extractTourBlock = (startMarker, endMarker) => {
 const classicBlock = extractTourBlock('<!-- ===== CABRIO: ВЕЧНАЯ КЛАССИКА ===== -->', '<!-- ===== CABRIO: АМАЛЬФИ НА ВКУС ===== -->');
 const tasteBlock = extractTourBlock('<!-- ===== CABRIO: АМАЛЬФИ НА ВКУС ===== -->', '<!-- ===== CABRIO: ЭЛЕГАНТНАЯ РОСКОШЬ ===== -->');
 const dolceVitaBlock = extractTourBlock('<!-- ===== CABRIO: ЭЛЕГАНТНАЯ РОСКОШЬ ===== -->', '<!-- ===== ДРУГИЕ ВПЕЧАТЛЕНИЯ ===== -->');
+const boatBlock = extractTourBlock('<!-- ===== BOAT TOUR ===== -->', '<!-- ===== CABRIO: ВЕЧНАЯ КЛАССИКА ===== -->');
+const expectedBoatOrder = ['Perla Blu', 'Reginella', 'Princess', 'Premium Boat'];
+const boatOrder = [...boatBlock.matchAll(/<h4>([^<]+)<\/h4>/g)]
+  .map((match) => match[1])
+  .filter((title) => expectedBoatOrder.includes(title) || title === 'Cranchi Sport');
+
+const extractBoatDetails = (name, nextName) => {
+  const startIndex = boatBlock.indexOf(`<h4>${name}</h4>`);
+  if (startIndex === -1) return '';
+
+  const endIndex = nextName
+    ? boatBlock.indexOf(`<h4>${nextName}</h4>`, startIndex + name.length)
+    : boatBlock.indexOf('<p class="tour-departure"', startIndex);
+
+  return boatBlock.slice(startIndex, endIndex === -1 ? boatBlock.length : endIndex);
+};
+
+const perlaBluDetails = extractBoatDetails('Perla Blu', 'Reginella');
+const princessDetails = extractBoatDetails('Princess', 'Premium Boat');
+const stripTags = (value) => value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+const perlaBluText = stripTags(perlaBluDetails);
+const princessText = stripTags(princessDetails);
 
 assertIncludes('Вечная классика', 'Classic tour title');
 assertIncludes('Позитано — Изумрудный грот — Амальфи', 'Classic tour route');
@@ -80,6 +102,17 @@ assert(!page.includes('/images/optimized/amalfi-taste-ravello.webp'), 'Old taste
 assert(existsSync(join(root, 'public/images/optimized/amalfi-taste-winery.webp')), 'Taste tour winery image asset is missing');
 
 assert(page.includes('"name": "Кабриолет — Амальфи на вкус"'), 'Taste tour JSON-LD offer is missing');
+
+assert(boatBlock.includes('<img src="/images/optimized/princess.webp" alt="Princess"'), 'Princess image should be used');
+assert(existsSync(join(root, 'public/images/optimized/princess.webp')), 'Princess boat image asset is missing');
+assert(!boatBlock.includes('Cranchi Sport'), 'Cranchi Sport boat card should be replaced');
+assert(!boatBlock.includes('/images/optimized/cranchi sport.webp'), 'Cranchi image should not be referenced');
+assert(JSON.stringify(boatOrder) === JSON.stringify(expectedBoatOrder), `Boat order should be ${expectedBoatOrder.join(' > ')}, got ${boatOrder.join(' > ')}`);
+assert(perlaBluText.includes('€750 — 3.5 часа'), 'Perla Blu 3.5 hour price is missing');
+assert(!perlaBluDetails.includes('7 часов'), 'Perla Blu 7 hour option should be removed');
+assert(princessDetails.includes('макс. 8 человек'), 'Princess capacity should be 8 people');
+assert(princessText.includes('€900 — 3.5 часа'), 'Princess 3.5 hour price should stay the same as Cranchi');
+assert(princessText.includes('€1350 — 7 часов'), 'Princess 7 hour price should stay the same as Cranchi');
 
 if (failures.length) {
   console.error('Tour content check failed:');
