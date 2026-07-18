@@ -111,8 +111,8 @@ assert(JSON.stringify(boatOrder) === JSON.stringify(expectedBoatOrder), `Boat or
 assert(perlaBluText.includes('€750 — 3.5 часа'), 'Perla Blu 3.5 hour price is missing');
 assert(!perlaBluDetails.includes('7 часов'), 'Perla Blu 7 hour option should be removed');
 assert(princessDetails.includes('макс. 8 человек'), 'Princess capacity should be 8 people');
-assert(princessText.includes('€900 — 3.5 часа'), 'Princess 3.5 hour price should stay the same as Cranchi');
-assert(princessText.includes('€1350 — 7 часов'), 'Princess 7 hour price should stay the same as Cranchi');
+assert(princessText.includes('€1000 — 3.5 часа'), 'Princess 3.5 hour price should be €1000');
+assert(princessText.includes('€1450 — 7 часов'), 'Princess 7 hour price should be €1450');
 
 if (failures.length) {
   console.error('Tour content check failed:');
