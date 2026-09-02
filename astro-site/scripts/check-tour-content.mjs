@@ -74,6 +74,8 @@ const stripTags = (value) => value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ')
 const perlaBluText = stripTags(perlaBluDetails);
 const reginellaText = stripTags(reginellaDetails);
 const princessText = stripTags(princessDetails);
+const naplesTransferPrices = [...normalizedPage.matchAll(/Из Неаполя — €(\d+)/g)]
+  .map((match) => Number(match[1]));
 
 assertIncludes('Вечная классика', 'Classic tour title');
 assertIncludes('Позитано — Изумрудный грот — Амальфи', 'Classic tour route');
@@ -119,6 +121,8 @@ assert(princessDetails.includes('макс. 8 человек'), 'Princess capacit
 assert(princessText.includes('€1000 — 3.5 часа'), 'Princess 3.5 hour price should be €1000');
 assert(princessText.includes('€1550 — 7 часов'), 'Princess 7 hour price should be €1550');
 assert(!boatBlock.includes('Premium Boat'), 'Premium Boat should be renamed to Gozzo');
+assert(naplesTransferPrices.length === 6, `Expected 6 Naples transfer prices, got ${naplesTransferPrices.length}`);
+assert(naplesTransferPrices.every((price) => price === 150), `Every Naples transfer should cost €150, got ${naplesTransferPrices.join(', ')}`);
 
 if (failures.length) {
   console.error('Tour content check failed:');
